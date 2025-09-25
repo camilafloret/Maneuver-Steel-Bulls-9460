@@ -67,8 +67,9 @@ npm run dev
 
 # Gerar build de produção
 npm run build
+```
 
-## 📖 Uso
+### 📖 Uso
 
 ### Início Rápido
 1. **Dados de Demonstração**: Clique em *"Load Demo Data"* na página inicial para explorar todos os recursos
@@ -76,12 +77,12 @@ npm run build
 3. **Transferência de Dados**: Use **QR codes** ou arquivos **JSON** para compartilhar dados entre dispositivos
 
 ### Fluxos Principais
-**Scouting de Partida**: Início da partida → Fase Autônoma → Teleoperada → Endgame → Submeter
-**Análise de Equipes**: Selecionar equipe → Visualizar estatísticas em múltiplas abas → Comparar com outras → Analisar posições
-**Planejamento de Estratégia**: Visão geral no dashboard → Gráficos interativos → Configuração de colunas → Filtros por evento
-**Seleção de Alianças**: Criar listas de seleção → Pesquisar equipes → Ordenar com drag-and-drop → Exportar/Compartilhar
-**Pit Scouting**: Atribuir scouters → Preencher formulários de pit → Visualizar mapa de pits → Exportar dados de pits
-**Conquistas**: Acompanhar progresso dos scouters → Desbloquear badges → Visualizar ranking
+- **Scouting de Partida**: Início da partida → Fase Autônoma → Teleoperada → Endgame → Submeter
+- **Análise de Equipes**: Selecionar equipe → Visualizar estatísticas em múltiplas abas → Comparar com outras → Analisar posições
+- **Planejamento de Estratégia**: Visão geral no dashboard → Gráficos interativos → Configuração de colunas → Filtros por evento
+- **Seleção de Alianças**: Criar listas de seleção → Pesquisar equipes → Ordenar com drag-and-drop → Exportar/Compartilhar
+- **Pit Scouting**: Atribuir scouters → Preencher formulários de pit → Visualizar mapa de pits → Exportar dados de pits
+- **Conquistas**: Acompanhar progresso dos scouters → Desbloquear badges → Visualizar ranking
 
 
 ## 🏗️ Estrutura do Projeto

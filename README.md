@@ -54,10 +54,10 @@ O Maneuver oferece ferramentas poderosas para scouting de partidas, análise de 
 ### Instalação
 ```bash
 # Clonar o repositório
-git clone https://github.com/seu-usuario/maneuver-frc.git
+git clone https://github.com/seu-usuario/Maneuver-Steel-Bulls-9460.git
 
 # Entrar no diretório
-cd maneuver-frc
+cd Maneuver-Steel-Bulls-9460
 
 # Instalar dependências
 npm install

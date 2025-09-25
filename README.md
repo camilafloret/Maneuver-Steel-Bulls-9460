@@ -40,7 +40,7 @@ O Maneuver oferece ferramentas poderosas para scouting de partidas, análise de 
 - **Build**: Vite
 - **UI**: Tailwind CSS + shadcn/ui
 - **Banco Local**: Dexie (IndexedDB) - `src/lib/dexieDB.ts`
-**Transferência**: JSON & *Fountain Codes* (QR)
+- **Transferência**: JSON & *Fountain Codes* (QR)
 - **PWA**: vite-plugin-pwa (offline + cache)
 - **Analytics**: Google Analytics 4 - `src/lib/analytics`
 
@@ -138,11 +138,12 @@ Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](L
 
 
 ## 🙏 Agradecimentos
-- **FIRST Robotics Competition** por inspirar este projeto 
-- **VihaanChhabria** e o projeto [VScouter](https://github.com/VihaanChhabria/VScouter) pela base inicial e inspiração
-- **The Blue Alliance** pela API de dados de partidas
-- **shadcn/ui** pela excelente biblioteca de componentes
-- **Luby Transform** pela robustez na transferência de dados
+- [**FIRST Robotics Competition**](https://www.firstinspires.org/robotics/frc) por inspirar este projeto 
+- [**VihaanChhabria**](https://github.com/VihaanChhabria) e o projeto [**VScouter**](https://github.com/VihaanChhabria/VScouter) pela base inicial e inspiração
+- [**The Blue Alliance**](https://www.thebluealliance.com/) pela API de dados de partidas
+- [**shadcn/ui**](https://ui.shadcn.com/) pela excelente biblioteca de componentes
+- [**Luby Transform**](https://www.npmjs.com/package/luby-transform?activeTab=versions) pela robustez na transferência de dados
+- [**Maneuver**](https://github.com/ShinyShips/Maneuver) por compartilhar o código open-source e permitir a modificação conforme a necessidade
 
 
 ## 📞 Suporte

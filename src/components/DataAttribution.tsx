@@ -20,7 +20,7 @@ export const DataAttribution: React.FC<DataAttributionProps> = ({
       <div className={`space-y-2 text-xs text-muted-foreground ${className}`}>
         {showTBA && (
           <div className="flex items-center gap-1">
-            <span>Powered by</span>
+            <span>Distribuído por</span>
             <a 
               href="https://thebluealliance.com" 
               target="_blank" 
@@ -34,14 +34,14 @@ export const DataAttribution: React.FC<DataAttributionProps> = ({
         )}
         {showNexus && (
           <div className="flex items-center gap-1">
-            <span>Pit data from</span>
+            <span>Dados de pit de</span>
             <a 
               href="https://frc.nexus" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 underline flex items-center gap-1"
             >
-              Nexus for FRC
+              Nexus para FRC
               <ExternalLink className="h-3 w-3" />
             </a>
           </div>
@@ -74,14 +74,14 @@ export const DataAttribution: React.FC<DataAttributionProps> = ({
           rel="noopener noreferrer"
           className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 underline"
         >
-          Nexus for FRC
+          Nexus para FRC
         </a>
       );
     }
 
     return (
       <span className={`text-xs text-muted-foreground ${className}`}>
-        Data from {attributions.reduce((prev, curr, index) => {
+        Dados de {attributions.reduce((prev, curr, index) => {
           if (prev === null) return [curr];
           return [...prev, index === attributions.length - 1 ? ' and ' : ', ', curr];
         }, null as React.ReactNode[] | null)}
@@ -98,9 +98,9 @@ export const DataAttribution: React.FC<DataAttributionProps> = ({
           target="_blank" 
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 underline flex items-center gap-1"
-          title="Powered by The Blue Alliance"
+          title="Desenvolvido pela The Blue Alliance"
         >
-          <span className="hidden sm:inline">Powered by </span>The Blue Alliance
+          <span className="hidden sm:inline">Distribuído pela </span>The Blue Alliance
           <ExternalLink className="h-3 w-3" />
         </a>
       )}
@@ -112,7 +112,7 @@ export const DataAttribution: React.FC<DataAttributionProps> = ({
           className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-300 underline flex items-center gap-1"
           title="Pit data from FRC Nexus"
         >
-          Nexus<span className="hidden sm:inline"> for FRC</span>
+          Nexus<span className="hidden sm:inline"> para FRC</span>
           <ExternalLink className="h-3 w-3" />
         </a>
       )}

@@ -43,14 +43,14 @@ export const handleScoutingDataUpload = async (jsonData: unknown, mode: UploadMo
     let message = '';
     
     if (mode === "overwrite") {
-      message = `Overwritten with ${stats.final} scouting entries`;
+      message = `Substituídas com ${stats.final} entradas de scouting`;
     } else if (mode === "append") {
-      message = `Appended ${stats.new} entries to existing ${stats.existing} entries (Total: ${stats.final})`;
+      message = `Adicionadas ${stats.new} entradas às ${stats.existing} existentes (Total: ${stats.final})`;
     } else if (mode === "smart-merge") {
       if (stats.duplicates > 0) {
-        message = `Smart merge: ${stats.new} new entries added, ${stats.duplicates} duplicates skipped (Total: ${stats.final})`;
+        message = `Mesclagem inteligente: ${stats.new} novas entradas adicionadas, ${stats.duplicates} duplicadas ignoradas (Total: ${stats.final})`;
       } else {
-        message = `Smart merge: ${stats.new} new entries added (Total: ${stats.final})`;
+        message = `Mesclagem inteligente: ${stats.new} novas entradas adicionadas (Total: ${stats.final})`;
       }
     }
     
@@ -81,7 +81,7 @@ export const handleScoutingDataUpload = async (jsonData: unknown, mode: UploadMo
 
     newData = hasHeaderRow ? (jsonData as ProcessedScoutingData).slice(1) : (jsonData as ProcessedScoutingData);
   } else {
-    toast.error("Invalid scouting data format");
+    toast.error("Formato de dados de scouting inválido");
     return;
   }
 
@@ -107,14 +107,14 @@ export const handleScoutingDataUpload = async (jsonData: unknown, mode: UploadMo
   let message = '';
   
   if (mode === "overwrite") {
-    message = `Overwritten with ${stats.final} scouting entries`;
+    message = `Substituídas com ${stats.final} entradas de scouting`;
   } else if (mode === "append") {
-    message = `Appended ${stats.new} entries to existing ${stats.existing} entries (Total: ${stats.final})`;
+    message = `Adicionadas ${stats.new} entradas às ${stats.existing} existentes (Total: ${stats.final})`;
   } else if (mode === "smart-merge") {
     if (stats.duplicates > 0) {
-      message = `Smart merge: ${stats.new} new entries added, ${stats.duplicates} duplicates skipped (Total: ${stats.final})`;
+      message = `Mesclagem inteligente: ${stats.new} novas entradas adicionadas, ${stats.duplicates} duplicadas ignoradas (Total: ${stats.final})`;
     } else {
-      message = `Smart merge: ${stats.new} new entries added (Total: ${stats.final})`;
+      message = `Mesclagem inteligente: ${stats.new} novas entradas adicionadas (Total: ${stats.final})`;
     }
   }
   

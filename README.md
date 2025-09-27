@@ -1,4 +1,4 @@
-# Maneuver - Advanced FRC Scouting Application
+# Maneuver – Aplicação de Scouting FRC Avançado 🚀
 
 Um aplicativo de scouting completo e mobile-first para equipes da FIRST Robotics Competition (FRC).
 O Maneuver oferece ferramentas poderosas para scouting de partidas, análise de equipes, pit scouting, seleção de alianças e gerenciamento de dados.
@@ -6,13 +6,13 @@ O Maneuver oferece ferramentas poderosas para scouting de partidas, análise de 
 
 ## 🚀 Funcionalidades
 
-- **Coleta de Dados Completa**: Acompanhe o desempenho nas fases **autônoma**, **teleoperada** e **endgame** com entrada em tempo real
+- **Coleta de Dados Completa**: Acompanhe o desempenho nas fases **autônoma**, **teleoperada** e **fim de jogo** com entrada em tempo real
 - **Mapas de Campo Interativos**: Interfaces visuais para definir **posições iniciais** e **estratégias**
-- **Suporte ao Jogo 2025**: Pontuação de **coral** (4 níveis), **gerenciamento de algas** e **análise de climbs**
+- **Suporte ao Jogo 2025**: Pontuação de **coral** (4 níveis), **gerenciamento de algas** e **análise de escaladas**
 - **Integração com Estratégia de Partidas**: Importe dados de partidas a partir da **API do The Blue Alliance** e do **Nexus**
 - **Field Canvas**: Desenhe e anote estratégias de partidas, com **preenchimento automático pelo número da partida**
 
-- **Dashboard Multi-Abas**: Métricas detalhadas de desempenho em **Overall**, **Auto**, **Teleop** e **Endgame**
+- **Dashboard Multi-Abas**: Métricas detalhadas de desempenho em **Geral**, **Autônomo**, **Teleoperado** e **Fim de Jogo**
 - **Análises Avançadas**: Visão geral de estratégia com **filtros**, **ordenação**, **gráficos** e múltiplos tipos de agregação
 - **Comparação de Equipes**: Análises lado a lado com indicadores visuais e significância estatística
 - **Análise de Posições**: Mapas de campo mostrando preferências de posição inicial e taxas de sucesso
@@ -25,12 +25,12 @@ O Maneuver oferece ferramentas poderosas para scouting de partidas, análise de 
 
 
 ### 🏗️ Pit Scouting & Atribuições
-- **Interface Completa de Pit Scouting**: Formulários para specs do robô, fotos, auto/teleop/endgame e notas técnicas
+- **Interface Completa de Pit Scouting**: Formulários para specs do robô, fotos, autônomo/teleoperado/fim de jogo e notas técnicas
 - **Ferramentas de Atribuição**: Controle de atribuições, configuração de eventos, visualização do mapa de pits e clusterização espacial
 
 
 ### 📱 Gerenciamento & Transferência de Dados
-- **Transferência Flexível**: Arquivos JSON e *fountain codes* para grandes volumes de dados
+- **Transferência Flexível**: Arquivos JSON e *códigos de fonte* para grandes volumes de dados
 - **Armazenamento Local**: Dados persistentes com merge/sobrescrita via IndexedDB (Dexie)
 
 
@@ -77,7 +77,7 @@ npm run build
 3. **Transferência de Dados**: Use **QR codes** ou arquivos **JSON** para compartilhar dados entre dispositivos
 
 ### Fluxos Principais
-- **Scouting de Partida**: Início da partida → Fase Autônoma → Teleoperada → Endgame → Submeter
+- **Scouting de Partida**: Início da partida → Fase Autônoma → Teleoperada → Fim de Jogo → Enviar
 - **Análise de Equipes**: Selecionar equipe → Visualizar estatísticas em múltiplas abas → Comparar com outras → Analisar posições
 - **Planejamento de Estratégia**: Visão geral no dashboard → Gráficos interativos → Configuração de colunas → Filtros por evento
 - **Seleção de Alianças**: Criar listas de seleção → Pesquisar equipes → Ordenar com drag-and-drop → Exportar/Compartilhar
@@ -112,7 +112,7 @@ src/
 
 ## 🤝 Contribuindo
 
-Contribuições para o Maneuver são bem-vindas! Veja como ajudar:
+Contribuições para o Maneuver Steel Bulls 9460 são bem-vindas! Veja como ajudar:
 
 1. **Faça um fork do repositório**
 2. **Crie uma branch de feature**: `git checkout -b feature/minha-feature`

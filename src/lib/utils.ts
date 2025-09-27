@@ -37,19 +37,19 @@ export function convertArrayOfArraysToCSV(data: (string | number)[][]): string {
 export const convertTeamRole = (value: string | null) => {
       switch (value) {
         case "lead":
-          return "Lead";
+          return "Líder";
         case "red-1":
-          return "Red 1";
+          return "Vermelho 1";
         case "red-2":
-          return "Red 2";
+          return "Vermelho 2";
         case "red-3":
-          return "Red 3";
+          return "Vermelho 3";
         case "blue-1":
-          return "Blue 1";
+          return "Azul 1";
         case "blue-2":
-          return "Blue 2";
+          return "Azul 2";
         case "blue-3":
-          return "Blue 3";
+          return "Azul 3";
       }
-      return "Role";
+      return "Função";
     };

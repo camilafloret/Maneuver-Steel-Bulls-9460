@@ -64,7 +64,7 @@ export function NavMain({
     // navigate to the destination page
     const proceedClick = (url?: string) => {
         const destination = url || "/";
-        const label = url === "/" ? "Home" : "this page";
+        const label = url === "/" ? "Início" : "esta página";
         
         if (confirmNavigation(destination, label)) {
           // Navigation was allowed immediately
@@ -77,7 +77,7 @@ export function NavMain({
 
     // Handler for sub-menu clicks
     const handleSubItemClick = (url: string) => {
-        const label = url.split('/').pop() || "this page";
+        const label = url.split('/').pop() || "esta página";
         
         if (confirmNavigation(url, label)) {
           // Navigation was allowed immediately
@@ -117,24 +117,24 @@ export function NavMain({
                           <SelectValue placeholder={convertTeamRole(selected) || "Role"} />
                       </SelectTrigger>
                       <SelectContent>
-                        <SelectItem className="text-lg" value="lead">Lead</SelectItem>
-                        <SelectItem className="text-lg" value="red-1">Red 1</SelectItem>
-                        <SelectItem className="text-lg" value="red-2">Red 2</SelectItem>
-                        <SelectItem className="text-lg" value="red-3">Red 3</SelectItem>
-                        <SelectItem className="text-lg" value="blue-1">Blue 1</SelectItem>
-                        <SelectItem className="text-lg" value="blue-2">Blue 2</SelectItem>
-                        <SelectItem className="text-lg" value="blue-3">Blue 3</SelectItem>
+                        <SelectItem className="text-lg" value="lead">Liderar</SelectItem>
+                        <SelectItem className="text-lg" value="red-1">Vermelho 1</SelectItem>
+                        <SelectItem className="text-lg" value="red-2">Vermelho 2</SelectItem>
+                        <SelectItem className="text-lg" value="red-3">Vermelho 3</SelectItem>
+                        <SelectItem className="text-lg" value="blue-1">Azul 1</SelectItem>
+                        <SelectItem className="text-lg" value="blue-2">Azul 2</SelectItem>
+                        <SelectItem className="text-lg" value="blue-3">Azul 3</SelectItem>
                       </SelectContent>
                   </Select>
                   <ModeToggle/>
               </div>
         </SidebarMenuItem>
-        <SidebarGroupLabel>Platform</SidebarGroupLabel>
+        <SidebarGroupLabel>Plataforma</SidebarGroupLabel>
         <SidebarMenu>
           <SidebarMenuItem className="flex items-center gap-2">
             <SidebarMenuButton tooltip={"Home"} onClick={() => proceedClick("/")}>
               <Home />
-              <span>Home</span>
+              <span>Início</span>
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem className="flex items-center gap-2">

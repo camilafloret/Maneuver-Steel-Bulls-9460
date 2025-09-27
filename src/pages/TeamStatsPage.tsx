@@ -101,7 +101,7 @@ const TeamStatsPage = () => {
         // Track team stats page usage
         analytics.trackPageNavigation('team_stats');
       } catch (error) {
-        console.error("Error loading scouting data:", error);
+        console.error("Erro ao carregar dados de reconhecimento:", error);
       }
     };
 
@@ -134,7 +134,7 @@ const TeamStatsPage = () => {
           pitScoutingTeams = [...new Set(pitEntries.map(entry => entry.teamNumber))];
         }
       } catch (error) {
-        console.warn('Error loading pit scouting teams:', error);
+        console.warn('Erro ao carregar equipes de pit scouting:', error);
       }
       
       // Get teams from event team lists (TBA and Nexus)
@@ -197,7 +197,7 @@ const TeamStatsPage = () => {
     <div className="min-h-screen w-full flex flex-col items-center px-4 pt-4 pb-6">
       <div className="w-full max-w-7xl">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold">Team Statistics</h1>
+          <h1 className="text-2xl font-bold">Estatísticas da equipe</h1>
           <div className="hidden md:block">
             <DataAttribution sources={['tba']} variant="compact" />
           </div>
@@ -228,11 +228,11 @@ const TeamStatsPage = () => {
               <CardHeader>
                 <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                    <CardTitle className="text-2xl">Team {selectedTeam}</CardTitle>
+                    <CardTitle className="text-2xl">Equipe {selectedTeam}</CardTitle>
                     {compareTeam && compareTeam !== "none" && compareStats && (
                       <div className="flex items-center gap-2">
                         <span className="text-lg text-muted-foreground">vs</span>
-                        <CardTitle className="text-2xl text-purple-600">Team {compareTeam}</CardTitle>
+                        <CardTitle className="text-2xl text-purple-600">Equipe {compareTeam}</CardTitle>
                       </div>
                     )}
                   </div>
@@ -248,10 +248,10 @@ const TeamStatsPage = () => {
                     {compareTeam && compareTeam !== "none" && compareStats && (
                       <div className="flex items-center gap-2">
                         <Badge variant="outline" className="border-purple-200 bg-purple-50 text-purple-700 dark:border-purple-800 dark:bg-purple-950 dark:text-purple-300">
-                          {compareStats.matchesPlayed > 0 ? `${compareStats.matchesPlayed} matches` : 'No match data'}
+                          {compareStats.matchesPlayed > 0 ? `${compareStats.matchesPlayed} partidas` : 'Nenhum dado de partida'}
                         </Badge>
                         <Badge variant="secondary" className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                          {compareStats.matchesPlayed > 0 ? `${compareStats.avgTotalPoints} avg pts` : 'Pit data only'}
+                          {compareStats.matchesPlayed > 0 ? `${compareStats.avgTotalPoints} pontos médios` : 'Somente dados do pit'}
                         </Badge>
                       </div>
                     )}
@@ -264,24 +264,24 @@ const TeamStatsPage = () => {
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full" enableSwipe={true}>
               <TabsList className="grid w-full grid-cols-5 h-auto">
                 <TabsTrigger value="overview" className="text-xs sm:text-sm px-1 sm:px-3">
-                  <span className="hidden sm:inline">Overview</span>
-                  <span className="sm:hidden">Over.</span>
+                  <span className="hidden sm:inline">Visão geral</span>
+                  <span className="sm:hidden">Sobre.</span>
                 </TabsTrigger>
                 <TabsTrigger value="scoring" className="text-xs sm:text-sm px-1 sm:px-3">
-                  <span className="hidden sm:inline">Scoring</span>
-                  <span className="sm:hidden">Score</span>
+                  <span className="hidden sm:inline">Pontuação</span>
+                  <span className="sm:hidden">Pontuação.</span>
                 </TabsTrigger>
                 <TabsTrigger value="auto" className="text-xs sm:text-sm px-1 sm:px-3">
-                  <span className="hidden sm:inline">Auto Start</span>
-                  <span className="sm:hidden">Auto</span>
+                  <span className="hidden sm:inline">Início automático</span>
+                  <span className="sm:hidden">Automático.</span>
                 </TabsTrigger>
                 <TabsTrigger value="performance" className="text-xs sm:text-sm px-1 sm:px-3">
-                  <span className="hidden sm:inline">Performance</span>
-                  <span className="sm:hidden">Perf.</span>
+                  <span className="hidden sm:inline">Desempenho</span>
+                  <span className="sm:hidden">Desempenho.</span>
                 </TabsTrigger>
                 <TabsTrigger value="pit" className="text-xs sm:text-sm px-1 sm:px-3">
-                  <span className="hidden sm:inline">Pit Data</span>
-                  <span className="sm:hidden">Pit</span>
+                  <span className="hidden sm:inline">Dados do Pit</span>
+                  <span className="sm:hidden">Pit.</span>
                 </TabsTrigger>
               </TabsList>
 
@@ -291,18 +291,18 @@ const TeamStatsPage = () => {
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-8">
                       <div className="text-center space-y-3">
-                        <h3 className="text-lg font-semibold">No Match Scouting Data</h3>
+                        <h3 className="text-lg font-semibold">Dados de scouting sem partidas</h3>
                         <p className="text-muted-foreground">
-                          This team doesn't have any match scouting data for the selected event.
+                          Esta equipe não possui dados de scouting de partidas para o evento selecionado.
                         </p>
                         <p className="text-sm text-muted-foreground">
-                          Check the <strong>Pit Data</strong> tab to view pit scouting information for this team.
+                          Verifique o <strong>Dados de Pit</strong> aba para visualizar informações de pit scouting para esta equipe.
                         </p>
                         <Button  
                           onClick={() => setActiveTab("pit")}
                           className="mt-4 p-4"
                         >
-                          View Pit Data →
+                          Ver dados do Pit →
                         </Button>
                       </div>
                     </CardContent>
@@ -313,25 +313,25 @@ const TeamStatsPage = () => {
                   <>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       <StatCard 
-                        title="Total Points" 
+                        title="Total de Pontos" 
                         value={teamStats.avgTotalPoints} 
                         color="green"
                         compareValue={compareStats?.avgTotalPoints}
                       />
                       <StatCard 
-                        title="Auto Points" 
+                        title="Pontos Automáticos" 
                         value={teamStats.avgAutoPoints} 
                         color="blue"
                         compareValue={compareStats?.avgAutoPoints}
                       />
                       <StatCard 
-                        title="Teleop Points" 
+                        title="Pontos Teleop" 
                         value={teamStats.avgTeleopPoints} 
                         color="purple"
                         compareValue={compareStats?.avgTeleopPoints}
                       />
                       <StatCard 
-                        title="Endgame Points" 
+                        title="Pontos do Fim de Jogo" 
                         value={teamStats.avgEndgamePoints} 
                         color="orange"
                         compareValue={compareStats?.avgEndgamePoints}
@@ -341,26 +341,26 @@ const TeamStatsPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <Card>
                         <CardHeader>
-                          <CardTitle>Key Rates</CardTitle>
+                          <CardTitle>Taxas-chave</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                           <ProgressCard 
-                            title="Mobility Rate" 
+                            title="Taxa de mobilidade" 
                             value={teamStats.mobilityRate}
                             compareValue={compareStats?.mobilityRate}
                           />
                           <ProgressCard 
-                            title="Climb Success Rate" 
+                            title="Taxa de sucesso de escalada" 
                             value={teamStats.climbRate}
                             compareValue={compareStats?.climbRate}
                           />
                           <ProgressCard 
-                            title="Defense Rate" 
+                            title="Taxa de defesa" 
                             value={teamStats.defenseRate}
                             compareValue={compareStats?.defenseRate}
                           />
                           <ProgressCard 
-                            title="Breakdown Rate" 
+                            title="Taxa de avaria" 
                             value={teamStats.breakdownRate}
                             compareValue={compareStats?.breakdownRate}
                           />
@@ -369,26 +369,26 @@ const TeamStatsPage = () => {
 
                       <Card>
                         <CardHeader>
-                          <CardTitle>Climb Breakdown</CardTitle>
+                          <CardTitle>Desagregação da subida</CardTitle>
                         </CardHeader>
                         <CardContent className="space-y-4">
                           <ProgressCard 
-                            title="Shallow Climb Rate" 
+                            title="Taxa de subida rasa" 
                             value={teamStats.shallowClimbRate}
                             compareValue={compareStats?.shallowClimbRate}
                           />
                           <ProgressCard 
-                            title="Deep Climb Rate" 
+                            title="Taxa de subida profunda" 
                             value={teamStats.deepClimbRate}
                             compareValue={compareStats?.deepClimbRate}
                           />
                           <ProgressCard 
-                            title="Park Rate" 
+                            title="Taxa de estacionamento" 
                             value={teamStats.parkRate}
                             compareValue={compareStats?.parkRate}
                           />
                           <ProgressCard 
-                            title="Climb Failure Rate" 
+                            title="Taxa de falha de subida" 
                             value={teamStats.climbFailRate}
                             compareValue={compareStats?.climbFailRate}
                           />
@@ -399,7 +399,7 @@ const TeamStatsPage = () => {
                     {/* Comments Section */}
                     <Card>
                       <CardHeader>
-                        <CardTitle>Match Comments</CardTitle>
+                        <CardTitle>Comentários da partida</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-3 max-h-64 overflow-y-auto">
@@ -413,7 +413,7 @@ const TeamStatsPage = () => {
                                       {match.eventName}
                                     </Badge>
                                   )}
-                                  <Badge variant="outline">Match {match.matchNumber}</Badge>
+                                  <Badge variant="outline">Partida {match.matchNumber}</Badge>
                                   <Badge variant={match.alliance === "red" ? "destructive" : "default"}>
                                     {match.alliance}
                                   </Badge>
@@ -424,7 +424,7 @@ const TeamStatsPage = () => {
                           }
                           {teamStats.matchResults.filter(match => match.comment && match.comment.trim() !== "").length === 0 && (
                             <p className="text-center text-muted-foreground text-sm py-4">
-                              No comments recorded for this team's matches
+                              Nenhum comentário registrado para as partidas desta equipe
                             </p>
                           )}
                         </div>
@@ -440,16 +440,16 @@ const TeamStatsPage = () => {
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
                       <div className="text-center space-y-3">
-                        <h3 className="text-lg font-semibold">No Match Scoring Data</h3>
+                        <h3 className="text-lg font-semibold">Dados de pontuação sem partida</h3>
                         <p className="text-muted-foreground">
-                          This team doesn't have match scouting data to display scoring statistics.
+                          Este time não tem dados de observação de partidas para exibir estatísticas de pontuação.
                         </p>
                         <Button 
                           variant="outline" 
                           onClick={() => setActiveTab("pit")}
                           className="mt-4"
                         >
-                          View Pit Data →
+                          Ver dados do Pit →
                         </Button>
                       </div>
                     </CardContent>
@@ -458,32 +458,32 @@ const TeamStatsPage = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Auto Coral Scoring</CardTitle>
+                      <CardTitle>Pontuação Automática de Coral</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <StatCard 
-                          title="Level 1" 
+                          title="Nível 1" 
                           value={teamStats.avgAutoCoralL1} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgAutoCoralL1}
                         />
                         <StatCard 
-                          title="Level 2" 
+                          title="Nível 2" 
                           value={teamStats.avgAutoCoralL2} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgAutoCoralL2}
                         />
                         <StatCard 
-                          title="Level 3" 
+                          title="Nível 3" 
                           value={teamStats.avgAutoCoralL3} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgAutoCoralL3}
                         />
                         <StatCard 
-                          title="Level 4" 
+                          title="Nível 4" 
                           value={teamStats.avgAutoCoralL4} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgAutoCoralL4}
                         />
                       </div>
@@ -492,32 +492,32 @@ const TeamStatsPage = () => {
 
                   <Card>
                     <CardHeader>
-                      <CardTitle>Teleop Coral Scoring</CardTitle>
+                      <CardTitle>Pontuação de Coral Teleop</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <StatCard 
-                          title="Level 1" 
+                          title="Nível 1" 
                           value={teamStats.avgTeleopCoralL1} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgTeleopCoralL1}
                         />
                         <StatCard 
-                          title="Level 2" 
+                          title="Nível 2" 
                           value={teamStats.avgTeleopCoralL2} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgTeleopCoralL2}
                         />
                         <StatCard 
-                          title="Level 3" 
+                          title="Nível 3" 
                           value={teamStats.avgTeleopCoralL3} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgTeleopCoralL3}
                         />
                         <StatCard 
-                          title="Level 4" 
+                          title="Nível 4" 
                           value={teamStats.avgTeleopCoralL4} 
-                          subtitle="avg per match"
+                          subtitle="média por partida"
                           compareValue={compareStats?.avgTeleopCoralL4}
                         />
                       </div>
@@ -526,21 +526,21 @@ const TeamStatsPage = () => {
 
                   <Card>
                     <CardHeader>
-                      <CardTitle>Auto Algae Scoring</CardTitle>
+                      <CardTitle>Pontuação Automática de Algas</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <StatCard 
-                          title="Net Shots" 
+                          title="Arremessos na Rede" 
                           value={teamStats.avgAutoAlgaeNet} 
-                          subtitle="avg per match" 
+                          subtitle="média por partida" 
                           color="green"
                           compareValue={compareStats?.avgAutoAlgaeNet}
                         />
                         <StatCard 
-                          title="Processor" 
+                          title="Processador" 
                           value={teamStats.avgAutoAlgaeProcessor} 
-                          subtitle="avg per match" 
+                          subtitle="média por partida" 
                           color="green"
                           compareValue={compareStats?.avgAutoAlgaeProcessor}
                         />
@@ -550,21 +550,21 @@ const TeamStatsPage = () => {
 
                   <Card>
                     <CardHeader>
-                      <CardTitle>Teleop Algae Scoring</CardTitle>
+                      <CardTitle>Pontuação de Algas Teleop</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <StatCard 
-                          title="Net Shots" 
+                          title="Arremessos na Rede" 
                           value={teamStats.avgTeleopAlgaeNet} 
-                          subtitle="avg per match" 
+                          subtitle="média por partida" 
                           color="green"
                           compareValue={compareStats?.avgTeleopAlgaeNet}
                         />
                         <StatCard 
-                          title="Processor" 
+                          title="Processador" 
                           value={teamStats.avgTeleopAlgaeProcessor} 
-                          subtitle="avg per match" 
+                          subtitle="média por partida" 
                           color="green"
                           compareValue={compareStats?.avgTeleopAlgaeProcessor}
                         />
@@ -581,16 +581,16 @@ const TeamStatsPage = () => {
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
                       <div className="text-center space-y-3">
-                        <h3 className="text-lg font-semibold">No Autonomous Data</h3>
+                        <h3 className="text-lg font-semibold">Sem dados autônomos</h3>
                         <p className="text-muted-foreground">
-                          This team doesn't have match scouting data to display autonomous statistics.
+                          Este time não tem dados de observação de partidas para exibir estatísticas autônomas.
                         </p>
                         <Button 
                           variant="outline" 
                           onClick={() => setActiveTab("pit")}
                           className="mt-4"
                         >
-                          View Pit Data →
+                          Ver dados do Pit →
                         </Button>
                       </div>
                     </CardContent>
@@ -599,7 +599,7 @@ const TeamStatsPage = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Starting Position Analysis</CardTitle>
+                      <CardTitle>Análise da Posição Inicial</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="h-96">
@@ -613,47 +613,47 @@ const TeamStatsPage = () => {
 
                   <Card>
                     <CardHeader>
-                      <CardTitle>Position Breakdown</CardTitle>
+                      <CardTitle>Desagregação de posição</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
                       <div className="grid grid-cols-2 gap-4">
                         <StatCard 
-                          title="Position 0" 
+                          title="Posição 0" 
                           value={teamStats.startPositions.position0} 
-                          subtitle="% of matches" 
+                          subtitle="% de partidas" 
                           color="red"
                           compareValue={compareStats?.startPositions.position0}
                         />
                         <StatCard 
-                          title="Position 1" 
+                          title="Posição 1" 
                           value={teamStats.startPositions.position1} 
-                          subtitle="% of matches" 
+                          subtitle="% de partidas" 
                           color="orange"
                           compareValue={compareStats?.startPositions.position1}
                         />
                         <StatCard 
-                          title="Position 2" 
+                          title="Posição 2" 
                           value={teamStats.startPositions.position2} 
-                          subtitle="% of matches" 
+                          subtitle="% de partidas" 
                           color="yellow"
                           compareValue={compareStats?.startPositions.position2}
                         />
                         <StatCard 
-                          title="Position 3" 
+                          title="Posição 3" 
                           value={teamStats.startPositions.position3} 
-                          subtitle="% of matches" 
+                          subtitle="% de partidas" 
                           color="green"
                           compareValue={compareStats?.startPositions.position3}
                         />
                         <StatCard 
-                          title="Position 4" 
+                          title="Posição 4" 
                           value={teamStats.startPositions.position4} 
                           subtitle="% of matches" 
                           color="blue"
                           compareValue={compareStats?.startPositions.position4}
                         />
                         <StatCard 
-                          title="Position 5" 
+                          title="Posição 5" 
                           value={teamStats.startPositions.position5} 
                           subtitle="% of matches" 
                           color="purple"
@@ -662,7 +662,7 @@ const TeamStatsPage = () => {
                       </div>
 
                       <div className="mt-6">
-                        <p className="text-sm font-medium mb-3">Position Auto Performance</p>
+                        <p className="text-sm font-medium mb-3">Posição Desempenho Automático</p>
                         <div className="space-y-2">
                           {[0, 1, 2, 3, 4].map(pos => {
                             const positionMatches = teamStats.matchResults.filter(match => match.startPosition === pos);
@@ -683,9 +683,9 @@ const TeamStatsPage = () => {
                             
                             return (
                               <div key={pos} className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800 rounded">
-                                <span className="text-sm">Position {pos}</span>
+                                <span className="text-sm">Posição {pos}</span>
                                 <div className="text-right flex items-center gap-2">
-                                  <span className="text-sm font-bold">{avgAutoPoints} auto pts</span>
+                                  <span className="text-sm font-bold">{avgAutoPoints} pontos automáticos</span>
                                   {diff !== undefined && (
                                     <span className={`text-xs font-medium ${
                                       diff > 0 ? 'text-green-600' : diff < 0 ? 'text-red-600' : 'text-gray-500'
@@ -693,7 +693,7 @@ const TeamStatsPage = () => {
                                       ({diff > 0 ? '+' : ''}{diff.toFixed(1)})
                                     </span>
                                   )}
-                                  <span className="text-xs text-muted-foreground">({positionMatches.length} matches)</span>
+                                  <span className="text-xs text-muted-foreground">({positionMatches.length} partidas)</span>
                                 </div>
                               </div>
                             );
@@ -712,16 +712,16 @@ const TeamStatsPage = () => {
                   <Card>
                     <CardContent className="flex flex-col items-center justify-center py-12">
                       <div className="text-center space-y-3">
-                        <h3 className="text-lg font-semibold">No Performance Data</h3>
+                        <h3 className="text-lg font-semibold">Sem dados de desempenho</h3>
                         <p className="text-muted-foreground">
-                          This team doesn't have match scouting data to display performance statistics.
+                          Este time não tem dados de scouting de partidas para exibir estatísticas de desempenho.
                         </p>
                         <Button 
                           variant="outline" 
                           onClick={() => setActiveTab("pit")}
                           className="mt-4"
                         >
-                          View Pit Data →
+                          Ver dados do Pit →
                         </Button>
                       </div>
                     </CardContent>
@@ -730,17 +730,17 @@ const TeamStatsPage = () => {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <Card>
                     <CardHeader>
-                      <CardTitle>Performance Summary</CardTitle>
+                      <CardTitle>Resumo de desempenho</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-6">
                         <div>
-                          <p className="text-sm font-medium mb-3">Points by Phase</p>
+                          <p className="text-sm font-medium mb-3">Pontos por Fase</p>
                           <div className="space-y-3">
                             <div className="flex justify-between items-center p-3 bg-blue-50 dark:bg-blue-950/20 rounded">
                               <span className="text-sm font-medium">Auto</span>
                               <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-blue-600">{teamStats.avgAutoPoints} pts</span>
+                                <span className="text-sm font-bold text-blue-600">{teamStats.avgAutoPoints} pontos</span>
                                 {compareStats && (
                                   <span className={`text-xs font-medium ${
                                     (teamStats.avgAutoPoints - compareStats.avgAutoPoints) > 0 ? 'text-green-600' : 
@@ -766,9 +766,9 @@ const TeamStatsPage = () => {
                               </div>
                             </div>
                             <div className="flex justify-between items-center p-3 bg-orange-50 dark:bg-orange-950/20 rounded">
-                              <span className="text-sm font-medium">Endgame</span>
+                              <span className="text-sm font-medium">Fim de Jogo</span>
                               <div className="flex items-center gap-2">
-                                <span className="text-sm font-bold text-orange-600">{teamStats.avgEndgamePoints} pts</span>
+                                <span className="text-sm font-bold text-orange-600">{teamStats.avgEndgamePoints} pontos</span>
                                 {compareStats && (
                                   <span className={`text-xs font-medium ${
                                     (teamStats.avgEndgamePoints - compareStats.avgEndgamePoints) > 0 ? 'text-green-600' : 
@@ -783,20 +783,20 @@ const TeamStatsPage = () => {
                         </div>
                         
                         <div>
-                          <p className="text-sm font-medium mb-3">Reliability Metrics</p>
+                          <p className="text-sm font-medium mb-3">Métricas de Confiabilidade</p>
                           <div className="space-y-3">
                             <ProgressCard 
-                              title="Mobility Success" 
+                              title="Sucesso em mobilidade" 
                               value={teamStats.mobilityRate}
                               compareValue={compareStats?.mobilityRate}
                             />
                             <ProgressCard 
-                              title="Climb Success" 
+                              title="Sucesso na wscalada" 
                               value={teamStats.climbRate}
                               compareValue={compareStats?.climbRate}
                             />
                             <ProgressCard 
-                              title="Breakdown Rate" 
+                              title="Taxa de avaria" 
                               value={teamStats.breakdownRate}
                               compareValue={compareStats?.breakdownRate}
                             />
@@ -808,7 +808,7 @@ const TeamStatsPage = () => {
 
                   <Card>
                     <CardHeader>
-                      <CardTitle>Match-by-Match Performance</CardTitle>
+                      <CardTitle>Desempenho jogo a jogo</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -821,23 +821,23 @@ const TeamStatsPage = () => {
                                     {match.eventName}
                                   </Badge>
                                 )}
-                                <Badge variant="outline">Match {match.matchNumber}</Badge>
+                                <Badge variant="outline">Partida {match.matchNumber}</Badge>
                                 <Badge variant={match.alliance === "red" ? "destructive" : "default"}>
                                   {match.alliance}
                                 </Badge>
                                 {match.startPosition >= 0 && (
-                                  <Badge variant="secondary">Pos {match.startPosition}</Badge>
+                                  <Badge variant="secondary">Posição {match.startPosition}</Badge>
                                 )}
                               </div>
                               <div className="flex flex-wrap items-center gap-2">
-                                {match.climbed && <Badge variant="secondary">Climbed</Badge>}
-                                {match.brokeDown && <Badge variant="destructive">Broke Down</Badge>}
+                                {match.climbed && <Badge variant="secondary">Escalou</Badge>}
+                                {match.brokeDown && <Badge variant="destructive">QuebrADO</Badge>}
                               </div>
                             </div>
                             <div className="flex justify-between items-center">
-                              <div className="font-bold text-lg">{match.totalPoints} pts</div>
+                              <div className="font-bold text-lg">{match.totalPoints} pontos</div>
                               <div className="text-sm text-muted-foreground">
-                                A: {match.autoPoints} | T: {match.teleopPoints} | E: {match.endgamePoints}
+                                A: {match.autoPoints} | T: {match.teleopPoints} | FJ: {match.endgamePoints}
                               </div>
                             </div>
                             {match.comment && match.comment.trim() !== "" && (
@@ -873,7 +873,7 @@ const TeamStatsPage = () => {
               </p>
               {availableTeams.length === 0 && (
                 <p className="text-sm text-muted-foreground">
-                  Scout some matches first to see team statistics
+                  Scout de algumas partidas para ver as estatísticas da equipe
                 </p>
               )}
             </CardContent>

@@ -41,38 +41,38 @@ export const ClearAllDataDialog = ({
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5 text-red-500" />
-            Clear All Data - Complete Reset
+            Apagar Todos os Dados – Redefinição Completa
           </DialogTitle>
           <DialogDescription asChild>
             <div className="space-y-3">
               <p className="font-medium text-foreground">
-                This will permanently delete ALL data from this device:
+                Isto irá excluir PERMANENTEMENTE TODOS os dados deste dispositivo:
               </p>
               <ul className="text-sm space-y-1 ml-4">
-                <li>• {scoutingDataCount} scouting entries</li>
-                <li>• {pitScoutingDataCount} pit scouting entries</li>
-                <li>• {scouterGameDataCount} scouter profile entries</li>
-                <li>• {apiDataCount} API data items</li>
-                <li>• {matchDataCount} match schedule entries</li>
-                <li>• All settings and preferences</li>
-                <li>• All cached data</li>
+                <li>• {scoutingDataCount} entradas de scouting</li>
+                <li>• {pitScoutingDataCount} entradas de scouting de pit</li>
+                <li>• {scouterGameDataCount} entradas de perfil de scouter</li>
+                <li>• {apiDataCount} itens de dados da API</li>
+                <li>• {matchDataCount} entradas de cronograma de partidas</li>
+                <li>• Todas as configurações e preferências</li>
+                <li>• Todos os dados em cache</li>
               </ul>
               <p className="text-sm text-red-600 font-medium">
-                ⚠️ This action cannot be undone. Make sure you have backed up any important data.
+                ⚠️ Esta ação não pode ser desfeita. Certifique-se de ter feito backup de quaisquer dados importantes.
               </p>
             </div>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)} className="p-4">
-            Cancel
+            Cancelar
           </Button>
           <Button 
             variant="destructive"
             onClick={handleConfirm}
             className="text-white p-4"
           >
-            🗑️ Clear Everything
+            🗑️ Apagar Tudo
           </Button>
         </DialogFooter>
       </DialogContent>

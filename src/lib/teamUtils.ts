@@ -40,7 +40,7 @@ export const getDemoEventTeams = (): EventTeamsData => {
  * This simulates having data from TBA for a single event
  */
 export const setupDemoEventTeams = (): void => {
-  console.log('📋 Setting up demo event teams...');
+  console.log('📋 Configurando equipes de eventos de demonstração...');
   
   const demoEvent = {
     eventKey: '2025mrcmp',
@@ -57,16 +57,16 @@ export const setupDemoEventTeams = (): void => {
     eventName: demoEvent.eventName
   };
   localStorage.setItem(storageKey, JSON.stringify(data));
-  console.log(`  📋 Created TBA event: ${demoEvent.eventName} (${demoEvent.teams.length} teams)`);
+  console.log(`  📋 Evento TBA criado: ${demoEvent.eventName} (${demoEvent.teams.length} equipes)`);
   
-  console.log('✅ Demo event teams setup complete!');
+  console.log('✅ Configuração de equipes de eventos de demonstração concluída!');
 };
 
 /**
  * Clear demo event teams data from localStorage
  */
 export const clearDemoEventTeams = (): void => {
-  console.log('🧹 Clearing demo event teams...');
+  console.log('🧹 Limpando equipes de eventos de demonstração...');
   
   for (let i = localStorage.length - 1; i >= 0; i--) {
     const key = localStorage.key(i);
@@ -76,11 +76,11 @@ export const clearDemoEventTeams = (): void => {
       key.startsWith('nexus_pit_addresses_')
     )) {
       localStorage.removeItem(key);
-      console.log(`  🗑️  Removed: ${key}`);
+      console.log(`  🗑️  Removido: ${key}`);
     }
   }
   
-  console.log('✅ Demo event teams cleared!');
+  console.log('✅ Equipes de eventos de demonstração liberadas!');
 };
 
 /**

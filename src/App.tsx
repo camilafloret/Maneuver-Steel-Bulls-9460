@@ -109,25 +109,25 @@ function App() {
             createTestProfiles: testData.createTestScouterProfiles,
             clearAll: testData.clearTestData
           };
-          console.log('🧪 Test data functions available:');
-          console.log('  - window.testData.createTestProfiles() - Create test scouter profiles');
-          console.log('  - window.testData.clearAll() - Clear all scouter data');
+          console.log('🧪 Funções de dados de teste disponíveis:');
+          console.log('  - window.testData.createTestProfiles() - Criar perfis de scout de teste');
+          console.log('  - window.testData.clearAll() - Limpar todos os dados de scout');
         });
 
         // Make gameDB available for debugging
         import('./lib/dexieDB').then(db => {
           (window as typeof window & { gameDB: typeof db.gameDB }).gameDB = db.gameDB;
-          console.log('🗄️ Database available at window.gameDB');
+          console.log('🗄️ Banco de dados disponível em window.gameDB');
         });
 
         // Debug function to check scouter data
         (window as typeof window & { debugScouterData: (name: string) => Promise<void> }).debugScouterData = async (scouterName: string) => {
           const { gameDB } = await import('./lib/dexieDB');
           const scouter = await gameDB.scouters.get(scouterName);
-          console.log(`Scouter data for ${scouterName}:`, scouter);
+          console.log(`Dados do Scouter para ${scouterName}:`, scouter);
           
           const achievements = await gameDB.scouterAchievements.where('scouterName').equals(scouterName).toArray();
-          console.log(`Achievements for ${scouterName}:`, achievements);
+          console.log(`Conquistas para ${scouterName}:`, achievements);
           
           // Check specific stake achievements
           const { checkAchievement, ACHIEVEMENT_DEFINITIONS } = await import('./lib/achievementTypes');
@@ -140,7 +140,7 @@ function App() {
           });
         };
 
-        console.log('🐛 Debug function available: window.debugScouterData("Riley Davis")');
+        console.log('🐛 Função de depuração disponível: window.debugScouterData("Riley Davis")');
       }, 2000);
     }
 

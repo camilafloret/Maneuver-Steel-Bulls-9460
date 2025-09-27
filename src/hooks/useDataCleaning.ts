@@ -14,12 +14,12 @@ export const useDataCleaning = (
       localStorage.setItem("scoutingData", JSON.stringify({ data: [] }));
       
       await refreshData();
-      toast.success("Cleared all scouting data");
+      toast.success("Apagou todos os dados de scouting");
     } catch (error) {
-      console.error("Error clearing scouting data:", error);
+      console.error("Erro ao limpar dados de scouting:", error);
       localStorage.setItem("scoutingData", JSON.stringify({ data: [] }));
       await refreshData();
-      toast.success("Cleared all scouting data");
+      toast.success("Apagou todos os dados de scouting");
     }
   }, [refreshData]);
 
@@ -27,10 +27,10 @@ export const useDataCleaning = (
     try {
       await clearAllPitScoutingData();
       await refreshData();
-      toast.success("Cleared all pit scouting data");
+      toast.success("Limpou todos os dados de Limpou todos os dados de scouting de pit");
     } catch (error) {
-      console.error("Error clearing pit scouting data:", error);
-      toast.error("Failed to clear pit scouting data");
+      console.error("Erro ao apagar os dados de scouting de pit:", error);
+      toast.error("Falha ao apagar os dados de scouting de pit");
     }
   }, [refreshData]);
 
@@ -45,11 +45,11 @@ export const useDataCleaning = (
       window.dispatchEvent(new CustomEvent('scouterDataCleared'));
       
       await refreshData();
-      toast.success("Cleared all scouter profile data");
-      console.log("ClearDataPage - Scouter profile data cleared successfully");
+      toast.success("Todos os dados de perfil dos scouts foram apagados");
+      console.log("ClearDataPage - Dados de perfil dos scouts apagados com sucesso");
     } catch (error) {
-      console.error("Error clearing scouter profile data:", error);
-      toast.error("Failed to clear scouter profile data");
+      console.error("Erro ao apagar os dados de perfil dos scouts:", error);
+      toast.error("Falha ao apagar os dados de perfil dos scouts");
     }
   }, [refreshData]);
 
@@ -58,7 +58,7 @@ export const useDataCleaning = (
     if (updateMatchData) {
       updateMatchData(null);
     }
-    toast.success("Cleared match schedule data");
+    toast.success("Dados do cronograma de partidas apagados");
   }, [updateMatchData]);
 
   const handleClearApiData = useCallback(() => {
@@ -77,23 +77,23 @@ export const useDataCleaning = (
         key.includes('pit_assignments_')
       );
       
-      console.log('Clearing API data keys:', apiKeys);
+      console.log('Apagando chaves de dados da API:', apiKeys);
       
       apiKeys.forEach(key => {
         localStorage.removeItem(key);
       });
       
       refreshData();
-      toast.success(`Cleared all API data (${apiKeys.length} items)`);
-    } catch (error) {
-      console.error("Error clearing API data:", error);
-      toast.error("Failed to clear API data");
-    }
+      toast.success(`Todos os dados da API apagados (${apiKeys.length} itens)`);
+      } catch (error) {
+        console.error("Erro ao apagar os dados da API:", error);
+        toast.error("Falha ao apagar os dados da API");
+      }
   }, [refreshData]);
 
   const handleClearAllData = useCallback(async () => {
     try {
-      console.log("localStorage before clearing:", Object.keys(localStorage));
+      console.log("localStorage antes de apagar:", Object.keys(localStorage));
 
       await clearAllScoutingData();
       await clearAllPitScoutingData();
@@ -101,20 +101,20 @@ export const useDataCleaning = (
       
       localStorage.clear();
       
-      console.log("localStorage after clearing:", Object.keys(localStorage));
+      console.log("localStorage depois de apagar:", Object.keys(localStorage));
       
       resetStats();
       
       window.dispatchEvent(new CustomEvent('scouterDataCleared'));
       window.dispatchEvent(new CustomEvent('allDataCleared'));
       
-      toast.success("Cleared all data - complete clean slate", {
-        description: "All stored data has been permanently removed from this device."
+      toast.success("Todos os dados apagados – limpeza completa", {
+        description: "Todos os dados armazenados foram removidos permanentemente deste dispositivo."
       });
       
     } catch (error) {
-      console.error("Error clearing all data:", error);
-      toast.error("Failed to clear all data");
+      console.error("Erro ao apagar todos os dados:", error);
+      toast.error("Falha ao apagar todos os dados");
     }
   }, [resetStats]);
 

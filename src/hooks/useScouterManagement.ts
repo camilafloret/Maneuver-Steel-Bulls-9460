@@ -32,7 +32,7 @@ export function useScouterManagement() {
         await getOrCreateScouterByName(scouterName)
       }
     } catch (error) {
-      console.error("Error ensuring scouters exist in database:", error)
+      console.error("Erro ao garantir que os scouters existam no banco de dados:", error)
     }
     
     if (savedCurrentScouter) {
@@ -42,7 +42,7 @@ export function useScouterManagement() {
         const scouter = await getOrCreateScouterByName(savedCurrentScouter)
         setCurrentScouterStakes(scouter.stakes)
       } catch (error) {
-        console.error("Error creating current scouter in database:", error)
+        console.error("Erro ao criar o scouter atual no banco de dados:", error)
       }
     }
   }, [])
@@ -58,7 +58,7 @@ export function useScouterManagement() {
       const scouter = await getScouter(scouterName)
       setCurrentScouterStakes(scouter?.stakes || 0)
     } catch (error) {
-      console.error("Error fetching scouter stakes:", error)
+      console.error("Erro ao buscar apostas dos scouters:", error)
       setCurrentScouterStakes(0)
     }
   }
@@ -84,11 +84,11 @@ export function useScouterManagement() {
       const scouter = await getOrCreateScouterByName(trimmedName)
       setCurrentScouterStakes(scouter.stakes)
     } catch (error) {
-      console.error("Error creating scouter in database:", error)
-      toast.error(`Failed to save scouter to database: ${error}`)
+      console.error("Erro ao criar scouter no banco de dados:", error)
+      toast.error(`Falha ao salvar scouter no banco de dados: ${error}`)
     }
     
-    toast.success(`Switched to scouter: ${trimmedName}`)
+    toast.success(`Mudou para o scouter: ${trimmedName}`)
   }
 
   const removeScouter = async (name: string) => {
@@ -100,7 +100,7 @@ export function useScouterManagement() {
     try {
       await deleteScouter(name)
     } catch (error) {
-      console.error("Error removing scouter from database:", error)
+      console.error("Erro ao remover o scouter do banco de dados:", error)
       // Don't show error toast as this is not critical
     }
     
@@ -111,7 +111,7 @@ export function useScouterManagement() {
       localStorage.removeItem("scouterInitials")
     }
     
-    toast.success(`Removed scouter: ${name}`)
+    toast.success(`Scouter removido: ${name}`)
   }
 
   const clearScouterData = () => {

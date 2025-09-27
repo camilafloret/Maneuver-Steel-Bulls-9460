@@ -33,7 +33,7 @@ export const savePitScoutingEntry = async (entry: Omit<PitScoutingEntry, 'id' | 
     await dbSavePitScoutingEntry(completeEntry);
     return completeEntry;
   } catch (error) {
-    console.error('Error saving pit scouting entry:', error);
+    console.error('Erro ao salvar entrada de pit scouting:', error);
     throw error;
   }
 };
@@ -47,7 +47,7 @@ export const loadPitScoutingData = async (): Promise<PitScoutingData> => {
       lastUpdated: entries.length > 0 ? Math.max(...entries.map(e => e.timestamp)) : 0
     };
   } catch (error) {
-    console.error('Error loading pit scouting data:', error);
+    console.error('Erro ao carregar dados de pit scouting:', error);
     return { entries: [], lastUpdated: 0 };
   }
 };
@@ -58,7 +58,7 @@ export const loadPitScoutingEntry = async (teamNumber: string, eventName: string
     const result = await loadPitScoutingByTeamAndEvent(teamNumber, eventName);
     return result || null;
   } catch (error) {
-    console.error('Error loading pit scouting entry:', error);
+    console.error('Erro ao carregar entrada de pit scouting:', error);
     return null;
   }
 };
@@ -68,7 +68,7 @@ export const loadPitScoutingEntriesByTeam = async (teamNumber: string): Promise<
   try {
     return await loadPitScoutingByTeam(teamNumber);
   } catch (error) {
-    console.error('Error loading pit scouting entries by team:', error);
+    console.error('Erro ao carregar entradas de pit scouting pela equipe:', error);
     return [];
   }
 };
@@ -78,7 +78,7 @@ export const loadPitScoutingEntriesByEvent = async (eventName: string): Promise<
   try {
     return await loadPitScoutingByEvent(eventName);
   } catch (error) {
-    console.error('Error loading pit scouting entries by event:', error);
+    console.error('Erro ao carregar entradas de pit scouting pelo evento:', error);
     return [];
   }
 };
@@ -88,7 +88,7 @@ export const deletePitScoutingEntry = async (id: string): Promise<void> => {
   try {
     await dbDeletePitScoutingEntry(id);
   } catch (error) {
-    console.error('Error deleting pit scouting entry:', error);
+    console.error('Erro ao excluir entrada de pit scouting:', error);
     throw error;
   }
 };
@@ -98,7 +98,7 @@ export const clearAllPitScoutingData = async (): Promise<void> => {
   try {
     await dbClearAllPitScoutingData();
   } catch (error) {
-    console.error('Error clearing pit scouting data:', error);
+    console.error('Erro ao limpar dados de pit scouting:', error);
     throw error;
   }
 };
@@ -113,7 +113,7 @@ export const getPitScoutingStats = async (): Promise<{
   try {
     return await dbGetPitScoutingStats();
   } catch (error) {
-    console.error('Error getting pit scouting stats:', error);
+    console.error('Erro ao obter estatísticas de pit scouting:', error);
     return {
       totalEntries: 0,
       teams: [],
@@ -134,7 +134,7 @@ export const downloadPitScoutingDataWithImages = async (): Promise<void> => {
     const pitScoutingData = await loadPitScoutingData();
     
     if (pitScoutingData.entries.length === 0) {
-      throw new Error('No pit scouting data found');
+      throw new Error('Nenhum dado de reconhecimento pit scouting encontrado');
     }
 
     const jsonString = JSON.stringify(pitScoutingData, null, 2);
@@ -149,7 +149,7 @@ export const downloadPitScoutingDataWithImages = async (): Promise<void> => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   } catch (error) {
-    console.error('Error downloading pit scouting data:', error);
+    console.error('Erro ao baixar dados de pit scouting:', error);
     throw error;
   }
 };
@@ -160,7 +160,7 @@ export const downloadPitScoutingImagesOnly = async (): Promise<void> => {
     const pitScoutingData = await loadPitScoutingData();
     
     if (pitScoutingData.entries.length === 0) {
-      throw new Error('No pit scouting data found');
+      throw new Error('Nenhum dado de pit scouting encontrado');
     }
 
     // Filter entries to only include those with images and minimal identifying data
@@ -178,7 +178,7 @@ export const downloadPitScoutingImagesOnly = async (): Promise<void> => {
     };
 
     if (imagesOnlyData.entries.length === 0) {
-      throw new Error('No images found in pit scouting data');
+      throw new Error('Nenhuma imagem encontrada nos dados de pit scouting');
     }
 
     const jsonString = JSON.stringify(imagesOnlyData, null, 2);
@@ -193,7 +193,7 @@ export const downloadPitScoutingImagesOnly = async (): Promise<void> => {
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   } catch (error) {
-    console.error('Error downloading pit scouting images:', error);
+    console.error('Erro ao baixar imagens de pit scouting:', error);
     throw error;
   }
 };
@@ -229,7 +229,7 @@ export const importPitScoutingData = async (
       };
     }
   } catch (error) {
-    console.error('Error importing pit scouting data:', error);
+    console.error('Erro ao importar dados de pit scouting:', error);
     throw error;
   }
 };
@@ -239,17 +239,16 @@ export const exportPitScoutingToCSV = async (): Promise<string> => {
   const data = await loadPitScoutingData();
   
   const headers = [
-    'ID', 'Team Number', 'Event Name', 'Scouter', 'Timestamp',
-    'Weight', 'Drivetrain', 'Programming Language',
-    'Coral Ground Pickup', 'Algae Ground Pickup',
-    'Auto Pos0 Coral L1', 'Auto Pos0 Coral L2', 'Auto Pos0 Coral L3', 'Auto Pos0 Coral L4', 'Auto Pos0 Algae Net', 'Auto Pos0 Algae Processor',
-    'Auto Pos1 Coral L1', 'Auto Pos1 Coral L2', 'Auto Pos1 Coral L3', 'Auto Pos1 Coral L4', 'Auto Pos1 Algae Net', 'Auto Pos1 Algae Processor',
-    'Auto Pos2 Coral L1', 'Auto Pos2 Coral L2', 'Auto Pos2 Coral L3', 'Auto Pos2 Coral L4', 'Auto Pos2 Algae Net', 'Auto Pos2 Algae Processor',
-    'Auto Pos3 Coral L1', 'Auto Pos3 Coral L2', 'Auto Pos3 Coral L3', 'Auto Pos3 Coral L4', 'Auto Pos3 Algae Net', 'Auto Pos3 Algae Processor',
-    'Auto Pos4 Coral L1', 'Auto Pos4 Coral L2', 'Auto Pos4 Coral L3', 'Auto Pos4 Coral L4', 'Auto Pos4 Algae Net', 'Auto Pos4 Algae Processor',
-    'Teleop Coral L1', 'Teleop Coral L2', 'Teleop Coral L3', 'Teleop Coral L4', 'Teleop Total Algae', 'Teleop Algae Net Shots', 'Teleop Algae Processor',
-    'Can Shallow Climb', 'Can Deep Climb', 'Can Park',
-    'Notes'
+    'ID', 'Número da Equipe', 'Nome do Evento', 'Scouter', 'Horário',
+    'Peso', 'Drivetrain', 'Linguagem de Programação',
+    'Coleta de Coral do Chão', 'Coleta de Alga do Chão',
+    'Auto Pos0 Coral L1', 'Auto Pos0 Coral L2', 'Auto Pos0 Coral L3', 'Auto Pos0 Coral L4', 'Auto Pos0 Alga na Rede', 'Auto Pos0 Alga no Processor',
+    'Auto Pos1 Coral L1', 'Auto Pos1 Coral L2', 'Auto Pos1 Coral L3', 'Auto Pos1 Coral L4', 'Auto Pos1 Alga na Rede', 'Auto Pos1 Alga no Processor',
+    'Auto Pos2 Coral L1', 'Auto Pos2 Coral L2', 'Auto Pos2 Coral L3', 'Auto Pos2 Coral L4', 'Auto Pos2 Alga na Rede', 'Auto Pos2 Alga no Processor',
+    'Auto Pos3 Coral L1', 'Auto Pos3 Coral L2', 'Auto Pos3 Coral L3', 'Auto Pos3 Coral L4', 'Auto Pos3 Alga na Rede', 'Auto Pos3 Alga no Processor',
+    'Auto Pos4 Coral L1', 'Auto Pos4 Coral L2', 'Auto Pos4 Coral L3', 'Auto Pos4 Coral L4', 'Auto Pos4 Alga na Rede', 'Auto Pos4 Alga no Processor',
+    'Teleop Coral L1', 'Teleop Coral L2', 'Teleop Coral L3', 'Teleop Coral L4', 'Teleop Total de Algas', 'Teleop Arremessos na Rede de Algas', 'Teleop Alga no Processor',
+    'Pode Subir no Raso', 'Pode Subir no Profundo', 'Pode Estacionar', 'Observações'
   ];
 
   const rows = data.entries.map(entry => [
@@ -332,16 +331,16 @@ export const importPitScoutingImagesOnly = async (
 ): Promise<{ updated: number; notFound: number }> => {
   try {
     if (imagesData.type !== 'pit-scouting-images-only') {
-      throw new Error('Invalid images-only data format');
+      throw new Error('Formato de dados somente de imagens inválido');
     }
 
     const existingEntries = await loadAllPitScoutingEntries();
     let updated = 0;
     let notFound = 0;
 
-    console.log('Images import debug:');
-    console.log('Existing entries:', existingEntries.map(e => `${e.teamNumber}@${e.eventName}`));
-    console.log('Image entries to match:', imagesData.entries.map(e => `${e.teamNumber}@${e.eventName}`));
+    console.log('Importação de imagens e depuração:');
+    console.log('Entradas existentes:', existingEntries.map(e => `${e.teamNumber}@${e.eventName}`));
+    console.log('Entradas de imagens para combinar:', imagesData.entries.map(e => `${e.teamNumber}@${e.eventName}`));
 
     for (const imageEntry of imagesData.entries) {
       // Find existing entry by team and event
@@ -350,7 +349,7 @@ export const importPitScoutingImagesOnly = async (
                  entry.eventName === imageEntry.eventName
       );
 
-      console.log(`Looking for ${imageEntry.teamNumber}@${imageEntry.eventName}: ${existingEntry ? 'FOUND' : 'NOT FOUND'}`);
+      console.log(`Procurando por ${imageEntry.teamNumber}@${imageEntry.eventName}: ${existingEntry ? 'ENCONTRADO' : 'NÃO ENCONTRADO'}`);
 
       if (existingEntry) {
         // Update existing entry with the image
@@ -369,7 +368,7 @@ export const importPitScoutingImagesOnly = async (
 
     return { updated, notFound };
   } catch (error) {
-    console.error('Error importing pit scouting images:', error);
+    console.error('Erro ao importar imagens de pit scouting:', error);
     throw error;
   }
 };

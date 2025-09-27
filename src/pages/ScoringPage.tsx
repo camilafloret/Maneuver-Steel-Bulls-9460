@@ -244,7 +244,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                 color: 'white'
               } : undefined}
             >
-              {phase === "auto" ? "Continue to Teleop" : "Continue to Endgame"}
+              {phase === "auto" ? "Continuar no Teleoperado" : "Continuar para o Fim do Jogo"}
             </Button>
           </div>
         </div>
@@ -262,22 +262,22 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                   {phaseTitle}
                   {phase === "auto" && showFlashing && (
                     <Badge variant="destructive" className="animate-pulse">
-                      Ending Soon!
+                      Terminando em breve!
                     </Badge>
                   )}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Match:</span>
+                  <span className="text-muted-foreground">Partida:</span>
                   <span className="font-medium">{states.inputs.matchNumber}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Team:</span>
+                  <span className="text-muted-foreground">Equipe:</span>
                   <span className="font-medium">{states.inputs.selectTeam}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Actions:</span>
+                  <span className="text-muted-foreground">Ações:</span>
                   <Badge variant="outline">{actionCount}</Badge>
                 </div>
               </CardContent>
@@ -287,15 +287,15 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
           {/* Recent Actions */}
           <Card className="flex-1 min-h-0">
             <CardHeader>
-              <CardTitle className="text-lg">Recent Actions</CardTitle>
+              <CardTitle className="text-lg">Ações recentes</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {scoringActions.slice(-8).reverse().map((action: { type: string; pieceType: any; location: any; level: string; timestamp: string | number | Date; }, index: Key | null | undefined) => (
                   <div key={index} className="flex items-center justify-between text-sm">
                     <span className="text-muted-foreground">
-                      {action.type === "passed_start_line" ? "Passed Start Line" :
-                       action.type === "defense" ? "Played Defense" :
+                      {action.type === "passed_start_line" ? "Linha de partida ultrapassada" :
+                       action.type === "defense" ? "Jogou na defesa" :
                        `${action.type} ${action.pieceType || ''} - ${action.location}${action.level ? ` (${action.level.toUpperCase()})` : ''}`}
                     </span>
                     <Badge variant="outline" className="text-xs">
@@ -308,7 +308,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                 ))}
                 {scoringActions.length === 0 && (
                   <p className="text-sm text-muted-foreground text-center py-2">
-                    No actions recorded yet
+                    Nenhuma ação registrada ainda
                   </p>
                 )}
               </div>
@@ -319,7 +319,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
           {(phase === "auto" || phase === "teleop") && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Robot Status</CardTitle>
+                <CardTitle className="text-lg">Status do robô</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 {phase === "auto" && (
@@ -332,7 +332,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                       color: 'white'
                     } : undefined}
                   >
-                    {passedStartLine ? "✓ Passed Starting Line" : "Passed Starting Line"}
+                    {passedStartLine ? "✓ Linha de partida ultrapassada" : "Linha de partida ultrapassada"}
                   </Button>
                 )}
                 {phase === "teleop" && (
@@ -345,7 +345,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                       color: 'white'
                     } : undefined}
                   >
-                    {playedDefense ? "✓ Played Defense" : "Played Defense"}
+                    {playedDefense ? "✓ Jogou na defesa" : "Jogou na defesa"}
                   </Button>
                 )}
               </CardContent>
@@ -359,7 +359,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
             disabled={scoringActions.length === 0}
             className="w-full"
           >
-            Undo Last Action
+            Desfazer última ação
           </Button>
 
           {/* Action Buttons */}
@@ -369,7 +369,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
               onClick={handleBack}
               className="flex-1 h-12 text-lg"
             >
-              Back
+              Voltar
             </Button>
             <Button
               onClick={handleProceed}
@@ -381,7 +381,7 @@ const ScoringPage = ({ phase }: ScoringPageProps) => {
                 color: 'white'
               } : undefined}
             >
-              {phase === "auto" ? "Continue to Teleop" : "Continue to Endgame"}
+              {phase === "auto" ? "Continuar no Teleopardo" : "Continuar para o Fim do Jogo"}
               <ArrowRight className="ml-0.5" />
             </Button>
           </div>

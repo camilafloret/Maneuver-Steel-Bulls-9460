@@ -3,14 +3,14 @@ import { importPitScoutingImagesOnly } from "@/lib/pitScoutingUtils";
 
 export const handlePitScoutingImagesUpload = async (jsonData: unknown): Promise<void> => {
   if (!jsonData || typeof jsonData !== 'object') {
-    toast.error("Invalid pit scouting images data format");
+    toast.error("Formato de dados de imagens de pit scouting inválido");
     return;
   }
 
   const data = jsonData as Record<string, unknown>;
   
   if (data.type !== 'pit-scouting-images-only' || !('entries' in data) || !Array.isArray(data.entries)) {
-    toast.error("Invalid pit scouting images data format");
+    toast.error("Formato de dados de imagens de pit scouting inválido");
     return;
   }
 
@@ -26,14 +26,14 @@ export const handlePitScoutingImagesUpload = async (jsonData: unknown): Promise<
     });
     
     if (result.updated === 0 && result.notFound > 0) {
-      toast.error(`No matching pit scouting entries found for ${result.notFound} teams. Please import pit scouting text data first, then add images.`);
+      toast.error(`Nenhuma entrada de pit scouting correspondente encontrada para ${result.notFound} equipes. Por favor, importe primeiro os dados de pit scouting em texto e depois adicione as imagens.`);
     } else if (result.notFound > 0) {
-      toast.warning(`Updated ${result.updated} teams with images. ${result.notFound} teams not found - ensure pit scouting entries exist first.`);
+      toast.warning(`Atualizadas ${result.updated} equipes com imagens. ${result.notFound} equipes não encontradas - verifique se as entradas de pit scouting existem primeiro.`);
     } else {
-      toast.success(`Successfully updated ${result.updated} teams with images!`);
+      toast.success(`Atualizadas com sucesso ${result.updated} equipes com imagens!`);
     }
   } catch (error) {
-    console.error('Error importing pit scouting images:', error);
-    toast.error("Failed to import pit scouting images");
+    console.error('Erro ao importar imagens de pit scouting:', error);
+    toast.error("Falha ao importar imagens de pit scouting");
   }
 };

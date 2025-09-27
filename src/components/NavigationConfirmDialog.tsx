@@ -33,7 +33,7 @@ export function NavigationConfirmDialog({
           <DialogDescription asChild>
             <div className="space-y-2">
               <p>
-                You are currently in the middle of scouting a match. If you navigate to{' '}
+                Você está atualmente no meio de um scouting de uma partida. Se você navegar para{' '}
                 <span className="font-medium">{destinationLabel}</span>, all unsaved match data will be lost.
               </p>
               <p className="text-sm text-muted-foreground">
@@ -51,7 +51,7 @@ export function NavigationConfirmDialog({
             onClick={onConfirm}
             className="p-2 text-white"
           >
-            Leave and Lose Data
+            Sair e perder dados
           </Button>
         </DialogFooter>
       </DialogContent>

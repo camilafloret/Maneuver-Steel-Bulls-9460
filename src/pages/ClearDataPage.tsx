@@ -31,9 +31,9 @@ const ClearDataPage = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="flex flex-col items-start gap-4 max-w-2xl mb-6">
-          <h1 className="text-2xl font-bold">Clear Data</h1>
+          <h1 className="text-2xl font-bold">Limpar dados</h1>
           <p className="text-muted-foreground">
-            Permanently delete stored data from this device. This action cannot be undone.
+            Exclua permanentemente os dados armazenados neste dispositivo. Esta ação não pode ser desfeita.
           </p>
         </div>
 
@@ -48,8 +48,8 @@ const ClearDataPage = () => {
         {/* Data Clear Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           <DataClearCard
-            title="Scouting Data"
-            description="Match scouting data collected on this device"
+            title="Dados de Scouting de Partidas"
+            description="Informações de scouting de partidas coletadas neste dispositivo"
             entryCount={stats.scoutingDataCount}
             entryLabel="entries"
             storageSize={stats.scoutingDataSize}
@@ -57,8 +57,8 @@ const ClearDataPage = () => {
           />
 
           <DataClearCard
-            title="Pit Scouting Data"
-            description="Robot pit scouting data collected at events"
+            title="Dados de Pit Scouting"
+            description="Informações de scouting de robôs coletadas nos eventos"
             entryCount={stats.pitScoutingDataCount}
             entryLabel="entries"
             storageSize={stats.pitScoutingDataSize}
@@ -66,28 +66,28 @@ const ClearDataPage = () => {
           />
 
           <DataClearCard
-            title="Scouter Profile Data"
-            description="Scouter predictions, stakes, and leaderboard data"
+            title="Dados de Perfil do Scouter"
+            description="Previsões do scouter, apostas e dados do ranking"
             entryCount={stats.scouterGameDataCount}
             entryLabel="entries"
             storageSize={stats.scouterGameDataSize}
             onClear={handleClearScouterGameData}
-            warningMessage={`This will permanently delete ${stats.scouterGameDataCount} scouter game entries (scouters and predictions).`}
+            warningMessage={`Isso irá excluir permanentemente ${stats.scouterGameDataCount} entradas de jogo do scouter (scouters e previsões).`}
           />
 
           <DataClearCard
-            title="TBA & Nexus API Data"
-            description="Teams, pit data, matches, and event data from APIs"
+            title="Dados da API TBA & Nexus"
+            description="Equipes, dados de pit, partidas e informações de eventos obtidos pelas APIs"
             entryCount={stats.apiDataCount}
             entryLabel="items"
             storageSize={stats.apiDataSize}
             onClear={handleClearApiData}
-            warningMessage={`This will permanently delete all downloaded API data including teams, pit addresses, pit maps, match results, and event information.`}
+            warningMessage={`Isso irá excluir permanentemente todos os dados de API baixados, incluindo equipes, endereços de pit, mapas de pit, resultados de partidas e informações de eventos.`}
           />
 
           <DataClearCard
-            title="Match Schedule Data"
-            description="Tournament match schedule and team information"
+            title="Dados do Cronograma de Partidas"
+            description="Cronograma de partidas do torneio e informações das equipes"
             entryCount={stats.matchDataCount}
             entryLabel="matches"
             storageSize={stats.matchDataSize}

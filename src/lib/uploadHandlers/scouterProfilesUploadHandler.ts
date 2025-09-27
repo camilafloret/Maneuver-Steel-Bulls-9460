@@ -4,7 +4,7 @@ import type { UploadMode } from "./scoutingDataUploadHandler";
 
 export const handleScouterProfilesUpload = async (jsonData: unknown, mode: UploadMode): Promise<void> => {
   if (!jsonData || typeof jsonData !== 'object' || !('scouters' in jsonData) || !('predictions' in jsonData)) {
-    toast.error("Invalid scouter profiles format");
+    toast.error("Formato de perfis de scouter inválido");
     return;
   }
 
@@ -79,7 +79,7 @@ export const handleScouterProfilesUpload = async (jsonData: unknown, mode: Uploa
           } catch {
             // Duplicate constraint, skip in smart merge
             if (mode === 'append') {
-              console.warn(`Skipping duplicate prediction: ${prediction.id}`);
+              console.warn(`Ignorando previsão duplicada: ${prediction.id}`);
             }
           }
         }
@@ -87,12 +87,11 @@ export const handleScouterProfilesUpload = async (jsonData: unknown, mode: Uploa
     }
 
     const message = mode === 'overwrite' 
-      ? `Overwritten with ${scoutersAdded} scouters and ${predictionsAdded} predictions`
-      : `Profiles: ${scoutersAdded} new scouters, ${scoutersUpdated} updated scouters, ${predictionsAdded} predictions imported`;
-    
+      ? `Substituídos ${scoutersAdded} scouters e ${predictionsAdded} previsões`
+      : `Perfis: ${scoutersAdded} novos scouters, ${scoutersUpdated} scouters atualizados, ${predictionsAdded} previsões importadas`;
     toast.success(message);
   } catch (error) {
-    console.error('Error importing scouter profiles:', error);
-    toast.error("Failed to import scouter profiles");
+    console.error('Erro ao importar perfis de scouter:', error);
+    toast.error("Falha ao importar perfis de scouter");
   }
 };

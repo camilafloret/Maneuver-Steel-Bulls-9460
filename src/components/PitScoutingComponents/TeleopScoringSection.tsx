@@ -17,12 +17,12 @@ export const TeleopScoringSection = ({ teleopScoring, setTeleopScoring }: Teleop
       </CardHeader>
       <CardContent className="space-y-6">
         <div>
-          <h3 className="text-lg font-semibold mb-3">Coral Scoring</h3>
+          <h3 className="text-lg font-semibold mb-3">Pontuação de coral</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[1, 2, 3, 4].map((level) => (
               <LabeledCounter
                 key={`teleop-coral${level}`}
-                label={`Level ${level}`}
+                label={`Nível ${level}`}
                 value={teleopScoring[`coralL${level}` as keyof TeleopScoring] as number}
                 onChange={(value) =>
                   setTeleopScoring(prev => ({
@@ -36,10 +36,10 @@ export const TeleopScoringSection = ({ teleopScoring, setTeleopScoring }: Teleop
         </div>
 
         <div>
-          <h3 className="text-lg font-semibold mb-3">Algae Scoring</h3>
+          <h3 className="text-lg font-semibold mb-3">Pontuação de algas</h3>
           <div className="space-y-4">
             <LabeledCounter
-              label="Total Algae Moved"
+              label="Total de algas movidas"
               value={teleopScoring.totalAlgae}
               onChange={(value) =>
                 setTeleopScoring(prev => ({ ...prev, totalAlgae: value }))
@@ -54,7 +54,7 @@ export const TeleopScoringSection = ({ teleopScoring, setTeleopScoring }: Teleop
                     setTeleopScoring(prev => ({ ...prev, algaeNetShots: checked === true }))
                   }
                 />
-                <Label htmlFor="teleopAlgaeNetShots">Can do Net Shots</Label>
+                <Label htmlFor="teleopAlgaeNetShots">Pode fazer arremessos na rede</Label>
               </div>
               <div className="flex items-center space-x-2">
                 <Checkbox
@@ -64,7 +64,7 @@ export const TeleopScoringSection = ({ teleopScoring, setTeleopScoring }: Teleop
                     setTeleopScoring(prev => ({ ...prev, algaeProcessor: checked === true }))
                   }
                 />
-                <Label htmlFor="teleopAlgaeProcessor">Can use Processor</Label>
+                <Label htmlFor="teleopAlgaeProcessor">Pode usar o Processador</Label>
               </div>
             </div>
           </div>

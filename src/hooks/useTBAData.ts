@@ -25,12 +25,12 @@ export const useTBAData = () => {
 
   const fetchMatchDataFromTBA = async (tbaApiKey: string, tbaEventKey: string, rememberForSession: boolean, setApiKey: (key: string) => void) => {
     if (!tbaApiKey.trim()) {
-      toast.error("Please enter your TBA API key");
+      toast.error("Por favor, insira sua chave de API TBA");
       return;
     }
     
     if (!tbaEventKey.trim()) {
-      toast.error("Please enter an event key");
+      toast.error("Por favor, insira uma chave de evento");
       return;
     }
 
@@ -48,11 +48,11 @@ export const useTBAData = () => {
       
       if (!res.ok) {
         if (res.status === 401) {
-          throw new Error("Invalid API key. Please check your TBA API key.");
+          throw new Error("Chave de API inválida. Verifique sua chave da TBA API.");
         } else if (res.status === 404) {
-          throw new Error("Event not found. Please check the event key.");
+          throw new Error("Evento não encontrado. Verifique a chave do evento.");
         } else {
-          throw new Error(`API request failed with status ${res.status}`);
+          throw new Error(`Falha na requisição da API com status ${res.status}`);
         }
       }
       
@@ -97,7 +97,7 @@ export const useTBAData = () => {
         localStorage.setItem("eventsList", JSON.stringify(eventsList));
       }
 
-      const successMessage = `Match data loaded: ${qualMatchesCleaned.length} matches for ${tbaEventKey}`;
+      const successMessage = `Dados de partidas carregados: ${qualMatchesCleaned.length} partidas para ${tbaEventKey}`;
       toast.success(successMessage);
       
       // Update current event in localStorage after successful load
@@ -109,7 +109,7 @@ export const useTBAData = () => {
         sessionStorage.removeItem("tbaApiKey");
       }
     } catch (err) {
-      toast.error("Failed to fetch match data from TBA");
+      toast.error("Falha ao buscar dados de partida do TBA");
       console.error(err);
     } finally {
       setMatchDataLoading(false);
@@ -118,12 +118,12 @@ export const useTBAData = () => {
 
   const loadMatchResults = async (tbaApiKey: string, tbaEventKey: string, rememberForSession: boolean, setApiKey: (key: string) => void) => {
     if (!tbaEventKey.trim()) {
-      toast.error('Please enter an event key');
+      toast.error('Por favor, insira uma chave de evento');
       return;
     }
 
     if (!tbaApiKey.trim()) {
-      toast.error('Please enter your TBA API key');
+      toast.error('Por favor, insira sua chave de API TBA');
       return;
     }
 
@@ -138,7 +138,7 @@ export const useTBAData = () => {
       );
       
       if (!response.ok) {
-        throw new Error(`API request failed with status ${response.status}`);
+        throw new Error(`AFalha na solicitação de API com status ${response.status}`);
       }
       
       const fullData = await response.json();
@@ -148,7 +148,7 @@ export const useTBAData = () => {
       qualMatches.sort((a: TBAMatch, b: TBAMatch) => a.match_number - b.match_number);
       
       setMatches(qualMatches);
-      toast.success(`Loaded ${qualMatches.length} qualification matches`);
+      toast.success(`Carregadas ${qualMatches.length} partidas de qualificação`);
       
       // Update current event in localStorage after successful load
       setCurrentEvent(tbaEventKey.trim());
@@ -171,8 +171,8 @@ export const useTBAData = () => {
         sessionStorage.removeItem("tbaApiKey");
       }
     } catch (error) {
-      console.error('Error loading matches:', error);
-      toast.error('Failed to load matches. Check the event key and API key.');
+        console.error('Erro ao carregar partidas:', error);
+        toast.error('Falha ao carregar partidas. Verifique a chave do evento e a chave da API.');
       setMatches([]);
     } finally {
       setMatchResultsLoading(false);
@@ -181,12 +181,12 @@ export const useTBAData = () => {
 
   const loadEventTeams = async (tbaApiKey: string, tbaEventKey: string, rememberForSession: boolean, setApiKey: (key: string) => void) => {
     if (!tbaEventKey.trim()) {
-      toast.error('Please enter an event key');
+      toast.error('Por favor, insira uma chave de evento');
       return;
     }
 
     if (!tbaApiKey.trim()) {
-      toast.error('Please enter your TBA API key');
+      toast.error('Por favor, insira sua chave de API TBA');
       return;
     }
 
@@ -204,7 +204,7 @@ export const useTBAData = () => {
         }));
         setTeams(storedTeamObjects);
         setIsStored(true);
-        toast.success(`Loaded ${storedTeamNumbers.length} teams from local storage`);
+        toast.success(`Carregadas ${storedTeamNumbers.length} equipes do armazenamento local`);
         setEventTeamsLoading(false);
         return;
       }
@@ -214,7 +214,7 @@ export const useTBAData = () => {
       setTeams(fetchedTeams);
       setIsStored(false);
       
-      toast.success(`Loaded ${fetchedTeams.length} teams from TBA API`);
+      toast.success(`Carregadas ${fetchedTeams.length} equipes da TBA API`);
       
       // Update current event in localStorage after successful load
       setCurrentEvent(tbaEventKey.trim());
@@ -225,8 +225,8 @@ export const useTBAData = () => {
         sessionStorage.removeItem("tbaApiKey");
       }
     } catch (error) {
-      console.error('Error loading teams:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to load teams');
+      console.error('Erro ao carregar equipes:', error);
+      toast.error(error instanceof Error ? error.message : 'Falha ao carregar equipes');
     } finally {
       setEventTeamsLoading(false);
     }
@@ -234,28 +234,28 @@ export const useTBAData = () => {
 
   const handleStoreTeams = (eventKey: string) => {
     if (teams.length === 0) {
-      toast.error('No teams to store');
+      toast.error('Nenhuma equipe salva');
       return;
     }
 
     try {
       storeEventTeams(eventKey, teams);
       setIsStored(true);
-      toast.success(`Stored ${teams.length} teams for pit scouting assignments`);
+      toast.success(`Armazenadas ${teams.length} equipes para atribuições de pit scouting`);
     } catch (error) {
-      console.error('Error storing teams:', error);
-      toast.error('Failed to store teams');
+      console.error('Erro ao armazenar equipes:', error);
+      toast.error('Falha ao armazenar equipes');
     }
   };
 
   const handleClearStored = (eventKey: string) => {
-    try {
+    try {            
       clearStoredEventTeams(eventKey);
       setIsStored(false);
-      toast.success('Cleared stored teams');
+      toast.success('Equipes armazenadas apagadas');
     } catch (error) {
-      console.error('Error clearing stored teams:', error);
-      toast.error('Failed to clear stored teams');
+      console.error('Erro ao apagar equipes armazenadas:', error);
+      toast.error('Falha ao apagar equipes armazenadas');
     }
   };
 

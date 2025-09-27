@@ -94,8 +94,7 @@ const UniversalFountainScanner = ({
     const estimatedTotal = maxId;
     if (estimatedTotal !== totalPacketsRef.current) {
       totalPacketsRef.current = estimatedTotal;
-      setTotalPackets(estimatedTotal);
-      addDebugMsg(`📊 Estimated total packets: ${estimatedTotal} (based on max packet ID: ${maxId})`);
+      setTotalPackets(estimatedTotal);addDebugMsg(`📊 Pacotes totais estimados: ${estimatedTotal} (com base no ID máximo do pacote: ${maxId})`);
     }
     
     return missing;
@@ -104,46 +103,46 @@ const UniversalFountainScanner = ({
   const handleQRScan = (result: { rawValue: string; }[]) => {
     try {
       const packet: FountainPacket = JSON.parse(result[0].rawValue);
-      addDebugMsg(`🎯 Scanned packet ${packet.packetId} with indices [${packet.indices.join(',')}]`);
-      addDebugMsg(`🆔 Session: ${packet.sessionId.slice(-8)}`);
+      addDebugMsg(`🎯 Pacote escaneado ${packet.packetId} com índices [${packet.indices.join(',')}]`);
+      addDebugMsg(`🆔 Sessão: ${packet.sessionId.slice(-8)}`);
       
       if (packet.type !== expectedPacketType) {
-        addDebugMsg(`❌ Invalid QR code format - expected ${expectedPacketType}, got ${packet.type}`);
-        toast.error("Invalid QR code format");
+        addDebugMsg(`❌ Formato de código QR inválido - esperado ${expectedPacketType}, recebido ${packet.type}`);
+        toast.error("Formato de código QR inválido");
         return;
       }
 
-      addDebugMsg(`📊 Packets before processing: ${packetsRef.current.size}`);
+      addDebugMsg(`📊 Pacotes antes do processamento: ${packetsRef.current.size}`);
 
       // SIMPLIFIED SESSION HANDLING - Don't reset on session changes
       if (!sessionRef.current) {
-        addDebugMsg(`🆕 First session: k=${packet.k}, bytes=${packet.bytes}`);
+        addDebugMsg(`🆕 Primeira sessão: k=${packet.k}, bytes=${packet.bytes}`);
         sessionRef.current = packet.sessionId;
         setCurrentSession(packet.sessionId);
         decoderRef.current = createDecoder();
-        toast.info(`Started session: ${packet.sessionId.slice(-8)}`);
+        toast.info(`Sessão iniciada: ${packet.sessionId.slice(-8)}`);
       } else if (sessionRef.current !== packet.sessionId) {
         // Just log the session change but DON'T reset anything
-        addDebugMsg(`🔄 Session change noted: ${sessionRef.current.slice(-4)} → ${packet.sessionId.slice(-4)}`);
-        addDebugMsg(`📌 Continuing with same decoder (ignoring session change)`);
+        addDebugMsg(`🔄 Mudança de sessão detectada: ${sessionRef.current.slice(-4)} → ${packet.sessionId.slice(-4)}`);
+        addDebugMsg(`📌 Continuando com o mesmo decodificador (ignorando a mudança de sessão)`);
       }
 
-      addDebugMsg(`📊 Packets after session check: ${packetsRef.current.size}`);
+      addDebugMsg(`📊 Pacotes após verificação de sessão: ${packetsRef.current.size}`);
 
       // Check if we already have this packet
       if (packetsRef.current.has(packet.packetId) && !allowDuplicates) {
-        addDebugMsg(`🔁 Duplicate packet ${packet.packetId} ignored`);
-        addDebugMsg(`🔍 Current: indices [${packet.indices.join(',')}]`);
+        addDebugMsg(`🔁 Pacote duplicado ${packet.packetId} ignorado`);
+        addDebugMsg(`🔍 Atual: índices [${packet.indices.join(',')}]`);
         return;
       }
 
       // Store the packet
       packetsRef.current.set(packet.packetId, packet);
-      addDebugMsg(`📦 Added packet ${packet.packetId}, total: ${packetsRef.current.size}`);
+      addDebugMsg(`📦 Pacote ${packet.packetId} adicionado, total: ${packetsRef.current.size}`);
 
       // Debug: Show all packet IDs we have
       const allPacketIds = Array.from(packetsRef.current.keys()).sort();
-      addDebugMsg(`🔢 All packet IDs: [${allPacketIds.join(',')}]`);
+      addDebugMsg(`🔢 Todos os IDs de pacotes: [${allPacketIds.join(',')}]`);
 
       // Use decoder
       if (decoderRef.current) {
@@ -153,16 +152,16 @@ const UniversalFountainScanner = ({
           const block = binaryToBlock(binaryData);
 
           // Add block to decoder
-          addDebugMsg(`🔧 Adding block to decoder...`);
+          addDebugMsg(`🔧 Adicionando bloco ao decodificador...`);
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const isOkay = (decoderRef.current as any).addBlock(block);
-          addDebugMsg(`📊 Decoder result: ${isOkay ? 'COMPLETE!' : 'Need more'}`);
+          addDebugMsg(`📊 Resultado do decodificador: ${isOkay ? 'CONCLUÍDO!' : 'Precisa de mais'}`);
           
           if (isOkay) {
-            addDebugMsg("🎉 DECODING COMPLETE!");
+            addDebugMsg("🎉 DECODIFICAÇÃO CONCLUÍDA!");
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const decodedData = (decoderRef.current as any).getDecoded();
-            addDebugMsg(`📊 Decoded data size: ${decodedData.length} bytes`);
+            addDebugMsg(`📊 Tamanho dos dados decodificados: ${decodedData.length} bytes`);
             
             let parsedData: unknown;
             
@@ -173,7 +172,7 @@ const UniversalFountainScanner = ({
                                       decodedData[1] === 0x8b;
               
               if (isGzipCompressed) {
-                addDebugMsg("🗜️ Detected compressed data, decompressing...");
+                addDebugMsg("🗜️ Dados comprimidos detectados, descomprimindo...");
                 setCompressionDetected(true);
                 
                 // Decompress gzip
@@ -184,20 +183,19 @@ const UniversalFountainScanner = ({
                 // Check if this is smart compression format
                 if (decompressedData && typeof decompressedData === 'object' && 
                     decompressedData.meta && decompressedData.meta.compressed) {
-                  addDebugMsg("🔧 Detected smart compression format, expanding data...");
-                  addDebugMsg(`🔍 Compressed entries count: ${decompressedData.entries?.length || 0}`);
-                  addDebugMsg(`🔍 First compressed entry keys: ${decompressedData.entries?.[0] ? Object.keys(decompressedData.entries[0]).join(', ') : 'none'}`);
-                  
+                      addDebugMsg("🔧 Formato de compressão inteligente detectado, expandindo dados...");
+                      addDebugMsg(`🔍 Quantidade de entradas comprimidas: ${decompressedData.entries?.length || 0}`);
+                      addDebugMsg(`🔍 Chaves da primeira entrada comprimida: ${decompressedData.entries?.[0] ? Object.keys(decompressedData.entries[0]).join(', ') : 'nenhuma'}`);
                   // Rebuild dictionaries for expansion
                   const scouterDict = decompressedData.meta.scouterDict || [];
                   const eventDict = decompressedData.meta.eventDict || [];
                   const allianceReverse = ['redAlliance', 'blueAlliance'] as const;
-                  addDebugMsg(`🔍 Scouter dictionary: ${scouterDict.length} entries`);
-                  addDebugMsg(`🔍 Event dictionary: ${eventDict.length} entries`);
+                  addDebugMsg(`🔍 Dicionário de scouters: ${scouterDict.length} entradas`);
+                  addDebugMsg(`🔍 Dicionário de eventos: ${eventDict.length} entradas`);
                   
                   // Expand compressed entries back to full format
                   const expandedEntries = decompressedData.entries.map((compressed: CompressedEntry, index: number) => {
-                    addDebugMsg(`🔍 Expanding entry ${index}: ${JSON.stringify(compressed).substring(0, 100)}...`);
+                    addDebugMsg(`🔍 Expandindo entrada ${index}: ${JSON.stringify(compressed).substring(0, 100)}...`);
                     const expanded: Record<string, unknown> = {};
                     
                     // Expand dictionary-compressed fields
@@ -333,8 +331,8 @@ const UniversalFountainScanner = ({
                     if (compressed.c) expanded.comment = compressed.c;
                     
                     if (index === 0) {
-                      addDebugMsg(`🔍 Sample expanded keys: ${Object.keys(expanded).join(', ')}`);
-                      addDebugMsg(`🔍 Sample expanded scoring: ${JSON.stringify({
+                        addDebugMsg(`🔍 Chaves expandidas de exemplo: ${Object.keys(expanded).join(', ')}`);
+                        addDebugMsg(`🔍 Pontuação expandida de exemplo: ${JSON.stringify({
                         autoCoralL1: expanded.autoCoralPlaceL1Count,
                         teleopCoralL1: expanded.teleopCoralPlaceL1Count,
                         autoAlgaeNet: expanded.autoAlgaePlaceNetShot,
@@ -346,8 +344,10 @@ const UniversalFountainScanner = ({
                     // Use preserved original ID (should always exist since compression preserves it)
                     const originalId = compressed.id;
                     if (!originalId) {
-                      throw new Error(`Missing ID in compressed entry at index ${index}. This may indicate corrupted data or an incompatible compression format. Please regenerate the QR codes or contact support if this persists.`);
-                    }
+                      throw new Error(`ID ausente na entrada comprimida no índice ${index}. 
+                        Isso pode indicar dados corrompidos ou um formato de compressão incompatível. 
+                        Por favor, regenere os códigos QR ou entre em contato com o suporte se o problema persistir.`
+                      );}
                     
                     return {
                       id: originalId,
@@ -357,33 +357,33 @@ const UniversalFountainScanner = ({
                   });
                   
                   parsedData = { entries: expandedEntries };
-                  addDebugMsg(`✅ Smart decompression successful (${expandedEntries.length} entries expanded)`);
-                  addDebugMsg(`🔍 First expanded entry data: ${JSON.stringify(expandedEntries[0]?.data).substring(0, 150)}...`);
-                } else {
-                  // Standard JSON format
-                  addDebugMsg("📄 Standard JSON format detected");
-                  parsedData = decompressedData;
-                }
+                  addDebugMsg(`✅ Descompressão inteligente bem-sucedida (${expandedEntries.length} entradas expandidas)`);
+                  addDebugMsg(`🔍 Dados da primeira entrada expandida: ${JSON.stringify(expandedEntries[0]?.data).substring(0, 150)}...`);
+                  } else {
+                    // Formato JSON padrão
+                    addDebugMsg("📄 Formato JSON padrão detectado");
+                    parsedData = decompressedData;
+                  }
               } else {
                 // Uncompressed data - standard JSON decoding
-                addDebugMsg("📄 Detected uncompressed data");
+                addDebugMsg("📄 Dados não comprimidos detectados");
                 setCompressionDetected(false);
                 const jsonString = new TextDecoder().decode(decodedData);
                 parsedData = JSON.parse(jsonString);
-                addDebugMsg("✅ JSON parsing successful");
+                addDebugMsg("✅ Parsing JSON bem-sucedido");
               }
             } catch (error) {
-              addDebugMsg(`❌ Data processing failed: ${error instanceof Error ? error.message : String(error)}`);
-              toast.error("Failed to process reconstructed data");
+              addDebugMsg(`❌ Falha no processamento dos dados: ${error instanceof Error ? error.message : String(error)}`);
+              toast.error("Falha ao processar os dados reconstruídos");
               return;
             }
             
             // Debug: Log the structure of the parsed data
-            addDebugMsg(`🔍 Parsed data type: ${typeof parsedData}`);
-            addDebugMsg(`🔍 Data keys: ${parsedData && typeof parsedData === 'object' ? Object.keys(parsedData as Record<string, unknown>).join(', ') : 'N/A'}`);
+            addDebugMsg(`🔍 Tipo de dados analisados: ${typeof parsedData}`);
+            addDebugMsg(`🔍 Chaves dos dados: ${parsedData && typeof parsedData === 'object' ? Object.keys(parsedData as Record<string, unknown>).join(', ') : 'N/D'}`);
             if (parsedData && typeof parsedData === 'object' && 'entries' in parsedData) {
               const entries = (parsedData as { entries: unknown }).entries;
-              addDebugMsg(`🔍 Entries type: ${typeof entries}, length: ${Array.isArray(entries) ? entries.length : 'N/A'}`);
+              addDebugMsg(`🔍 Tipo de entradas: ${typeof entries}, quantidade: ${Array.isArray(entries) ? entries.length : 'N/D'}`);
             }
             
             if (validateData(parsedData)) {
@@ -394,15 +394,15 @@ const UniversalFountainScanner = ({
               saveData(parsedData);
               toast.success(completionMessage);
             } else {
-              addDebugMsg("❌ Reconstructed data failed validation");
-              addDebugMsg(`❌ Data structure: ${JSON.stringify(parsedData).substring(0, 200)}...`);
-              toast.error("Reconstructed data is invalid");
+              addDebugMsg("❌ Dados reconstruídos falharam na validação");
+              addDebugMsg(`❌ Estrutura dos dados: ${JSON.stringify(parsedData).substring(0, 200)}...`);
+              toast.error("Os dados reconstruídos são inválidos");
             }
             return;
           }
         } catch (error) {
-          addDebugMsg(`🚨 Block error: ${error instanceof Error ? error.message : String(error)}`);
-          toast.error("Failed to process packet");
+            addDebugMsg(`🚨 Erro de bloco: ${error instanceof Error ? error.message : String(error)}`);
+            toast.error("Falha ao processar o pacote");
           return;
         }
       }
@@ -417,7 +417,7 @@ const UniversalFountainScanner = ({
         // Once we exceed the estimate, assume we need ~20% more than current
         estimatedNeeded = Math.ceil(received * 1.2);
         progressPercentage = (received / estimatedNeeded) * 100;
-        addDebugMsg(`🔄 Adjusted estimate: now need ~${estimatedNeeded} packets`);
+        addDebugMsg(`🔄 Estimativa ajustada: agora são necessários ~${estimatedNeeded} pacotes`);
       }
       
       // Cap at 99% instead of 95% to show we're still working
@@ -433,32 +433,32 @@ const UniversalFountainScanner = ({
       const missing = calculateMissingPackets();
       setMissingPackets(missing);
       
-      addDebugMsg(`📈 Progress: ${received}/${estimatedNeeded} (${progressPercentage.toFixed(1)}%)`);
+      addDebugMsg(`📈 Progresso: ${received}/${estimatedNeeded} (${progressPercentage.toFixed(1)}%)`);
       
       // Log missing packets info
       if (missing.length > 0 && missing.length <= 20) {
-        addDebugMsg(`🔍 Missing packets: [${missing.join(', ')}]`);
+        addDebugMsg(`🔍 Pacotes ausentes: [${missing.join(', ')}]`);
       } else if (missing.length > 20) {
-        addDebugMsg(`🔍 Missing ${missing.length} packets: [${missing.slice(0, 5).join(', ')}, ..., ${missing.slice(-5).join(', ')}]`);
+        addDebugMsg(`🔍 ${missing.length} pacotes ausentes: [${missing.slice(0, 5).join(', ')}, ..., ${missing.slice(-5).join(', ')}]`);
       } else {
-        addDebugMsg(`✅ No missing packets in current range!`);
+        addDebugMsg(`✅ Nenhum pacote ausente no intervalo atual!`);
       }
       // Add debugging when we're getting close to completion but decoder isn't ready
       if (received > packet.k && progressPercentage > 90) {
-        addDebugMsg(`🔍 High packet count but no completion yet: k=${packet.k}, received=${received}`);
-        addDebugMsg(`🔍 Decoder state check needed - may need more packets than theoretical minimum`);
+        addDebugMsg(`🔍 Contagem alta de pacotes, mas ainda sem conclusão: k=${packet.k}, recebidos=${received}`);
+        addDebugMsg(`🔍 Verificação do estado do decodificador necessária – pode precisar de mais pacotes que o mínimo teórico`);
         
         // Alert user if we've scanned significantly more than expected
         if (received > estimatedNeeded * 1.5) {
-          addDebugMsg(`⚠️ SCANNING MAY BE STUCK: ${received} packets >> ${estimatedNeeded} estimated`);
-          addDebugMsg(`💡 Consider checking the generator for packet navigation controls`);
+          addDebugMsg(`⚠️ A LEITURA PODE ESTAR PRESA: ${received} pacotes >> ${estimatedNeeded} estimados`);
+          addDebugMsg(`💡 Considere verificar o gerador para os controles de navegação dos pacotes`);
         }
       }
 
     } catch (error) {
-      addDebugMsg(`❌ QR scan error: ${error instanceof Error ? error.message : String(error)}`);
-      console.error("QR scan error:", error);
-      toast.error("Error processing QR code");
+      addDebugMsg(`❌ Erro na leitura do QR: ${error instanceof Error ? error.message : String(error)}`);
+      console.error("Erro na leitura do QR:", error);
+      toast.error("Erro ao processar o código QR");
     }
   };
 
@@ -475,11 +475,11 @@ const UniversalFountainScanner = ({
     setCompressionDetected(null);
     setMissingPackets([]);
     setTotalPackets(null);
-    addDebugMsg("🔄 Scanner reset");
+    addDebugMsg("🔄 Scanner reiniciado");
   };
 
   const handleComplete = () => {
-    toast.success(`${dataType} data loaded successfully!`);
+    toast.success(`Dados de ${dataType} carregados com sucesso!`);
     navigate("/");
   };
 
@@ -502,7 +502,7 @@ const UniversalFountainScanner = ({
               <div className="flex items-center justify-center gap-2 mb-2">
                 <CheckCircle className="h-8 w-8 text-green-500" />
               </div>
-              <CardTitle className="text-green-600">Reconstruction Complete!</CardTitle>
+              <CardTitle className="text-green-600">Reconstrução Concluída!</CardTitle>
               <CardDescription>
                 {completionMessage}
               </CardDescription>
@@ -530,15 +530,15 @@ const UniversalFountainScanner = ({
                   variant="outline"
                   className="w-full"
                 >
-                  Scan More Data
+                  Escanear Mais Dados
                 </Button>
               </div>
             </CardContent>
           </Card>
 
           <div className="text-xs text-muted-foreground text-start space-y-1">
-            <p>• Data saved to local storage</p>
-            <p>• Ready to use throughout the app</p>
+            <p>• Dados salvos no armazenamento local</p>
+            <p>• Pronto para uso em todo o app</p>
           </div>
         </div>
       </div>
@@ -564,7 +564,7 @@ const UniversalFountainScanner = ({
               variant="outline" 
               size="sm"
             >
-              Switch to Generator
+              Alternar para o Gerador
             </Button>
           )}
         </div>
@@ -572,9 +572,9 @@ const UniversalFountainScanner = ({
         {/* Scanning Instructions */}
         {currentSession && (
           <Alert>
-            <AlertTitle>📱 Scanning Instructions</AlertTitle>
+            <AlertTitle>📱 Instruções de Leitura</AlertTitle>
             <AlertDescription>
-              Scan fountain code packets in any order. Reconstruction will complete automatically when enough data is received.
+              Leia os pacotes de código fountain em qualquer ordem. A reconstrução será concluída automaticamente quando dados suficientes forem recebidos.
             </AlertDescription>
           </Alert>
         )}
@@ -590,22 +590,22 @@ const UniversalFountainScanner = ({
             {currentSession && (
               <div className="flex items-center gap-2 flex-wrap justify-center">
                 <Badge variant="secondary">
-                  Session: ...{currentSession.slice(-8)}
+                  Sessão: ...{currentSession.slice(-8)}
                 </Badge>
                 <Badge variant="outline">
-                  {progress.received} packets
+                  {progress.received} pacotes
                 </Badge>
                 <Badge variant="outline">
                   {progress.percentage.toFixed(1)}%
                 </Badge>
                 {compressionDetected === true && (
                   <Badge variant="default" className="bg-green-600">
-                    🗜️ Compressed
+                    🗜️ Comprimido
                   </Badge>
                 )}
                 {compressionDetected === false && (
                   <Badge variant="outline">
-                    📄 Standard
+                    📄 Padrão
                   </Badge>
                 )}
               </div>
@@ -632,7 +632,7 @@ const UniversalFountainScanner = ({
             {progress.received > 0 && (
               <div className="w-full">
                 <div className="flex justify-between text-sm mb-1">
-                  <span>Progress</span>
+                  <span>Progresso</span>
                   <span>{progress.percentage.toFixed(1)}%</span>
                 </div>
                 <Progress 
@@ -644,9 +644,9 @@ const UniversalFountainScanner = ({
                 {missingPackets.length > 0 && totalPackets && (
                   <div className="mt-2 text-sm">
                     <div className="flex justify-between items-center mb-1">
-                      <span className="text-muted-foreground">Missing Packets</span>
+                      <span className="text-muted-foreground">Pacotes ausentes</span>
                       <Badge variant="outline" className="text-xs">
-                        {missingPackets.length} missing
+                        {missingPackets.length} ausentes
                       </Badge>
                     </div>
                     <div className="text-xs text-muted-foreground p-2 bg-muted rounded max-h-16 overflow-y-auto">
@@ -655,7 +655,7 @@ const UniversalFountainScanner = ({
                       ) : (
                         <span>
                           #{missingPackets.slice(0, 10).join(', #')} 
-                          <span className="text-orange-500"> ... and {missingPackets.length - 10} more</span>
+                          <span className="text-orange-500"> ... and {missingPackets.length - 10} mais</span>
                         </span>
                       )}
                     </div>
@@ -667,7 +667,7 @@ const UniversalFountainScanner = ({
                   <div className="mt-2 text-sm">
                     <div className="flex items-center gap-1 text-green-600">
                       <CheckCircle className="h-3 w-3" />
-                      <span className="text-xs">All packets in range #{1} - #{totalPackets}</span>
+                      <span className="text-xs">Todos os pacotes no intervalo #{1} - #{totalPackets}</span>
                     </div>
                   </div>
                 )}
@@ -681,7 +681,7 @@ const UniversalFountainScanner = ({
                   variant="outline"
                   className="flex-1 min-w-0"
                 >
-                  Reset Scanner
+                  Reiniciar Leitor
                 </Button>
               )}
               
@@ -702,7 +702,7 @@ const UniversalFountainScanner = ({
         {debugLog.length > 0 && (
           <Card className="w-full">
             <CardHeader>
-              <CardTitle className="text-sm">Debug Log</CardTitle>
+              <CardTitle className="text-sm">Registro de Depuração</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="text-xs space-y-1 max-h-32 overflow-y-auto">

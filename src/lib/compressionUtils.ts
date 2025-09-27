@@ -109,7 +109,7 @@ function buildScouterDict(data: ScoutingDataEntry[]): ScouterDictionaries {
     const previewCount = 5;
     const preview = scouterReverse.slice(0, previewCount);
     console.log(
-      `📊 Built scouter dictionary: ${scouterReverse.length} unique scouters. First ${preview.length}:`,
+      `📊 Dicionário de scouters criado: ${scouterReverse.length} scouters únicos. Primeiros ${preview.length}:`,
       preview,
       scouterReverse.length > previewCount ? '...' : ''
     );
@@ -151,8 +151,8 @@ function buildEventDict(data: ScoutingDataEntry[]): EventDictionaries {
   
   if (import.meta.env.DEV) {
     console.log(
-      `📊 Built event dictionary: ${eventReverse.length} unique events`,
-      eventReverse.length > 0 ? eventReverse : '(using fallback strings)'
+      `📊 Dicionário de eventos criado: ${eventReverse.length} eventos únicos`,
+      eventReverse.length > 0 ? eventReverse : '(usando strings de fallback)'
     );
   }
   
@@ -169,7 +169,7 @@ function buildEventDict(data: ScoutingDataEntry[]): EventDictionaries {
  */
 export function compressScoutingData(data: ScoutingDataCollection | ScoutingDataEntry[], originalJson?: string): Uint8Array {
   if (import.meta.env.DEV) {
-    console.log('🔄 Starting smart compression...');
+    console.log('🔄 Iniciando compressão inteligente...');
   }
   
   const startTime = performance.now();
@@ -185,8 +185,8 @@ export function compressScoutingData(data: ScoutingDataCollection | ScoutingData
   } else if (data && typeof data === 'object' && 'entries' in data && Array.isArray(data.entries)) {
     entries = data.entries;
   } else {
-    console.error('Invalid data format for compression');
-    throw new Error('Invalid data format for compression');
+    console.error('Formato de dados inválido para compressão');
+    throw new Error('Formato de dados inválido para compressão');
   }
   
   // Build dynamic dictionaries from data
@@ -198,9 +198,9 @@ export function compressScoutingData(data: ScoutingDataCollection | ScoutingData
     const scoutingData = extractScoutingData(entry);
     
     if (import.meta.env.DEV && index === 0) {
-      console.log(`🔍 Sample entry structure:`, entry);
-      console.log(`🔍 Sample scouting data keys:`, Object.keys(scoutingData || {}));
-      console.log(`🔍 Sample scoring fields:`, {
+      console.log(`🔍 Estrutura de entrada de exemplo:`, entry);
+      console.log(`🔍 Chaves de dados de scouting de exemplo:`, Object.keys(scoutingData || {}));
+      console.log(`🔍 Campos de pontuação de exemplo:`, {
         autoCoralL1: scoutingData?.autoCoralPlaceL1Count,
         teleopCoralL1: scoutingData?.teleopCoralPlaceL1Count,
         autoAlgaeNet: scoutingData?.autoAlgaePlaceNetShot,
@@ -318,10 +318,10 @@ export function compressScoutingData(data: ScoutingDataCollection | ScoutingData
   const jsonReduction = ((1 - optimizedJson.length / originalSize) * 100).toFixed(1);
   
   if (import.meta.env.DEV) {
-    console.log(`✅ Smart compression: ${originalSize} → ${finalSize} bytes (${totalReduction}% total reduction)`);
-    console.log(`📊 JSON optimization: ${originalSize} → ${optimizedJson.length} bytes (${jsonReduction}% reduction)`);
+    console.log(`✅ Compressão inteligente: ${originalSize} → ${finalSize} bytes (${totalReduction}% de redução total)`);
+    console.log(`📊 Otimização JSON: ${originalSize} → ${optimizedJson.length} bytes (${jsonReduction}% de redução)`);
     console.log(`🗜️ Gzip final: ${optimizedJson.length} → ${finalSize} bytes`);
-    console.log(`⏱️ Compression time: ${compressionTime.toFixed(1)}ms`);
+    console.log(`⏱️ Tempo de compressão: ${compressionTime.toFixed(1)}ms`);
   }
 
   return gzipCompressed;
@@ -335,7 +335,7 @@ export function compressScoutingData(data: ScoutingDataCollection | ScoutingData
  */
 export function decompressScoutingData(compressedData: Uint8Array): { entries: CompressedEntry[] } {
   if (import.meta.env.DEV) {
-    console.log('🔄 Decompressing data...');
+    console.log('🔄 Descompactando dados...');
   }
   
   // Decompress gzip and parse JSON directly

@@ -15,7 +15,7 @@ export const GroundPickupSection = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Ground Pickup Capabilities</CardTitle>
+        <CardTitle>Capacidades de Coleta do Chão</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -27,7 +27,7 @@ export const GroundPickupSection = ({
                 setGroundPickupCapabilities(prev => ({ ...prev, coralGroundPickup: checked === true }))
               }
             />
-            <Label htmlFor="coralGroundPickup">Can pick up Coral from ground</Label>
+            <Label htmlFor="coralGroundPickup">Pode pegar coral do chão</Label>
           </div>
           <div className="flex items-center space-x-2">
             <Checkbox
@@ -37,7 +37,7 @@ export const GroundPickupSection = ({
                 setGroundPickupCapabilities(prev => ({ ...prev, algaeGroundPickup: checked === true }))
               }
             />
-            <Label htmlFor="algaeGroundPickup">Can pick up Algae from ground</Label>
+            <Label htmlFor="algaeGroundPickup">Pode pegar algas do chão</Label>
           </div>
         </div>
       </CardContent>

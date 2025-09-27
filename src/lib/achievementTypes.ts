@@ -44,8 +44,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   // Volume Achievements
   {
     id: 'first_prediction',
-    name: 'Scout Rookie',
-    description: 'Make your first prediction',
+    name: 'Novato do Scouting',
+    description: 'Faça sua primeira previsão',
     icon: '🎯',
     category: 'volume',
     tier: 'bronze',
@@ -54,8 +54,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'predictions_10',
-    name: 'Getting Started',
-    description: 'Make 10 predictions',
+    name: 'Primeiros Passos',
+    description: 'Faça 10 previsões',
     icon: '📊',
     category: 'volume',
     tier: 'bronze',
@@ -64,8 +64,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'predictions_50',
-    name: 'Active Scout',
-    description: 'Make 50 predictions',
+    name: 'Scout Ativo',
+    description: 'Faça 50 previsões',
     icon: '📈',
     category: 'volume',
     tier: 'silver',
@@ -74,8 +74,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'predictions_100',
-    name: 'Dedicated Scout',
-    description: 'Make 100 predictions',
+    name: 'Scout Dedicado',
+    description: 'Faça 100 previsões',
     icon: '💪',
     category: 'volume',
     tier: 'gold',
@@ -84,8 +84,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'predictions_200',
-    name: 'Scout Veteran',
-    description: 'Make 200 predictions',
+    name: 'Veterano do Scouting',
+    description: 'Faça 200 previsões',
     icon: '🏆',
     category: 'volume',
     tier: 'platinum',
@@ -94,8 +94,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'predictions_300',
-    name: 'Scout Legend',
-    description: 'Make 300 predictions',
+    name: 'Lenda do Scouting',
+    description: 'Faça 300 previsões',
     icon: '👑',
     category: 'volume',
     tier: 'legendary',
@@ -106,8 +106,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   // Accuracy Achievements
   {
     id: 'accuracy_60',
-    name: 'Sharp Eye',
-    description: 'Achieve 60% accuracy with at least 10 predictions',
+    name: 'Olho Aguçado',
+    description: 'Alcance 60% de precisão com pelo menos 10 previsões',
     icon: '🎯',
     category: 'accuracy',
     tier: 'bronze',
@@ -120,8 +120,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'accuracy_70',
-    name: 'Scout Sharpshooter',
-    description: 'Achieve 70% accuracy with at least 20 predictions',
+    name: 'Atirador de Elite',
+    description: 'Alcance 70% de precisão com pelo menos 20 previsões',
     icon: '🏹',
     category: 'accuracy',
     tier: 'silver',
@@ -134,8 +134,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'accuracy_80',
-    name: 'Oracle',
-    description: 'Achieve 80% accuracy with at least 30 predictions',
+    name: 'Oráculo',
+    description: 'Alcance 80% de precisão com pelo menos 30 previsões',
     icon: '🔮',
     category: 'accuracy',
     tier: 'gold',
@@ -148,8 +148,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'accuracy_85',
-    name: 'Prophet',
-    description: 'Achieve 85% accuracy with at least 50 predictions',
+    name: 'Profeta',
+    description: 'Alcance 85% de precisão com pelo menos 50 previsões',
     icon: '✨',
     category: 'accuracy',
     tier: 'platinum',
@@ -164,8 +164,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   // Streak Achievements
   {
     id: 'streak_3',
-    name: 'Hot Streak',
-    description: 'Get 3 predictions correct in a row',
+    name: 'Sequência Quente',
+    description: 'Acertar 3 previsões seguidas',
     icon: '🔥',
     category: 'streaks',
     tier: 'bronze',
@@ -174,8 +174,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'streak_5',
-    name: 'On Fire',
-    description: 'Get 5 predictions correct in a row',
+    name: 'Em Chamas',
+    description: 'Acertar 5 previsões seguidas',
     icon: '🔥🔥',
     category: 'streaks',
     tier: 'silver',
@@ -184,8 +184,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'streak_10',
-    name: 'Unstoppable',
-    description: 'Get 10 predictions correct in a row',
+    name: 'Imparável',
+    description: 'Acertar 10 previsões seguidas',
     icon: '🔥🔥🔥',
     category: 'streaks',
     tier: 'gold',
@@ -194,8 +194,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'streak_20',
-    name: 'Legendary Streak',
-    description: 'Get 20 predictions correct in a row',
+    name: 'Sequência Lendária',
+    description: 'Acertar 20 previsões seguidas',
     icon: '⚡',
     category: 'streaks',
     tier: 'platinum',
@@ -204,8 +204,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'streak_50',
-    name: 'Godlike',
-    description: 'Get 50 predictions correct in a row',
+    name: 'Divino',
+    description: 'Acertar 50 previsões seguidas',
     icon: '👑⚡',
     category: 'streaks',
     tier: 'legendary',
@@ -216,8 +216,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   // Stakes from Predictions Achievements
   {
     id: 'stakes_100',
-    name: 'Stake Builder',
-    description: 'Earn 100 stakes from predictions',
+    name: 'Construtor de Stakes',
+    description: 'Ganhar 100 stakes com previsões',
     icon: '💰',
     category: 'volume',
     tier: 'bronze',
@@ -226,8 +226,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'stakes_300',
-    name: 'Stake Master',
-    description: 'Earn 300 stakes from predictions',
+    name: 'Mestre dos Stakes',
+    description: 'Ganhar 300 stakes com previsões',
     icon: '💎',
     category: 'volume',
     tier: 'silver',
@@ -236,8 +236,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'stakes_600',
-    name: 'Stake Tycoon',
-    description: 'Earn 600 stakes from predictions',
+    name: 'Magnata dos Stakes',
+    description: 'Ganhar 600 stakes com previsões',
     icon: '💍',
     category: 'volume',
     tier: 'gold',
@@ -246,8 +246,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'stakes_1000',
-    name: 'Stake Emperor',
-    description: 'Earn 1000 stakes from predictions',
+    name: 'Imperador dos Stakes',
+    description: 'Ganhar 1000 stakes com previsões',
     icon: '👑💎',
     category: 'volume',
     tier: 'platinum',
@@ -258,8 +258,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   // Special Achievements
   {
     id: 'perfectionist',
-    name: 'Perfectionist',
-    description: 'Get 5 consecutive predictions correct',
+    name: 'Perfeccionista',
+    description: 'Acertar 5 previsões consecutivas',
     icon: '💯',
     category: 'special',
     tier: 'gold',
@@ -273,9 +273,9 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'high_roller',
-    name: 'High Roller',
-    description: 'Earn 1000 total stakes (predictions + achievements)',
-    icon: '�',
+    name: 'Grande Apostador',
+    description: 'Ganhar 1000 stakes no total (previsões + conquistas)',
+    icon: '🎲',
     category: 'special',
     tier: 'platinum',
     requirements: { 
@@ -288,8 +288,8 @@ export const ACHIEVEMENT_DEFINITIONS: Achievement[] = [
   },
   {
     id: 'steady_hand',
-    name: 'Steady Hand',
-    description: 'Maintain 75% accuracy with at least 40 predictions',
+    name: 'Mão Firme',
+    description: 'Manter 75% de precisão com pelo menos 40 previsões',
     icon: '🎯',
     category: 'special',
     tier: 'silver',

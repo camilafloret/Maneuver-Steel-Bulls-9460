@@ -39,7 +39,7 @@ export const addEventToHistory = (eventKey: string): void => {
     
     localStorage.setItem(EVENT_HISTORY_KEY, JSON.stringify(trimmed));
   } catch (error) {
-    console.warn('Failed to update event history:', error);
+    console.warn('Falha ao atualizar o histórico de eventos:', error);
   }
 };
 
@@ -50,7 +50,7 @@ export const getCurrentEvent = (): string => {
   try {
     return localStorage.getItem(CURRENT_EVENT_KEY) || '';
   } catch (error) {
-    console.warn('Failed to get current event:', error);
+    console.warn('Falha ao obter o evento atual:', error);
     return '';
   }
 };
@@ -66,7 +66,7 @@ export const setCurrentEvent = (eventKey: string): void => {
     // Also add to history
     addEventToHistory(eventKey);
   } catch (error) {
-    console.warn('Failed to set current event:', error);
+    console.warn('Falha ao definir o evento atual:', error);
   }
 };
 
@@ -83,7 +83,7 @@ export const isDifferentEvent = (newEventKey: string): boolean => {
  */
 export const clearEventData = (eventKey: string): void => {
   if (!eventKey.trim()) {
-    toast.error('Event key is required to clear data');
+    toast.error('A chave do evento é necessária para limpar os dados');
     return;
   }
 
@@ -108,11 +108,11 @@ export const clearEventData = (eventKey: string): void => {
       }
     });
     
-    console.log(`Cleared all data for event: ${eventKey}`);
-    toast.success(`Cleared all stored data for event ${eventKey}`);
+    console.log(`Todos os dados do evento limpos: ${eventKey}`);
+    toast.success(`Todos os dados armazenados para o evento ${eventKey} foram limpos`);
   } catch (error) {
-    console.error('Error clearing event data:', error);
-    toast.error('Failed to clear some event data');
+    console.error('Erro ao limpar os dados do evento:', error);
+    toast.error('Falha ao limpar alguns dados do evento');
   }
 };
 

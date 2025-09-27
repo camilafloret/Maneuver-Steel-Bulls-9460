@@ -38,74 +38,74 @@ const data = {
     //   ]
     // },
     {
-      title: "Data Actions",
+      title: "Ações de Dados",
       url: "#",
       icon: Settings,
       items: [
         {
-          title: "Clear Data",
+          title: "Apagar Dados",
           url: "/clear-data",
         },
         {
-          title: "JSON Data Transfer",
+          title: "Transferência de Dados JSON",
           url: "/json-transfer",
         },
         {
-          title: "QR Data Transfer",
+          title: "Transferência de Dados por QR",
           url: "/qr-data-transfer",
         },
         {
-          title: "API Data",
+          title: "Dados da API",
           url: "/api-data",
         }
       ]
     },
     {
-      title: "Strategy",
+      title: "Estratégia",
       url: "#",
       icon: SquarePen,
       items: [
         {
-          title: "Strategy Overview",
+          title: "Visão Geral da Estratégia",
           url: "/strategy-overview",
         },
         {
-          title: "Match Strategy",
+          title: "Estratégia de Partida",
           url: "/match-strategy",
         },
         {
-          title: "Team Stats",
+          title: "Estatísticas da Equipe",
           url: "/team-stats",
         },
         {
-          title: "Pit Scouting",
+          title: "Scoutin de Pit",
           url: "/pit-scouting",
         },
         {
-          title: "Pick Lists",
+          title: "Listas de Escolha",
           url: "/pick-list",
         }
       ],
     },
     {
-      title: "Scout Management",
+      title: "Gerenciamento de Scouts",
       url: "#",
       icon: LayoutDashboard,
       items: [
         {
-          title: "Scout Dashboard",
+          title: "Painel de Scouts",
           url: "/scout-management",
         },
         {
-          title: "Achievements",
+          title: "Conquistas",
           url: "/achievements",
         },
         {
-          title: "Assign Pit Scouting",
+          title: "Atribuir Scouting de Pit",
           url: "/pit-assignments",
         },
         ...(import.meta.env.DEV ? [{
-          title: "Dev Utilities",
+          title: "Ferramentas de Desenvolvimento",
           url: "/dev-utilities",
         }] : [])
       ],
@@ -113,14 +113,14 @@ const data = {
   ],
   navSecondary: [
     {
-      title: "Get Help (WIP)",
+      title: "Obter Ajuda (WIP)",
       url: "#",
       // icon: IconHelp,
     },
   ],
   documents: [
     {
-      name: "Saved Match Strategies (WIP)",
+      name: "Estratégias de Partidas Salvas (WIP)",
       url: "#",
       // icon: IconDatabase,
     },

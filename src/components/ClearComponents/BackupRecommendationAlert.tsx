@@ -8,11 +8,11 @@ interface BackupRecommendationAlertProps {
 export const BackupRecommendationAlert = ({ onClearAllClick }: BackupRecommendationAlertProps) => {
   return (
     <Alert>
-      <AlertTitle>💡 Backup Recommendation</AlertTitle>
+      <AlertTitle>💡 Recomendação de Backup</AlertTitle>
       <AlertDescription className="space-y-3">
-        <p>Consider downloading your data before clearing it. Use the JSON Transfer page to export your data.</p>
+        <p>Considere baixar seus dados antes de apagá-los. Use a página de Transferência JSON para exportar seus dados.</p>
         <p className="text-xs text-muted-foreground">
-          ⚠️ The button below will completely reset this device, clearing ALL stored data including settings.
+          ⚠️ O botão abaixo irá redefinir completamente este dispositivo, apagando TODOS os dados armazenados, incluindo configurações.
         </p>
         <Button 
           variant="destructive" 
@@ -20,7 +20,7 @@ export const BackupRecommendationAlert = ({ onClearAllClick }: BackupRecommendat
           onClick={onClearAllClick}
           className="w-full"
         >
-          🗑️ Clear All Data
+          🗑️ Apagar Todos os Dados
         </Button>
       </AlertDescription>
     </Alert>

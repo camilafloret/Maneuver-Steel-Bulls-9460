@@ -68,10 +68,10 @@ export interface PitScoutingData {
 
 // Drivetrain options
 export const DRIVETRAIN_OPTIONS = [
-  "Swerve Drive",
-  "Tank Drive",
-  "Mecanum Drive",
-  "Other"
+  "Drive de Swerve",
+  "Drive de Tanque",
+  "Drive Mecanum",
+  "Outros"
 ] as const;
 
 // Programming language options

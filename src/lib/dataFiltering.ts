@@ -203,7 +203,7 @@ export function calculateFilterStats(
     const originalQRs = Math.ceil((originalEntries * 2500) / 2000); // Uncompressed estimate
     const compressedQRs = Math.ceil((originalEntries * bytesPerEntry) / 2000);
     const reduction = ((originalQRs - compressedQRs) / originalQRs * 100).toFixed(1);
-    compressionReduction = `${reduction}% fewer codes with compression`;
+    compressionReduction = `${reduction}% menos códigos com compressão`;
   }
   
   return {
@@ -244,15 +244,15 @@ export function validateFilters(filters: DataFilters): { valid: boolean; error?:
     const end = filters.matchRange.customEnd;
     
     if (start !== undefined && end !== undefined && start > end) {
-      return { valid: false, error: 'Start match must be less than or equal to end match' };
+      return { valid: false, error: 'O início da partida deve ser menor ou igual ao fim da partida' };
     }
-    
+
     if (start !== undefined && (start < 1 || start > 200)) {
-      return { valid: false, error: 'Start match must be between 1 and 200' };
+      return { valid: false, error: 'O início da partida deve estar entre 1 e 200' };
     }
-    
+
     if (end !== undefined && (end < 1 || end > 200)) {
-      return { valid: false, error: 'End match must be between 1 and 200' };
+      return { valid: false, error: 'O fim da partida deve estar entre 1 e 200' };
     }
   }
   

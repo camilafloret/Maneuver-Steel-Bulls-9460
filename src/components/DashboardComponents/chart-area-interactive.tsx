@@ -128,7 +128,7 @@ const chartData = [
 
 const chartConfig = {
   visitors: {
-    label: "Visitors",
+    label: "Visitantes",
   },
   desktop: {
     label: "Desktop",
@@ -196,13 +196,13 @@ export function ChartAreaInteractive() {
             </SelectTrigger>
             <SelectContent className="rounded-xl">
               <SelectItem value="90d" className="rounded-lg">
-                Last 3 months
+                Últimos 3 meses
               </SelectItem>
               <SelectItem value="30d" className="rounded-lg">
-                Last 30 days
+                Últimos 30 dias
               </SelectItem>
               <SelectItem value="7d" className="rounded-lg">
-                Last 7 days
+                Últimos 7 dias
               </SelectItem>
             </SelectContent>
           </Select>

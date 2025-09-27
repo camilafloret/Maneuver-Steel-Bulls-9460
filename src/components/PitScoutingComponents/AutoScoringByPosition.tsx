@@ -32,7 +32,7 @@ export const AutoScoringByPosition = ({ autoScoring, setAutoScoring }: AutoScori
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Reported Auto Scoring by Position</CardTitle>
+        <CardTitle>Pontuação Auto Reportada por Posição</CardTitle>
       </CardHeader>
       <CardContent>
         <Tabs 
@@ -44,7 +44,7 @@ export const AutoScoringByPosition = ({ autoScoring, setAutoScoring }: AutoScori
           <TabsList className="grid w-full grid-cols-5">
             {[0, 1, 2, 3, 4].map((position) => (
               <TabsTrigger key={position} value={position.toString()}>
-                Pos {position}
+                Posição {position}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -53,7 +53,7 @@ export const AutoScoringByPosition = ({ autoScoring, setAutoScoring }: AutoScori
               <FieldPositionVisual selectedPosition={position} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-3">
-                  <h4 className="font-medium">Coral Levels</h4>
+                  <h4 className="font-medium">Níveis de Coral</h4>
                   {[1, 2, 3, 4].map((level) => (
                     <LabeledCounter
                       key={`pos${position}-coral${level}`}
@@ -72,9 +72,9 @@ export const AutoScoringByPosition = ({ autoScoring, setAutoScoring }: AutoScori
                   ))}
                 </div>
                 <div className="space-y-3">
-                  <h4 className="font-medium">Algae</h4>
+                  <h4 className="font-medium">Algas</h4>
                   <LabeledCounter
-                    label="Algae to Net"
+                    label="Algas para a Rede"
                     value={autoScoring[`position${position}` as keyof typeof autoScoring].algaeNet}
                     onChange={(value) =>
                       setAutoScoring(prev => ({
@@ -87,7 +87,7 @@ export const AutoScoringByPosition = ({ autoScoring, setAutoScoring }: AutoScori
                     }
                   />
                   <LabeledCounter
-                    label="Algae to Processor"
+                    label="Algas para o Processador"
                     value={autoScoring[`position${position}` as keyof typeof autoScoring].algaeProcessor}
                     onChange={(value) =>
                       setAutoScoring(prev => ({

@@ -49,14 +49,14 @@ const generateEndgame = () => ({
 
 const generateNotes = (teamNumber) => {
   const noteTemplates = [
-    `Team ${teamNumber} - Strong coral placement, consistent auto`,
-    `Team ${teamNumber} - Fast cycle times, good driver`,
-    `Team ${teamNumber} - Reliable climber, defensive capabilities`,
-    `Team ${teamNumber} - Algae specialist, accurate net shots`,
-    `Team ${teamNumber} - Well-rounded robot, good strategy`,
-    `Team ${teamNumber} - Innovative design, unique mechanisms`,
-    `Team ${teamNumber} - Consistent performance, no major issues`,
-    `Team ${teamNumber} - Fast robot, aggressive playstyle`
+    `Equipe ${teamNumber} - Colocação de coral forte, auto consistente`,
+    `Equipe ${teamNumber} - Tempos de ciclo rápidos, bom piloto`,
+    `Equipe ${teamNumber} - Escalador confiável, capacidades defensivas`,
+    `Equipe ${teamNumber} - Especialista em algas, arremessos precisos na rede`,
+    `Equipe ${teamNumber} - Robô versátil, boa estratégia`,
+    `Equipe ${teamNumber} - Design inovador, mecanismos únicos`,
+    `Equipe ${teamNumber} - Desempenho consistente, sem problemas graves`,
+    `Equipe ${teamNumber} - Robô rápido, estilo de jogo agressivo`
   ];
   return noteTemplates[Math.floor(Math.random() * noteTemplates.length)];
 };
@@ -96,7 +96,7 @@ const generateTestData = (numTeams = 85) => {
 };
 
 // Generate the data
-console.log('Generating 85 teams of pit scouting test data...');
+console.log('Gerando 85 equipes de dados de teste para pit scouting...');
 const teams = generateTestData(85);
 
 // Format as proper PitScoutingData structure
@@ -113,10 +113,10 @@ const testData = {
 const outputPath = path.join(__dirname, '..', 'src', 'lib', 'testData', 'pitScoutingTestData85Teams.json');
 fs.writeFileSync(outputPath, JSON.stringify(testData, null, 2));
 
-console.log(`✅ Generated ${testData.entries.length} teams of test data`);
-console.log(`📁 Saved to: ${outputPath}`);
-console.log(`📊 File size: ${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB`);
-console.log(`\n🔧 To use this data:`);
-console.log(`1. Import this JSON file via the JSON Data Transfer page`);
-console.log(`2. Test QR code generation with 80+ teams (no images)`);
-console.log(`3. Verify QR code count stays manageable (8-12 codes)`);
+console.log(`✅ Geradas ${testData.entries.length} equipes de dados de teste`);
+console.log(`📁 Salvo em: ${outputPath}`);
+console.log(`📊 Tamanho do arquivo: ${(fs.statSync(outputPath).size / 1024).toFixed(1)} KB`);
+console.log(`\n🔧 Para usar estes dados:`);
+console.log(`1. Importe este arquivo JSON através da página de Transferência de Dados JSON`);
+console.log(`2. Teste a geração de códigos QR com mais de 80 equipes (sem imagens)`);
+console.log(`3. Verifique se a quantidade de códigos QR permanece gerenciável (8-12 códigos)`);

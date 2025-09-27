@@ -54,7 +54,7 @@ export const useMatchStrategy = () => {
             return;
           }
         } catch (error) {
-          console.error("Error parsing match data:", error);
+          console.error("Erro ao analisar os dados da partida:", error);
         }
       }
       
@@ -117,10 +117,10 @@ export const useMatchStrategy = () => {
         
         setSelectedTeams(newSelectedTeams);
       } else {
-        console.log("No match entries found for match number:", matchNum);
+        console.log("Nenhuma entrada de partida encontrada para o número da partida:", matchNum);
       }
     } catch (error) {
-      console.error("Error looking up match teams:", error);
+      console.error("Erro ao consultar equipes da partida:", error);
     } finally {
       setIsLookingUpMatch(false);
     }
@@ -137,7 +137,7 @@ export const useMatchStrategy = () => {
         teams.sort((a, b) => Number(a) - Number(b));
         setAvailableTeams(teams as string[]);
       } catch (error) {
-        console.error("Error loading scouting data:", error);
+        console.error("Erro ao carregar dados de scouting:", error);
       }
     };
 
@@ -148,7 +148,7 @@ export const useMatchStrategy = () => {
           setConfirmedAlliances(JSON.parse(savedAlliances));
         }
       } catch (error) {
-        console.error("Error loading confirmed alliances:", error);
+        console.error("Erro ao carregar alianças confirmadas:", error);
       }
     };
 

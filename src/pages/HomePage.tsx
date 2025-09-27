@@ -23,7 +23,7 @@ const HomePage = () => {
           setIsLoaded(true);
         }
       } catch (error) {
-        console.error("Error checking existing data:", error);
+        console.error("Erro ao verificar dados existentes:", error);
       }
     };
 
@@ -69,8 +69,8 @@ const HomePage = () => {
       localStorage.setItem("scoutersList", JSON.stringify(scouterNames.sort()));
 
       const verifyData = await loadScoutingData();
-      console.log("HomePage - Verification: loaded", verifyData.entries.length, "entries from IndexedDB");
-      console.log("HomePage - Loaded all demo data successfully");
+      console.log("Página inicial - Verificação: carregada", verifyData.entries.length, "entradas do IndexedDB");
+      console.log("Página inicial - Todos os dados de demonstração foram carregados com sucesso");
 
       await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -80,10 +80,10 @@ const HomePage = () => {
       
     } catch (error) {
       haptics.error();
-      console.error("HomePage - Error loading demo data:", error);
+      console.error("Página inicial - Erro ao carregar dados de demonstração:", error);
       // Show error details to help debug
       if (error instanceof Error) {
-        console.error("Error details:", error.message, error.stack);
+        console.error("Detalhes do erro:", error.message, error.stack);
       }
     } finally {
       setIsLoading(false);
@@ -107,7 +107,7 @@ const HomePage = () => {
       setIsLoaded(false);
       analytics.trackDemoDataClear();
     } catch (error) {
-      console.error("Error clearing data:", error);
+      console.error("Erro ao limpar dados:", error);
       // Clear localStorage as fallback and update UI anyway
       localStorage.removeItem("scoutingData");
       localStorage.removeItem("scoutersList");
@@ -154,7 +154,7 @@ const HomePage = () => {
           />
           <div className="text-center space-y-2">
             <p>
-              <strong>Version</strong>: 2025.1.2
+              <strong>Versão</strong>: 2025.1.2
             </p>
             <DataAttribution sources={['tba', 'nexus']} variant="compact" />
           </div>
@@ -164,9 +164,9 @@ const HomePage = () => {
         <Card className="w-full max-w-md mx-4 mt-8 scale-75 md:scale-100">
           <CardContent className="p-6">
             <div className="text-center space-y-4">
-              <h2 className="text-lg font-semibold">Demo Data</h2>
+              <h2 className="text-lg font-semibold">Dados de demonstração</h2>
               <p className="text-sm text-muted-foreground">
-                Load sample scouting data, scouter profiles, pit scouting data, and match schedule from 2025mrcmp to explore the app's features
+                Carregue dados de amostra de observação, perfis de olheiros, dados de observação de boxes e cronograma de partidas do 2025mrcmp para explorar os recursos do aplicativo
               </p>
 
               {!isLoaded ? (
@@ -175,7 +175,7 @@ const HomePage = () => {
                   disabled={isLoading}
                   className="w-full"
                 >
-                  {isLoading ? "Loading..." : "Load Demo Data"}
+                  {isLoading ? "Carregando..." : "Carregar dados de demonstração"}
                 </Button>
               ) : (
                 <div className="space-y-2">
@@ -193,10 +193,10 @@ const HomePage = () => {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Demo data loaded successfully!
+                    Dados de demonstração carregados com sucesso!
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    120 matches • 60 teams • 8 scouters • 5 pit entries • 2025mrcmp event
+                    120 partidas • 60 equipes • 8 scouers • 5 pit • evento 2025mrcmp
                   </p>
                   <Button
                     onClick={clearData}
@@ -204,7 +204,7 @@ const HomePage = () => {
                     size="sm"
                     className="w-full"
                   >
-                    Clear Data
+                    Limpar dados
                   </Button>
                 </div>
               )}

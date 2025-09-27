@@ -28,8 +28,8 @@ export const usePickList = () => {
 
   // Debug function (expose to window for browser console debugging)
   const debugLocalStorage = useCallback(() => {
-    console.log("=== localStorage Debug ===");
-    console.log("Current pickLists state:", pickLists);
+    console.log("=== Depuração de armazenamento local ===");
+    console.log("Estado atual das listas de seleção:", pickLists);
     console.log("localStorage pickLists:", localStorage.getItem("pickLists"));
     console.log("isInitialized:", isInitialized);
     console.log("========================");
@@ -49,19 +49,19 @@ export const usePickList = () => {
       try {
         setPickLists(JSON.parse(savedLists));
       } catch (error) {
-        console.error("Error loading pick lists:", error);
+        console.error("Erro ao carregar listas de seleção:", error);
         setPickLists([{
           id: 1,
-          name: "Primary Pick List",
-          description: "Main alliance selection priority",
+          name: "Lista de seleção primária",
+          description: "Prioridade principal de seleção de alianças",
           teams: []
         }]);
       }
     } else {
       setPickLists([{
         id: 1,
-        name: "Primary Pick List", 
-        description: "Main alliance selection priority",
+        name: "Lista de seleção primária", 
+        description: "Prioridade principal de seleção de alianças",
         teams: []
       }]);
     }
@@ -76,7 +76,7 @@ export const usePickList = () => {
       return; // Don't save during initial load
     }
     
-    console.log("useEffect saving pick lists:", pickLists);
+    console.log("useEffect salvando listas de seleção:", pickLists);
     localStorage.setItem("pickLists", JSON.stringify(pickLists));
   }, [pickLists, isInitialized]);
 
@@ -87,7 +87,7 @@ export const usePickList = () => {
       try {
         setAlliances(JSON.parse(savedAlliances));
       } catch (error) {
-        console.error("Error loading alliances:", error);
+        console.error("Erro ao carregar alianças:", error);
         // Create default 8 alliances
         const defaultAlliances = Array.from({ length: 8 }, (_, i) => ({
           id: i + 1,
@@ -127,7 +127,7 @@ export const usePickList = () => {
       try {
         setBackups(JSON.parse(savedBackups));
       } catch (error) {
-        console.error("Error loading backups:", error);
+        console.error("Erro ao carregar backups:", error);
         setBackups([]);
       }
     }
@@ -179,7 +179,7 @@ export const usePickList = () => {
           setAvailableTeams(teamsWithStats);
         }
       } catch (error) {
-        console.error("Error loading team data:", error);
+        console.error("Erro ao carregar dados da equipe:", error);
       }
     };
 
@@ -188,12 +188,12 @@ export const usePickList = () => {
 
   // Add team to a pick list
   const addTeamToList = (team: TeamStats, listId: number) => {
-    console.log("Adding team to list:", team.teamNumber, "to list", listId);
+    console.log("Adicionando equipe à lista:", team.teamNumber, "Lista: ", listId);
     
     // Check if team is already in this list
     const list = pickLists.find(l => l.id === listId);
     if (list && isTeamInList(team, list)) {
-      toast.error(`Team ${team.teamNumber} is already in ${list.name}`);
+      toast.error(`Equipe ${team.teamNumber} já está em ${list.name}`);
       return;
     }
 
@@ -205,17 +205,17 @@ export const usePickList = () => {
           ? { ...list, teams: [...list.teams, newItem] }
           : list
       );
-      console.log("Updated pick lists after adding team:", updated);
+      console.log("Listas de seleção atualizadas após adicionar a equipe:", updated);
       return updated;
     });
 
-    toast.success(`Team ${team.teamNumber} added to ${pickLists.find(l => l.id === listId)?.name}`);
+    toast.success(`Equipe ${team.teamNumber} adicionado a ${pickLists.find(l => l.id === listId)?.name}`);
   };
 
   // Create new pick list
   const createNewList = () => {
     if (!newListName.trim()) {
-      toast.error("Please enter a list name");
+      toast.error("Por favor, insira um nome de lista");
       return;
     }
 
@@ -229,13 +229,13 @@ export const usePickList = () => {
     setPickLists(prev => [...prev, newList]);
     setNewListName("");
     setNewListDescription("");
-    toast.success("New pick list created");
+    toast.success("Nova lista de seleção criada");
   };
 
   // Delete pick list
   const deleteList = (listId: number) => {
     setPickLists(prev => prev.filter(list => list.id !== listId));
-    toast.success("Pick list deleted");
+    toast.success("Lista de seleção excluída");
   };
 
   // Update pick list teams order
@@ -256,7 +256,7 @@ export const usePickList = () => {
     linkElement.setAttribute('download', exportFileDefaultName);
     linkElement.click();
     
-    toast.success("Pick lists exported");
+    toast.success("Listas de seleção exportada");
   };
 
   // Import pick lists
@@ -264,24 +264,24 @@ export const usePickList = () => {
     const file = event.target.files?.[0];
     if (!file) return;
 
-    console.log("Starting import process for file:", file.name);
+    console.log("Iniciando processo de importação do arquivo:", file.name);
 
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const result = e.target?.result as string;
         if (!result) {
-          toast.error("Error reading file");
+          toast.error("Erro ao ler o arquivo");
           return;
         }
 
-        console.log("File content read, parsing JSON...");
+        console.log("Conteúdo do arquivo lido, analisando JSON...");
         const importedData = JSON.parse(result);
         console.log("Parsed data:", importedData);
         
         // Validate that it's an array
         if (!Array.isArray(importedData)) {
-          toast.error("Invalid file format: Expected an array of pick lists");
+          toast.error("Formato de arquivo inválido: Esperava-se uma matriz de listas de seleção");
           return;
         }
 
@@ -297,21 +297,21 @@ export const usePickList = () => {
             Array.isArray((list as PickList).teams)
           );
           if (!isValid) {
-            console.log("Invalid pick list found:", list);
+            console.log("Lista de seleção inválida encontrada:", list);
           }
           return isValid;
         };
 
         const validPickLists = importedData.filter(isValidPickList);
-        console.log("Valid pick lists found:", validPickLists.length, "out of", importedData.length);
+        console.log("Listas de seleção válidas encontradas:", validPickLists.length, "Fora de: ", importedData.length);
         
         if (validPickLists.length === 0) {
-          toast.error("No valid pick lists found in file");
+          toast.error("Nenhuma lista de seleção válida encontrada no arquivo");
           return;
         }
 
         if (validPickLists.length !== importedData.length) {
-          toast.warning(`${importedData.length - validPickLists.length} invalid pick lists were skipped`);
+          toast.warning(`${importedData.length - validPickLists.length} listas de seleção inválidas foram ignoradas`);
         }
 
         // Ensure unique IDs to avoid conflicts
@@ -321,24 +321,24 @@ export const usePickList = () => {
           id: currentMaxId + index + 1
         }));
 
-        console.log("Setting pick lists to imported data...");
+        console.log("Definindo listas de seleção para dados importados...");
         // Replace existing lists
         setPickLists(importedWithNewIds);
-        toast.success(`${validPickLists.length} pick lists imported successfully`);
+        toast.success(`${validPickLists.length} listas de seleção importadas com sucesso`);
         
         // Clear the file input
         event.target.value = '';
       } catch (error) {
-        console.error("Import error:", error);
-        toast.error("Error importing pick lists: " + (error as Error).message);
+        console.error("Erro de importação:", error);
+        toast.error("Erro ao importar listas de seleção: " + (error as Error).message);
         // Clear the file input on error too
         event.target.value = '';
       }
     };
     
     reader.onerror = () => {
-      console.error("File reader error");
-      toast.error("Error reading file");
+      console.error("Erro no leitor de arquivo");
+      toast.error("Erro ao ler o arquivo");
       event.target.value = '';
     };
     
@@ -376,7 +376,7 @@ export const usePickList = () => {
       pick2: 'Pick 2', 
       pick3: 'Pick 3'
     };
-    toast.success(`Team ${teamNumber} assigned as ${positionNames[position]} of Alliance ${alliance.allianceNumber}`);
+    toast.success(`Equipe ${teamNumber} atribuído como ${positionNames[position]} na Aliança ${alliance.allianceNumber}`);
   };
 
   // Add team to next available position in alliance and remove from pick list
@@ -392,7 +392,7 @@ export const usePickList = () => {
     else if (!alliance.pick3) position = 'pick3';
 
     if (!position) {
-      toast.error(`Alliance ${alliance.allianceNumber} is full`);
+      toast.error(`Aliança ${alliance.allianceNumber} está completa`);
       return;
     }
 
@@ -408,7 +408,7 @@ export const usePickList = () => {
     // Remove from all pick lists
     const updatedPickLists = pickLists.map(list => ({
       ...list,
-      teams: list.teams.filter(team => team.text !== `Team ${teamNumber}`)
+      teams: list.teams.filter(team => team.text !== `Equipe ${teamNumber}`)
     }));
     setPickLists(updatedPickLists);
 
@@ -418,7 +418,7 @@ export const usePickList = () => {
       pick2: 'Pick 2', 
       pick3: 'Pick 3'
     };
-    toast.success(`Team ${teamNumber} added to Alliance ${alliance.allianceNumber} as ${positionNames[position]} and removed from pick lists`);
+    toast.success(`Equipe ${teamNumber} adicionado à Aliança ${alliance.allianceNumber} como ${positionNames[position]} e removidos das listas de seleção`);
   };
 
   // Assign team from pick list to specific alliance position and remove from pick list
@@ -430,7 +430,7 @@ export const usePickList = () => {
     const positionKey = positionKeys[position];
     
     if (alliance[positionKey]) {
-      toast.error(`Alliance ${alliance.allianceNumber} ${positionKey} position is already occupied by Team ${alliance[positionKey]}`);
+      toast.error(`Aliança ${alliance.allianceNumber} ${positionKey} posição já está ocupada pela Equipe ${alliance[positionKey]}`);
       return;
     }
 
@@ -446,7 +446,7 @@ export const usePickList = () => {
     // Remove team from all pick lists
     const updatedPickLists = pickLists.map(list => ({
       ...list,
-      teams: list.teams.filter(team => team.text !== `Team ${teamNumber}`)
+      teams: list.teams.filter(team => team.text !== `Equipe ${teamNumber}`)
     }));
     setPickLists(updatedPickLists);
 
@@ -456,7 +456,7 @@ export const usePickList = () => {
       pick2: 'Pick 2', 
       pick3: 'Pick 3 (Backup)'
     };
-    toast.success(`Team ${teamNumber} assigned as ${positionNames[positionKey]} of Alliance ${alliance.allianceNumber} and removed from pick lists`);
+    toast.success(`Equipe ${teamNumber} atribuído como ${positionNames[positionKey]} da Aliança ${alliance.allianceNumber} e removidos das listas de seleção`);
   };
 
   // Handle alliance selection toggle

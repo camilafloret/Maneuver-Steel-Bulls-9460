@@ -9,15 +9,15 @@ import { getStoredNexusTeams, getStoredPitData } from '@/lib/nexusUtils';
 export function setupDebugFunctions(): void {
   // Manual extraction helper
   (window as unknown as { manuallyExtractNexusTeams: (eventKey: string) => void }).manuallyExtractNexusTeams = (eventKey: string) => {
-    console.log(`Attempting to manually extract teams for event: ${eventKey}`);
+    console.log(`Tentando extrair manualmente as equipes para o evento: ${eventKey}`);
     
     // Check if pit data exists  
     const pitData = getStoredPitData(eventKey);
-    console.log('Found pit data:', pitData);
+    console.log('Dados de pit encontrados:', pitData);
     
     // Try to extract teams directly from pit map data
     if (pitData.map && pitData.map.pits) {
-      console.log('Extracting teams from pit map...');
+      console.log('Extraindo equipes do mapa de pit...');
       const extractedTeams: number[] = [];
       
       Object.values(pitData.map.pits).forEach((pit: unknown) => {
@@ -27,27 +27,27 @@ export function setupDebugFunctions(): void {
         }
       });
       
-      console.log(`Extracted ${extractedTeams.length} teams:`, extractedTeams.sort((a, b) => a - b));
+      console.log(`Extraindo ${extractedTeams.length} equipes:`, extractedTeams.sort((a, b) => a - b));
       
       if (extractedTeams.length > 0) {
         localStorage.setItem(`nexus_event_teams_${eventKey}`, JSON.stringify(extractedTeams));
-        console.log('Teams saved to localStorage');
+        console.log('Equipes salvas no localStorage');
       }
     } else if (pitData.addresses && Object.keys(pitData.addresses).length > 0) {
-      console.log('Found pit addresses but no teams in pit map');
+      console.log('Endereços de pit encontrados, mas nenhuma equipe no mapa de pit');
       const teamNumbers = Object.keys(pitData.addresses).map(Number).filter(n => !isNaN(n));
-      console.log('Teams from addresses:', teamNumbers.sort((a, b) => a - b));
+      console.log('Equipes de endereços:', teamNumbers.sort((a, b) => a - b));
       
       if (teamNumbers.length > 0) {
         localStorage.setItem(`nexus_event_teams_${eventKey}`, JSON.stringify(teamNumbers));
-        console.log('Teams from addresses saved to localStorage');
+        console.log('Equipes de endereços salvos no localStorage');
       }
     } else {
-      console.log('No usable team data found in pit data');
+      console.log('Nenhum dado de equipe utilizável encontrado nos dados do pit');
       
       // Try to extract from different pit data structure
       if (pitData.map && pitData.map.pits) {
-        console.log('Trying alternative extraction...');
+        console.log('Tentando extração alternativa...');
         Object.entries(pitData.map.pits).forEach(([pitId, pit]: [string, any]) => {
           console.log(`Pit ${pitId}:`, pit);
         });
@@ -57,7 +57,7 @@ export function setupDebugFunctions(): void {
   
   // List available pit data
   (window as any).listAvailablePitData = () => {
-    console.log('=== Available Pit Data ===');
+    console.log('=== Dados de Pit Disponíveis ===');
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       if (key && (key.startsWith('nexus_') || key.startsWith('tba_'))) {
@@ -74,7 +74,7 @@ export function setupDebugFunctions(): void {
   
   // Debug localStorage
   (window as any).debugPitAssignments = () => {
-    console.log('=== Manual Debug localStorage ===');
+    console.log('=== Depuração manual localStorage ===');
     const allKeys = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
@@ -82,7 +82,7 @@ export function setupDebugFunctions(): void {
         allKeys.push(key);
       }
     }
-    console.log('All nexus/tba keys:', allKeys);
+    console.log('Todas as chaves Nexus/TBA:', allKeys);
     
     allKeys.forEach(key => {
       const data = localStorage.getItem(key);
@@ -94,7 +94,7 @@ export function setupDebugFunctions(): void {
 // Debug team data loading
 export function debugTeamDataLoading(): void {
   const tbaTeams = getAllStoredEventTeams();
-  console.log('=== Debug Team Data Loading ===');
+  console.log('=== Depurar o carregamento de dados da equipe ===');
   
   // Get all possible event keys from both TBA and Nexus sources
   const allEventKeys = new Set<string>();
@@ -111,20 +111,20 @@ export function debugTeamDataLoading(): void {
     }
   }
   
-  console.log('Found event keys:', Array.from(allEventKeys));
+  console.log('Chaves de eventos encontradas:', Array.from(allEventKeys));
   
   // Check each event
   allEventKeys.forEach(eventKey => {
     const nexusTeams = getStoredNexusTeams(eventKey);
     const tbaTeamsForEvent = tbaTeams[eventKey];
     
-    console.log(`\nEvent ${eventKey}:`);
-    console.log('  Nexus teams:', nexusTeams);
-    console.log('  TBA teams:', tbaTeamsForEvent);
+    console.log(`\nEvento ${eventKey}:`);
+    console.log('  Equipe Nexus:', nexusTeams);
+    console.log('  Equipe TBA:', tbaTeamsForEvent);
   });
   
   // Check specific nexus team keys
-  console.log('\n=== Nexus Storage Keys ===');
+  console.log('\n=== Chaves de armazenamento Nexus ===');
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
     if (key && key.startsWith('nexus_event_teams_')) {
@@ -141,7 +141,7 @@ export function logSpatialAssignmentDetails(data: {
   pitMapData: any;
   teamPositions: any[];
 }): void {
-  console.log('Spatial assignment debug:', {
+  console.log('Depuração de atribuição espacial:', {
     currentTeams: data.currentTeams.length,
     pitAddresses: data.pitAddresses ? Object.keys(data.pitAddresses).length : 0,
     pitMapPits: data.pitMapData?.pits ? Object.keys(data.pitMapData.pits).length : 0,
@@ -163,8 +163,8 @@ export function clearDebugData(): void {
   
   keysToRemove.forEach(key => {
     localStorage.removeItem(key);
-    console.log(`Removed: ${key}`);
+    console.log(`Removido: ${key}`);
   });
   
-  console.log(`Cleared ${keysToRemove.length} debug data items`);
+  console.log(`${keysToRemove.length} itens de dados de depuração limpos`);
 }

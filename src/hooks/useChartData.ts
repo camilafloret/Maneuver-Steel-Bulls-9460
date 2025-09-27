@@ -176,11 +176,11 @@ export const useChartData = (
           color: "hsl(var(--chart-1))",
         },
         teleopPoints: {
-          label: "Teleop Points", 
+          label: "Pontos de Teleoperado", 
           color: "hsl(var(--chart-2))",
         },
         endgamePoints: {
-          label: "Endgame Points",
+          label: "Pontos de Fim de Jogo",
           color: "hsl(var(--chart-3))",
         },
       };
@@ -188,15 +188,15 @@ export const useChartData = (
     
     return {
       value: {
-        label: selectedColumn?.label || "Value",
+        label: selectedColumn?.label || "Valor",
         color: "hsl(var(--chart-1))",
       },
       x: {
-        label: xColumn?.label || "X Value",
+        label: xColumn?.label || "X Valor",
         color: "hsl(var(--chart-1))",
       },
       y: {
-        label: yColumn?.label || "Y Value", 
+        label: yColumn?.label || "Y Valor", 
         color: "hsl(var(--chart-2))",
       },
     };

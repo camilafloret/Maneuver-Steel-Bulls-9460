@@ -30,7 +30,7 @@ export function AddScouterForm({ onAdd, onCancel }: AddScouterFormProps) {
     <CommandGroup>
       <div className="p-2 space-y-2">
         <Input
-          placeholder="Enter scouter name..."
+          placeholder="Escreva o nome do scouter..."
           value={newScouterName}
           onChange={(e) => setNewScouterName(e.target.value)}
           onInput={(e) => setNewScouterName((e.target as HTMLInputElement).value)}
@@ -44,7 +44,7 @@ export function AddScouterForm({ onAdd, onCancel }: AddScouterFormProps) {
             onClick={handleAdd}
             className="flex-1"
           >
-            Add
+            Adicionar
           </Button>
           <Button
             size="sm"
@@ -52,7 +52,7 @@ export function AddScouterForm({ onAdd, onCancel }: AddScouterFormProps) {
             onClick={onCancel}
             className="flex-1"
           >
-            Cancel
+            Cancelar
           </Button>
         </div>
       </div>

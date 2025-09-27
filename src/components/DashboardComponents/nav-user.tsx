@@ -56,7 +56,7 @@ export function NavUser() {
             <Dialog open={open} onOpenChange={setOpen}>
               <DialogContent className="w-[90vw] max-w-md p-0 top-[30%] translate-y-[-30%] sm:top-[50%] sm:translate-y-[-50%]">
                 <DialogHeader className="p-4 pb-0">
-                  <DialogTitle>Select Scouter</DialogTitle>
+                  <DialogTitle>Selecione scouter</DialogTitle>
                 </DialogHeader>
                 <div className="p-0">
                   <ScouterSelectorContent

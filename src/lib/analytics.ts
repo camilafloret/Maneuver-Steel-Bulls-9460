@@ -22,13 +22,13 @@ class SimpleGA4 {
       };
       
       script.onerror = (e) => {
-        console.error('❌ Failed to load GA4 script:', e);
+        console.error('❌ Falha ao carregar o script GA4:', e);
       };
       
       document.head.appendChild(script);
       
     } catch (error) {
-      console.error('❌ Error initializing GA4:', error);
+      console.error('❌ Erro ao inicializar o GA4:', error);
     }
   }
 
@@ -51,7 +51,7 @@ class SimpleGA4 {
         // Enable basic tracking
         page_title: document.title,
         page_location: window.location.href,
-        app_name: 'Maneuver Scouting App',
+        app_name: 'Maneuver Steel Bulls 9460',
         app_version: '2025.1.0',
         debug_mode: process.env.NODE_ENV === 'development',
       });
@@ -62,7 +62,7 @@ class SimpleGA4 {
       this.trackPageView();
       
     } catch (error) {
-      console.error('❌ Error setting up gtag:', error);
+      console.error('❌ Erro ao configurar o gtag:', error);
     }
   }
 
@@ -80,26 +80,26 @@ class SimpleGA4 {
       });
       
     } catch (error) {
-      console.error('❌ Error tracking page view:', error);
+      console.error('❌ Erro ao rastrear a visualização da página:', error);
     }
   }
 
   // Track custom events
   trackEvent(eventName: string, parameters: Record<string, any> = {}) {
     if (!this.isReady()) {
-      console.log('⏳ GA4 not ready, skipping event:', eventName);
+      console.log('⏳ GA4 não está pronto, pulando evento:', eventName);
       return;
     }
 
     try {
       window.gtag('event', eventName, {
-        app_name: 'Maneuver Scouting App',
+        app_name: 'Maneuver Steel Bulls 9460',
         app_version: '2025.1.0',
         ...parameters,
       });
       
     } catch (error) {
-      console.error('❌ Error tracking event:', error);
+      console.error('❌ Evento de rastreamento de erro:', error);
     }
   }
 
@@ -173,20 +173,20 @@ class SimpleGA4 {
 
   debug() {
     if (process.env.NODE_ENV === 'development') {
-      console.log('=== Analytics Debug Info ===');
-      console.log('Measurement ID:', this.measurementId);
-      console.log('Initialized:', this.initialized);
+      console.log('=== Informações de Debug do Analytics ===');
+      console.log('ID de Medição:', this.measurementId);
+      console.log('Inicializado:', this.initialized);
       console.log('Online:', navigator.onLine);
-      console.log('gtag available:', !!window.gtag);
-      console.log('dataLayer length:', window.dataLayer?.length || 0);
-      console.log('Ready to track:', this.isReady());
-      console.log('Current URL:', window.location.href);
+      console.log('gtag disponível:', !!window.gtag);
+      console.log('Comprimento do dataLayer:', window.dataLayer?.length || 0);
+      console.log('Pronto para rastrear:', this.isReady());
+      console.log('URL atual:', window.location.href);
     }
   }
 
   // Test function for manual verification
   testTracking() {
-    console.log('🧪 Testing analytics tracking...');
+    console.log('🧪 Teste de rastreamento analítico...');
     this.debug();
     
     // Test events
@@ -197,7 +197,7 @@ class SimpleGA4 {
     
     this.trackPageView('/test-page', 'Test Page');
     
-    console.log('✅ Test events sent');
+    console.log('✅ Eventos de teste enviados');
   }
 }
 

@@ -26,7 +26,7 @@ const AchievementsPage: React.FC = () => {
         const data = await getAchievementLeaderboard();
         setLeaderboard(data);
       } catch (error) {
-        console.error('Error loading achievement leaderboard:', error);
+        console.error('Erro ao carregar a tabela de classificação de conquistas:', error);
       } finally {
         setLoading(false);
       }
@@ -39,9 +39,9 @@ const AchievementsPage: React.FC = () => {
     return (
       <div className="min-h-screen container mx-auto p-4 space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold">Achievements</h1>
+          <h1 className="text-3xl font-bold">Conquistas</h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Select a scout to view their achievements
+            Selecione um scout para ver suas conquistas
           </p>
         </div>
       </div>
@@ -53,9 +53,9 @@ const AchievementsPage: React.FC = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">Achievements</h1>
+          <h1 className="text-3xl font-bold">Conquistas</h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Track your progress and unlock rewards
+            Acompanhe seu progresso e desbloqueie recompensas
           </p>
         </div>
       </div>
@@ -74,7 +74,7 @@ const AchievementsPage: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="h-5 w-5" />
-                Achievement Leaderboard
+                Classificação de Conquistas
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -85,7 +85,7 @@ const AchievementsPage: React.FC = () => {
               ) : leaderboard.length === 0 ? (
                 <div className="text-center py-4 text-gray-500">
                   <Trophy className="h-8 w-8 mx-auto mb-2 opacity-50" />
-                  <p className="text-sm">No achievements yet</p>
+                  <p className="text-sm">Nenhuma conquista ainda</p>
                 </div>
               ) : (
                 <div className="space-y-3">
@@ -150,7 +150,7 @@ const AchievementsPage: React.FC = () => {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Star className="h-5 w-5" />
-                Statistics
+                Estatísticas
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -158,26 +158,26 @@ const AchievementsPage: React.FC = () => {
                 <div className="text-2xl font-bold text-blue-600">
                   {leaderboard.length}
                 </div>
-                <div className="text-xs text-gray-500">Active Scouts</div>
+                <div className="text-xs text-gray-500">Scout Ativos</div>
               </div>
               
               <div className="text-center">
                 <div className="text-2xl font-bold text-green-600">
                   {leaderboard.reduce((sum, entry) => sum + entry.achievementCount, 0)}
                 </div>
-                <div className="text-xs text-gray-500">Total Achievements</div>
+                <div className="text-xs text-gray-500">Total de Conquistas</div>
               </div>
               
               <div className="text-center">
                 <div className="text-2xl font-bold text-yellow-600">
                   {leaderboard.reduce((sum, entry) => sum + entry.totalStakesFromAchievements, 0)}
                 </div>
-                <div className="text-xs text-gray-500">Stakes from Achievements</div>
+                <div className="text-xs text-gray-500">Apostas em Conquistas</div>
               </div>
 
               {/* Achievement Tier Legend */}
               <div className="space-y-2 pt-4 border-t">
-                <h4 className="text-sm font-medium">Achievement Tiers</h4>
+                <h4 className="text-sm font-medium">Níveis de Conquista</h4>
                 <div className="space-y-1">
                   {Object.entries(ACHIEVEMENT_TIERS).map(([tier, style]) => (
                     <div key={tier} className="flex items-center gap-2 text-xs">

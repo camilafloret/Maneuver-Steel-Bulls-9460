@@ -108,7 +108,7 @@ export const AllianceCard = ({
                     />
                   ) : (
                     <div className="text-center py-2 text-muted-foreground text-sm">
-                      {team ? "No data available" : "No team selected"}
+                      {team ? "Nenhum dado disponível" : "Nenhuma equipe selecionada"}
                     </div>
                   )}
                 </div>

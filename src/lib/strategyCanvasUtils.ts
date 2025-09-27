@@ -22,7 +22,7 @@ export const saveAllStrategyCanvases = (matchNumber: string, selectedTeams: stri
     const endgameData = localStorage.getItem('fieldStrategy_endgame');
 
     if (!autonomousData || !teleopData || !endgameData) {
-      alert('Please draw on all three strategy tabs (Autonomous, Teleop, and Endgame) before saving');
+      alert('Por favor, desenhe todas as três abas de estratégia (Autônomo, Teleop e Fim de Jogo) antes de salvar');
       return;
     }
 
@@ -60,7 +60,7 @@ export const saveAllStrategyCanvases = (matchNumber: string, selectedTeams: stri
           ctx.fillStyle = '#000000';
           ctx.textAlign = 'center';
           ctx.font = 'bold 20px Arial';
-          ctx.fillText(`Match ${matchNumber}`, imgWidth / 2, 30);
+          ctx.fillText(`Partida ${matchNumber}`, imgWidth / 2, 30);
         }
 
         // Draw title labels for each section
@@ -69,15 +69,15 @@ export const saveAllStrategyCanvases = (matchNumber: string, selectedTeams: stri
         ctx.textAlign = 'center';
 
         // Draw Autonomous section
-        ctx.fillText('AUTONOMOUS', imgWidth / 2, topMargin + 30);
+        ctx.fillText('AUTÔNOMO', imgWidth / 2, topMargin + 30);
         ctx.drawImage(autonomousImg, 0, topMargin + 40, imgWidth, imgHeight - 40);
 
         // Draw Teleop section
-        ctx.fillText('TELEOP', imgWidth / 2, topMargin + imgHeight + 30);
+        ctx.fillText('TELEOPERADO', imgWidth / 2, topMargin + imgHeight + 30);
         ctx.drawImage(teleopImg, 0, topMargin + imgHeight + 40, imgWidth, imgHeight - 40);
 
         // Draw Endgame section
-        ctx.fillText('ENDGAME', imgWidth / 2, topMargin + (imgHeight * 2) + 30);
+        ctx.fillText('FIM DE JOGO', imgWidth / 2, topMargin + (imgHeight * 2) + 30);
         ctx.drawImage(endgameImg, 0, topMargin + (imgHeight * 2) + 40, imgWidth, imgHeight - 40);
 
         // Add team information at the top - corrected positioning and alliance sides
@@ -91,12 +91,12 @@ export const saveAllStrategyCanvases = (matchNumber: string, selectedTeams: stri
           // Blue alliance on left side
           ctx.fillStyle = '#0000ff';
           ctx.textAlign = 'left';
-          ctx.fillText(`Blue: ${blueTeams.join(', ')}`, 10, teamInfoY);
+          ctx.fillText(`Azul: ${blueTeams.join(', ')}`, 10, teamInfoY);
           
           // Red alliance on right side
           ctx.fillStyle = '#ff0000';
           ctx.textAlign = 'right';
-          ctx.fillText(`Red: ${redTeams.join(', ')}`, imgWidth - 10, teamInfoY);
+          ctx.fillText(`Vermelho: ${redTeams.join(', ')}`, imgWidth - 10, teamInfoY);
         }
 
         // Download the composite image

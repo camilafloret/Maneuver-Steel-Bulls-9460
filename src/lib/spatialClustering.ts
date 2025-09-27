@@ -155,14 +155,14 @@ function applyProximityReassignment(clusters: SpatialCluster[], teamPositions: T
   let changed = true;
   let iterations = 0;
   
-  console.log('=== Starting Proximity-Based Reassignment ===');
-  console.log('Initial cluster sizes:', clusters.map(c => c.length));
-  console.log('Target sizes:', clusters.map((_, i) => i < remainder ? avgClusterSize + 1 : avgClusterSize));
+  console.log('=== Iniciando a reatribuição baseada em proximidade ===');
+  console.log('Tamanhos iniciais dos clusters:', clusters.map(c => c.length));
+  console.log('Tamanhos de alvo:', clusters.map((_, i) => i < remainder ? avgClusterSize + 1 : avgClusterSize));
   
   while (changed && iterations < 5) {
     changed = false;
     iterations++;
-    console.log(`\n--- Proximity Check Iteration ${iterations} ---`);
+    console.log(`\n--- Iteração de verificação de proximidade ${iterations} ---`);
     
     // Check each team to see if it would be closer to a different cluster
     for (let i = 0; i < numClusters; i++) {
@@ -203,7 +203,7 @@ function applyProximityReassignment(clusters: SpatialCluster[], teamPositions: T
         
         // Debug logging for specific problematic teams
         if (team.teamNumber === 9977 || team.teamNumber === 9990) {
-          console.log(`Team ${team.teamNumber}:`, {
+          console.log(`Equipe ${team.teamNumber}:`, {
             currentCluster: i,
             closestOtherCluster: bestCluster,
             distanceToClosestOther: currentMinDistance,
@@ -233,24 +233,22 @@ function applyProximityReassignment(clusters: SpatialCluster[], teamPositions: T
             clusters[i].splice(teamIndex, 1);
             clusters[bestCluster].push(team);
             changed = true;
-            
-            console.log(`✅ Moved team ${team.teamNumber} from cluster ${i} to cluster ${bestCluster} for better proximity`);
-            console.log(`  Distance improvement: ${minDistanceToCurrentCluster.toFixed(1)} → ${currentMinDistance.toFixed(1)}`);
-            console.log(`  Cluster spread after move: ${clusterSpread.toFixed(1)}`);
+            console.log(`✅ Equipe ${team.teamNumber} movida do cluster ${i} para o cluster ${bestCluster} para melhor proximidade`);
+            console.log(`  Melhoria na distância: ${minDistanceToCurrentCluster.toFixed(1)} → ${currentMinDistance.toFixed(1)}`);
+            console.log(`  Distribuição do cluster após a movimentação: ${clusterSpread.toFixed(1)}`);
           } else {
             const reasons = [];
-            if (clusters[bestCluster].length >= bestTargetSize + 2) reasons.push('target cluster too large');
-            if (clusters[i].length <= Math.max(1, currentTargetSize - 2)) reasons.push('source cluster too small');
-            if (clusterSpread > maxAllowedSpread) reasons.push(`spread too large (${clusterSpread.toFixed(1)} > ${maxAllowedSpread})`);
-            
-            console.log(`❌ Cannot move team ${team.teamNumber} due to constraints: ${reasons.join(', ')}`);
+            if (clusters[bestCluster].length >= bestTargetSize + 2) reasons.push('cluster de destino muito grande');
+            if (clusters[i].length <= Math.max(1, currentTargetSize - 2)) reasons.push('cluster de origem muito pequeno');
+            if (clusterSpread > maxAllowedSpread) reasons.push(`dispersão muito grande (${clusterSpread.toFixed(1)} > ${maxAllowedSpread})`);
+            console.log(`❌ Não é possível mover a equipe ${team.teamNumber} devido às restrições: ${reasons.join(', ')}`);
           }
         }
       }
     }
     
-    console.log(`Iteration ${iterations} complete. Changed: ${changed}`);
-    console.log('Updated cluster sizes:', clusters.map(c => c.length));
+    console.log(`Iteração ${iterations} concluída. Alterações: ${changed}`);
+    console.log('Tamanhos atualizados dos clusters:', clusters.map(c => c.length));
   }
 }
 
@@ -260,7 +258,7 @@ function applyGeographicOptimization(clusters: SpatialCluster[]): void {
   let geographicImprovement = true;
   let geoIterations = 0;
 
-  console.log('\n=== Geographic Coherence Optimization ===');
+  console.log('\n=== Otimização de Coerência Geográfica ===');
 
   while (geographicImprovement && geoIterations < 3) {
     geographicImprovement = false;
@@ -310,7 +308,7 @@ function applyGeographicOptimization(clusters: SpatialCluster[]): void {
               // Debug specific teams we're interested in
               if (teamFromI.teamNumber === 8876 || teamFromJ.teamNumber === 8876 ||
                   teamFromI.teamNumber === 9991 || teamFromJ.teamNumber === 9991) {
-                console.log(`  Considering swap: ${teamFromI.teamNumber} ↔ ${teamFromJ.teamNumber}, improvement: ${improvement.toFixed(1)}`);
+                console.log(`  Considerando troca: ${teamFromI.teamNumber} ↔ ${teamFromJ.teamNumber}, melhoria: ${improvement.toFixed(1)}`);
               }
             }
           }
@@ -320,8 +318,8 @@ function applyGeographicOptimization(clusters: SpatialCluster[]): void {
     
     // Perform the best swap if one was found
     if (bestSwap && bestSwap.improvement > 10) {
-      console.log(`🔄 Swapping team ${bestSwap.teamFromI.teamNumber} (cluster ${bestSwap.clusterI}) with team ${bestSwap.teamFromJ.teamNumber} (cluster ${bestSwap.clusterJ}) for better geography`);
-      console.log(`  Spread improvement: ${bestSwap.improvement.toFixed(1)} units`);
+      console.log(`🔄 Trocando a equipe ${bestSwap.teamFromI.teamNumber} (cluster ${bestSwap.clusterI}) com a equipe ${bestSwap.teamFromJ.teamNumber} (cluster ${bestSwap.clusterJ}) para melhor distribuição geográfica`);
+      console.log(`  Melhoria na dispersão: ${bestSwap.improvement.toFixed(1)} unidades`);
       
       // Perform the swap
       clusters[bestSwap.clusterI][bestSwap.teamI] = bestSwap.teamFromJ;
@@ -330,8 +328,8 @@ function applyGeographicOptimization(clusters: SpatialCluster[]): void {
     }
     
     if (geographicImprovement) {
-      console.log(`Geographic optimization iteration ${geoIterations} complete`);
-      console.log('Updated cluster sizes:', clusters.map(c => c.length));
+      console.log(`Iteração de otimização geográfica ${geoIterations} concluída`);
+      console.log('Tamanhos atualizados dos clusters:', clusters.map(c => c.length));
     }
   }
 }

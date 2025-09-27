@@ -50,7 +50,7 @@ export const checkForNewAchievements = async (scouterName: string): Promise<Achi
   }
 
   if (newlyUnlocked.length > 0) {
-    console.log('🏆 Total new achievements unlocked for', scouterName, ':', newlyUnlocked.map(a => a.name));
+    console.log('🏆 Total de novas conquistas desbloqueadas para', scouterName, ':', newlyUnlocked.map(a => a.name));
   }
 
   return newlyUnlocked;
@@ -64,7 +64,7 @@ export const backfillAchievementsForAllScouters = async (): Promise<void> => {
     const newAchievements = await checkForNewAchievements(scouter.name);
     
     if (newAchievements.length > 0) {
-      console.log('🏆 Backfilled', newAchievements.length, 'achievements for', scouter.name);
+      console.log('🏆 Preenchida', newAchievements.length, 'conquistas para', scouter.name);
     }
   }
   

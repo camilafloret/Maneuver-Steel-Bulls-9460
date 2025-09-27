@@ -261,11 +261,11 @@ export const migrateFromLocalStorage = async (): Promise<{
       migratedCount: dataToMigrate.entries.length
     };
   } catch (error) {
-    console.error('Migration failed:', error);
+    console.error('A migração falhou:', error);
     return {
       success: false,
       migratedCount: 0,
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Erro desconhecido'
     };
   }
 };
@@ -296,11 +296,11 @@ export const migrateFromIndexedDB = async (): Promise<{
       migratedCount: convertedEntries.length
     };
   } catch (error) {
-    console.error('IndexedDB migration failed:', error);
+    console.error('Falha na migração do IndexedDB:', error);
     return {
       success: false,
       migratedCount: 0,
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Erro desconhecido'
     };
   }
 };
@@ -351,11 +351,11 @@ export const importScoutingData = async (
       };
     }
   } catch (error) {
-    console.error('Import failed:', error);
+    console.error('Falha na importação:', error);
     return {
       success: false,
       importedCount: 0,
-      error: error instanceof Error ? error.message : 'Unknown error'
+      error: error instanceof Error ? error.message : 'Erro desconhecido'
     };
   }
 };
@@ -432,11 +432,11 @@ export const getFilterOptions = async (): Promise<{
 };
 
 db.open().catch(error => {
-  console.error('Failed to open Dexie database:', error);
+  console.error('Falha ao abrir o banco de dados Dexie:', error);
 });
 
 pitDB.open().catch(error => {
-  console.error('Failed to open Pit Scouting database:', error);
+  console.error('Falha ao abrir o banco de dados do Pit Scouting:', error);
 });
 
 // Pit Scouting Database Functions
@@ -444,7 +444,7 @@ export const savePitScoutingEntry = async (entry: PitScoutingEntry): Promise<voi
   try {
     await pitDB.pitScoutingData.put(entry);
   } catch (error) {
-    console.error('Error saving pit scouting entry to database:', error);
+    console.error('Erro ao salvar entrada de pit scouting no banco de dados:', error);
     throw error;
   }
 };
@@ -453,7 +453,7 @@ export const loadAllPitScoutingEntries = async (): Promise<PitScoutingEntry[]> =
   try {
     return await pitDB.pitScoutingData.toArray();
   } catch (error) {
-    console.error('Error loading all pit scouting entries:', error);
+    console.error('Erro ao carregar todas as entradas de pit scouting:', error);
     return [];
   }
 };
@@ -462,7 +462,7 @@ export const loadPitScoutingByTeam = async (teamNumber: string): Promise<PitScou
   try {
     return await pitDB.pitScoutingData.where('teamNumber').equals(teamNumber).toArray();
   } catch (error) {
-    console.error('Error loading pit scouting entries by team:', error);
+    console.error('Erro ao carregar entradas de pit scouting pela equipe:', error);
     return [];
   }
 };
@@ -471,7 +471,7 @@ export const loadPitScoutingByEvent = async (eventName: string): Promise<PitScou
   try {
     return await pitDB.pitScoutingData.where('eventName').equals(eventName).toArray();
   } catch (error) {
-    console.error('Error loading pit scouting entries by event:', error);
+    console.error('Erro ao carregar entradas de pit scouting por evento:', error);
     return [];
   }
 };
@@ -489,7 +489,7 @@ export const loadPitScoutingByTeamAndEvent = async (
     // Return the most recent entry if multiple exist
     return results.sort((a, b) => b.timestamp - a.timestamp)[0];
   } catch (error) {
-    console.error('Error loading pit scouting entry by team and event:', error);
+    console.error('Erro ao carregar a inscrição de pit scouting por equipe e evento:', error);
     // Fallback to manual filtering if compound index fails
     try {
       const allEntries = await pitDB.pitScoutingData.toArray();
@@ -498,7 +498,7 @@ export const loadPitScoutingByTeamAndEvent = async (
       );
       return filtered.sort((a, b) => b.timestamp - a.timestamp)[0];
     } catch (fallbackError) {
-      console.error('Fallback query also failed:', fallbackError);
+      console.error('A consulta de fallback também falhou:', fallbackError);
       return undefined;
     }
   }
@@ -726,7 +726,7 @@ export const createMatchPrediction = async (
     const newAchievements = await checkForNewAchievements(scouterName);
     
     if (newAchievements.length > 0) {
-      console.log('🏆 New achievements unlocked for', scouterName, ':', newAchievements.map(a => a.name));
+      console.log('🏆 Novas conquistas desbloqueadas para', scouterName, ':', newAchievements.map(a => a.name));
     }
   }
 

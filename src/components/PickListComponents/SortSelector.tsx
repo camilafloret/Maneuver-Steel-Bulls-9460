@@ -7,17 +7,17 @@ interface SortSelectorProps {
 }
 
 const sortOptions = [
-  { value: "number" as const, label: "Team Number" },
-  { value: "totalCoral" as const, label: "Total Coral (All)" },
-  { value: "totalAlgae" as const, label: "Total Algae (All)" },
-  { value: "autoCorals" as const, label: "Auto Corals" },
-  { value: "teleopCorals" as const, label: "Teleop Corals" },
-  { value: "coralL1" as const, label: "Level 1 Coral (All)" },
-  { value: "coralL2" as const, label: "Level 2 Coral (All)" },
-  { value: "coralL3" as const, label: "Level 3 Coral (All)" },
-  { value: "coralL4" as const, label: "Level 4 Coral (All)" },
-  { value: "climb" as const, label: "Climb Rate" },
-  { value: "matches" as const, label: "Matches Played" }
+  { value: "number" as const, label: "Número da Equipe" },
+  { value: "totalCoral" as const, label: "Total de Coral (Geral)" },
+  { value: "totalAlgae" as const, label: "Total de Algas (Geral)" },
+  { value: "autoCorals" as const, label: "Corais no Auto" },
+  { value: "teleopCorals" as const, label: "Corais no Teleop" },
+  { value: "coralL1" as const, label: "Coral Nível 1 (Geral)" },
+  { value: "coralL2" as const, label: "Coral Nível 2 (Geral)" },
+  { value: "coralL3" as const, label: "Coral Nível 3 (Geral)" },
+  { value: "coralL4" as const, label: "Coral Nível 4 (Geral)" },
+  { value: "climb" as const, label: "Taxa de Escalada" },
+  { value: "matches" as const, label: "Partidas Jogadas" }
 ];
 
 export const SortSelector = ({ sortBy, onSortChange }: SortSelectorProps) => {
@@ -34,11 +34,11 @@ export const SortSelector = ({ sortBy, onSortChange }: SortSelectorProps) => {
 
   return (
     <GenericSelector
-      label="Sort Teams By"
+      label="Ordenar Equipes Por"
       value={sortBy}
       availableOptions={sortValues}
       onValueChange={handleValueChange}
-      placeholder="Sort by..."
+      placeholder="Ordenar por..."
       displayFormat={displayFormat}
     />
   );

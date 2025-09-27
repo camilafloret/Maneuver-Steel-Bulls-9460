@@ -143,7 +143,7 @@ export const usePitScoutingForm = (): PitScoutingFormState & {
             setExistingEntry(false);
           }
         } catch (error) {
-          console.error("Error loading existing pit scouting data:", error);
+          console.error("Erro ao carregar dados de pit scouting existentes:", error);
         }
       }
     };
@@ -153,15 +153,15 @@ export const usePitScoutingForm = (): PitScoutingFormState & {
 
   const validateForm = (): boolean => {
     if (!teamNumber.trim()) {
-      toast.error("Team number is required");
+      toast.error("O número da equipe é obrigatório");
       return false;
     }
     if (!eventName.trim()) {
-      toast.error("Event name is required");
+      toast.error("O nome do evento é obrigatório");
       return false;
     }
     if (!scouterInitials.trim()) {
-      toast.error("Scouter initials are required");
+      toast.error("As iniciais do Scouter são obrigatórias");
       return false;
     }
     return true;
@@ -205,7 +205,7 @@ export const usePitScoutingForm = (): PitScoutingFormState & {
       await savePitScoutingEntry(entry);
       
       const action = existingEntry ? "updated" : "saved";
-      toast.success(`Pit scouting data ${action} successfully!`);
+      toast.success(`Dados de pit scouting ${action} com sucesso!`);
       
       // Track submission
       analytics.trackEvent('pit_scouting_submitted', {
@@ -218,8 +218,8 @@ export const usePitScoutingForm = (): PitScoutingFormState & {
       resetForm();
       
     } catch (error) {
-      console.error("Error saving pit scouting data:", error);
-      toast.error("Error saving pit scouting data. Please try again.");
+      console.error("Erro ao salvar dados de pit scouting:", error);
+      toast.error("Erro ao salvar dados de pit scouting. Por favor, tente novamente.");
     } finally {
       setIsLoading(false);
     }

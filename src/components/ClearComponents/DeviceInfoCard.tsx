@@ -9,14 +9,14 @@ export const DeviceInfoCard = ({ playerStation }: DeviceInfoCardProps) => {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle className="text-lg">Device Information</CardTitle>
+        <CardTitle className="text-lg">Informações do Dispositivo</CardTitle>
       </CardHeader>
       <CardContent className="space-y-2">
         <p className="text-sm">
-          <span className="font-medium">Player Station:</span> {convertTeamRole(playerStation)}
+          <span className="font-medium">Estação do Jogador:</span> {convertTeamRole(playerStation)}
         </p>
         <p className="text-sm">
-          <span className="font-medium">Last Updated:</span> {new Date().toLocaleDateString()}
+          <span className="font-medium">Última Atualização:</span> {new Date().toLocaleDateString()}
         </p>
       </CardContent>
     </Card>

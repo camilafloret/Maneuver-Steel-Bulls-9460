@@ -42,7 +42,7 @@ const PickListPage = () => {
   return (
     <div className="min-h-screen w-full flex flex-col px-4 pt-4">
       <div className="flex flex-col max-w-7xl w-full mx-auto flex-1 pb-6">
-        <h1 className="text-2xl font-bold">Pick Lists</h1>
+        <h1 className="text-2xl font-bold">Listas de Seleção</h1>
         
         {/* Header */}
         <PickListHeader 

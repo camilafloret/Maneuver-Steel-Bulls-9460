@@ -20,13 +20,13 @@ export function useScoutDashboard() {
   const [chartType, setChartType] = useState<"bar" | "line" | "table">("bar");
 
   const metricOptions = [
-    { key: "totalStakes", label: "Total Stakes", icon: "Trophy" },
-    { key: "stakes", label: "Prediction Stakes", icon: "Trophy" },
-    { key: "totalPredictions", label: "Total Predictions", icon: "Target" },
-    { key: "correctPredictions", label: "Correct Predictions", icon: "Award" },
-    { key: "accuracy", label: "Accuracy %", icon: "TrendingUp" },
-    { key: "currentStreak", label: "Current Streak", icon: "TrendingUp" },
-    { key: "longestStreak", label: "Best Streak", icon: "Award" },
+    { key: "totalStakes", label: "Apostas Totais", icon: "Trophy" },
+    { key: "stakes", label: "Apostas de Previsão", icon: "Trophy" },
+    { key: "totalPredictions", label: "Previsões Totais", icon: "Target" },
+    { key: "correctPredictions", label: "Previsões Corretas", icon: "Award" },
+    { key: "accuracy", label: "Precisão %", icon: "TrendingUp" },
+    { key: "currentStreak", label: "Sequência Atual", icon: "TrendingUp" },
+    { key: "longestStreak", label: "Melhor Sequência", icon: "Award" },
   ];
 
   const loadScoutData = async () => {
@@ -42,7 +42,7 @@ export function useScoutDashboard() {
           const stats = await getAchievementStats(scouter.name);
           achievementStakesMap[scouter.name] = stats.totalStakesFromAchievements;
         } catch (error) {
-          console.error(`Error loading achievement stats for ${scouter.name}:`, error);
+          console.error(`Erro ao carregar estatísticas de conquistas para ${scouter.name}:`, error);
           achievementStakesMap[scouter.name] = 0;
         }
       }
@@ -50,7 +50,7 @@ export function useScoutDashboard() {
       
       analytics.trackEvent('scout_dashboard_loaded', { scoutCount: scoutData.length });
     } catch (error) {
-      console.error('❌ Error loading scout data:', error);
+      console.error('❌ Erro ao carregar dados de Scout:', error);
     } finally {
       setLoading(false);
     }

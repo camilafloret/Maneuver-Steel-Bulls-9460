@@ -16,7 +16,7 @@ export const useCurrentScouter = () => {
           setCurrentScouter(scouter);
         }
       } catch (error) {
-        console.error('Error loading current scouter:', error);
+        console.error('Erro ao carregar o scouter atual:', error);
       } finally {
         setIsLoading(false);
       }
@@ -49,7 +49,7 @@ export const useCurrentScouter = () => {
           setCurrentScouter(updatedScouter);
         }
       } catch (error) {
-        console.error('Error refreshing scouter:', error);
+        console.error('Erro ao atualizar o scouter:', error);
       }
     }
   };

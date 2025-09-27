@@ -50,7 +50,7 @@ export const useDataStats = () => {
         scoutingDataSize: size,
       }));
     } catch (error) {
-      console.error("Error loading scouting data:", error);
+      console.error("Erro ao carregar dados de scouting:", error);
       setStats(prev => ({
         ...prev,
         scoutingDataCount: 0,
@@ -71,7 +71,7 @@ export const useDataStats = () => {
         pitScoutingDataSize: pitSize,
       }));
     } catch (error) {
-      console.error("Error loading pit scouting data:", error);
+      console.error("Erro ao carregar dados de scouting pit:", error);
       setStats(prev => ({
         ...prev,
         pitScoutingDataCount: 0,
@@ -97,7 +97,7 @@ export const useDataStats = () => {
         scouterGameDataSize: gameDataSize,
       }));
     } catch (error) {
-      console.error("Error loading scouter game data:", error);
+      console.error("Erro ao carregar dados de jogo do scout:", error);
       setStats(prev => ({
         ...prev,
         scouterGameDataCount: 0,
@@ -145,7 +145,7 @@ export const useDataStats = () => {
         apiDataSize: sizeStr,
       }));
     } catch (error) {
-      console.error("Error loading API data stats:", error);
+      console.error("Erro ao carregar estatísticas de dados da API:", error);
       setStats(prev => ({
         ...prev,
         apiDataCount: 0,

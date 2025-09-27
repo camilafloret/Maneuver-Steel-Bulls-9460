@@ -117,7 +117,7 @@ export function SiteHeader() {
           </div>
           <Button variant="ghost" className="hidden sm:flex w-auto h-auto px-6">
             <a
-              href="https://github.com/ShinyShips/Maneuver"
+              href="https://github.com/camilafloret/Maneuver-Steel-Bulls-9460"
               rel="noopener noreferrer"
               target="_blank"
               className="dark:text-foreground"

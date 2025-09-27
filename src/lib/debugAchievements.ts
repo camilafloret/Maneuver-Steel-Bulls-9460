@@ -3,16 +3,16 @@ import { checkForNewAchievements } from './achievementUtils';
 import { ACHIEVEMENT_DEFINITIONS } from './achievementTypes';
 
 export const debugAchievements = async (scouterName: string) => {
-  console.log('🔍 Debug analysis for', scouterName);
+  console.log('🔍 Análise de depuração para', scouterName);
   
   // Get current scouter data
   const scouter = await gameDB.scouters.get(scouterName);
   if (!scouter) {
-    console.log('❌ Scouter not found');
+    console.log('❌ Scouter não encontrado');
     return;
   }
   
-  console.log('📊 Current scouter stats:', {
+  console.log('📊 Estatísticas atuais do scouter:', {
     stakes: scouter.stakes,
     totalPredictions: scouter.totalPredictions,
     correctPredictions: scouter.correctPredictions,
@@ -27,7 +27,7 @@ export const debugAchievements = async (scouterName: string) => {
     .equals(scouterName)
     .toArray();
   
-  console.log('🏆 Current achievements:', achievements.length);
+  console.log('🏆 Conquistas atuais:', achievements.length);
   achievements.forEach(achievement => {
     const def = ACHIEVEMENT_DEFINITIONS.find(a => a.id === achievement.achievementId);
     if (def) {
@@ -41,45 +41,45 @@ export const debugAchievements = async (scouterName: string) => {
     return sum + (def?.stakesReward || 0);
   }, 0);
   
-  console.log('💰 Total stakes from achievements:', totalStakesFromAchievements);
-  console.log('💰 Expected base stakes:', scouter.stakes - totalStakesFromAchievements);
+  console.log('💰 Total de stakes provenientes de conquistas:', totalStakesFromAchievements);
+  console.log('💰 Stakes base esperadas:', scouter.stakes - totalStakesFromAchievements);
   
   // Check which stakes achievements should be unlocked
   const stakesAchievements = ACHIEVEMENT_DEFINITIONS.filter(a => a.id.startsWith('stakes_'));
-  console.log('🎯 Stakes achievements analysis:');
+  console.log('🎯 Análise de conquistas de stakes:');
   
   stakesAchievements.forEach(achievement => {
     const isUnlocked = achievements.some(a => a.achievementId === achievement.id);
     const shouldBeUnlocked = scouter.stakes >= achievement.requirements.value;
-    const status = isUnlocked ? '✅' : (shouldBeUnlocked ? '❌ MISSING' : '⏳');
+    const status = isUnlocked ? '✅' : (shouldBeUnlocked ? '❌ AUSENTE' : '⏳');
     
-    console.log(`  ${status} ${achievement.name}: needs ${achievement.requirements.value}, has ${scouter.stakes}`);
+    console.log(`  ${status} ${achievement.name}: precisa ${achievement.requirements.value}, tem ${scouter.stakes}`);
   });
   
   // Try manual achievement check
-  console.log('🔄 Running manual achievement check...');
+  console.log('🔄 Executando verificação manual de conquistas...');
   const newAchievements = await checkForNewAchievements(scouterName);
   
   if (newAchievements.length > 0) {
-    console.log('🎉 New achievements unlocked:', newAchievements.map(a => a.name));
+    console.log('🎉 Novas conquistas desbloqueadas:', newAchievements.map(a => a.name));
   } else {
-    console.log('ℹ️ No new achievements to unlock');
+    console.log('ℹ️ Nenhuma nova conquista para desbloquear');
   }
   
   // Get updated scouter data
   const updatedScouter = await gameDB.scouters.get(scouterName);
   if (updatedScouter && updatedScouter.stakes !== scouter.stakes) {
-    console.log('💰 Stakes updated:', scouter.stakes, '->', updatedScouter.stakes);
+    console.log('💰 Stakes atualizados:', scouter.stakes, '->', updatedScouter.stakes);
   }
 };
 
 export const fixStakesAchievements = async () => {
-  console.log('🔧 Attempting to fix stakes achievements...');
+  console.log('🔧 Tentando consertar conquistas de stakes...');
   
   const scouters = await gameDB.scouters.toArray();
   
   for (const scouter of scouters) {
-    console.log(`\n🔍 Checking ${scouter.name}...`);
+    console.log(`\n🔍 Verificando ${scouter.name}...`);
     await debugAchievements(scouter.name);
   }
 };

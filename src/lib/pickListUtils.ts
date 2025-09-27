@@ -49,14 +49,14 @@ export const filterTeams = (teams: TeamStats[], searchFilter: string): TeamStats
 
 // Check if team is already in a pick list
 export const isTeamInList = (team: TeamStats, pickList: PickList): boolean => {
-  return pickList.teams.some(t => t.text === `Team ${team.teamNumber}`);
+  return pickList.teams.some(t => t.text === `Equipe ${team.teamNumber}`);
 };
 
 // Create a new pick list item from team stats
 export const createPickListItem = (team: TeamStats): PickListItem => {
   return {
     id: Date.now() + Math.random(),
-    text: `Team ${team.teamNumber}`,
+    text: `Equipe ${team.teamNumber}`,
     checked: false,
     description: team.teamNumber // Store team number for lookup
   };

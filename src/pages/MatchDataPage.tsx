@@ -26,7 +26,7 @@ const MatchDataPage = () => {
     if (rememberForSession && apiKey) {
       sessionStorage.setItem("tbaApiKey", apiKey);
     } else if (rememberForSession && !apiKey) {
-      toast.error("API key cannot be empty if you want to remember it for this session.");
+      toast.error("A chave de API não pode estar vazia se você quiser lembrá-la para esta sessão.");
     } else {
       sessionStorage.removeItem("tbaApiKey");
     }
@@ -58,7 +58,7 @@ const MatchDataPage = () => {
       );
       
       if (!res.ok) {
-        throw new Error(`API request failed with status ${res.status}`);
+        throw new Error(`A solicitação de API falhou com o status ${res.status}`);
       }
       
       const fullData = await res.json();
@@ -103,11 +103,11 @@ const MatchDataPage = () => {
       }
 
       const matchDataStr = localStorage.getItem("matchData");
-      let fetchedMsg = "Match Data Fetched";
+      let fetchedMsg = "Dados de partidas obtidas";
       if (matchDataStr) {
         const matchData = JSON.parse(matchDataStr);
         if (Array.isArray(matchData) && matchData.length > 0 && matchData[0].redAlliance && matchData[0].redAlliance.length > 0) {
-          fetchedMsg += `: ${qualMatchesCleaned.length} matches for ${tbaEventKey}`;
+          fetchedMsg += `: ${qualMatchesCleaned.length} partidas de ${tbaEventKey}`;
         }
       }
       toast.success(fetchedMsg);
@@ -118,7 +118,7 @@ const MatchDataPage = () => {
         sessionStorage.removeItem("tbaApiKey");
       }
     } catch (err) {
-      toast.error("Failed to fetch match data from TBA");
+      toast.error("Falha ao buscar dados de partida do TBA");
       console.error(err);
     }
   };
@@ -127,18 +127,18 @@ const MatchDataPage = () => {
     if (apiKey && eventKey) {
       await fetchMatchDataFromTBA(apiKey, eventKey);
     } else {
-      toast.error("Please provide match data via API input");
+      toast.error("Forneça dados de partida por meio da entrada da API");
     }
   };
   
   return (
     <main className="h-screen w-full flex flex-col items-center px-4 pt-6 pb-6">
       <div className="flex flex-col items-start gap-4 max-w-md w-full">
-        <h1 className="text-2xl font-bold">Load Match Data</h1>
+        <h1 className="text-2xl font-bold">Carregar dados de partida</h1>
         <div className="w-full max-w-md space-y-3">
           <div className="space-y-1">
             <label htmlFor="apiKey" className="text-sm font-medium">
-              TBA API Key
+              Chave de API TBA
             </label>
             <div className="relative pb-1">
               <Input
@@ -146,7 +146,7 @@ const MatchDataPage = () => {
                 id="apiKey"
                 name="tba-api-key"
                 type={showApiKey ? "text" : "password"}
-                placeholder="Enter your Blue Alliance API key"
+                placeholder="Insira sua chave de API da Blue Alliance"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
                 className="w-full pr-10"
@@ -156,7 +156,7 @@ const MatchDataPage = () => {
                 type="button"
                 onClick={() => setShowApiKey(!showApiKey)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 focus:outline-none"
-                aria-label={showApiKey ? "Hide API key" : "Show API key"}
+                aria-label={showApiKey ? "Ocultar chave de API" : "Mostrar chave de API"}
               >
                 {showApiKey ? (
                   <EyeOff className="h-4 w-4" />
@@ -175,7 +175,7 @@ const MatchDataPage = () => {
                 className="shrink-0"
               />
               <label htmlFor="rememberSession" className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
-                Remember for this session only
+                Lembre-se apenas para esta sessão
               </label>
             </div>
             
@@ -183,25 +183,25 @@ const MatchDataPage = () => {
             <div className="flex items-start space-x-2 mt-2 p-2 bg-amber-50 border border-amber-200 rounded-md">
               <Shield className="h-4 w-4 text-amber-600 mt-0.5 flex-shrink-0" />
               <p className="text-xs text-amber-800">
-                API keys are never stored permanently for security. Use your browser's password manager for convenient access.
+                As chaves de API nunca são armazenadas permanentemente por questões de segurança. Use o gerenciador de senhas do seu navegador para acesso prático.
               </p>
             </div>
           </div>
           <div className="space-y-1">
             <label htmlFor="eventKey" className="text-sm font-medium">
-              Event Key
+              Chave do evento
             </label>
             <Input
               id="eventKey"
               type="text"
-              placeholder="e.g., 2024chcmp"
+              placeholder="ex., 2024chcmp"
               value={eventKey}
               onChange={(e) => setEventKey(e.target.value)}
               className="w-full"
             />
           </div>
           <p className="text-xs text-muted-foreground">
-            Get your API key from <a href="https://www.thebluealliance.com/account" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Blue Alliance</a>
+            Obtenha sua chave de API em <a href="https://www.thebluealliance.com/account" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">The Blue Alliance</a>
           </p>
         </div>
         
@@ -209,7 +209,7 @@ const MatchDataPage = () => {
           className="flex w-full max-w-md h-16 items-center justify-center text-xl text-center"
           onClick={() => doneClick()}
         >
-          Submit
+          Enviar
         </Button>
       </div>
     </main>

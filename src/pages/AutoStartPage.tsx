@@ -51,7 +51,7 @@ const AutoStartPage = () => {
   const validateInputs = () => {
     const hasSelection = startPoses.some(pos => pos === true);
     if (!hasSelection) {
-      toast.error("Please select a starting position on the field");
+      toast.error("Selecione uma posição inicial no campo");
       return false;
     }
     return true;
@@ -91,7 +91,7 @@ const AutoStartPage = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center px-4 pt-6 pb-8 md:pb-6">
       <div className="w-full max-w-7xl xl:max-w-[90rem] 2xl:max-w-[100rem]">
-        <h1 className="text-2xl font-bold pb-4 xl:text-3xl 2xl:text-4xl xl:pb-6">Auto Start</h1>
+        <h1 className="text-2xl font-bold pb-4 xl:text-3xl 2xl:text-4xl xl:pb-6">Início automático</h1>
       </div>
       <div className="flex flex-col lg:flex-row items-start gap-6 xl:gap-8 2xl:gap-10 max-w-7xl xl:max-w-[90rem] 2xl:max-w-[100rem] w-full flex-1">
         
@@ -99,13 +99,13 @@ const AutoStartPage = () => {
         <div className="w-full lg:flex-1 h-96 lg:h-full min-h-96 lg:min-h-[32rem] xl:min-h-[40rem] 2xl:min-h-[48rem]">
           <Card className="w-full h-full">
             <CardHeader className="pb-3 lg:pb-4">
-              <CardTitle className="text-xl xl:text-2xl">Starting Position</CardTitle>
+              <CardTitle className="text-xl xl:text-2xl">Posição inicial</CardTitle>
               <p className="text-sm text-muted-foreground">
-                Click where your robot starts on the field
+                Clique onde seu robô começa no campo
               </p>
               {hasSelection && (
                 <Badge className="w-fit bg-green-600">
-                  Position {selectedPosition} Selected
+                  Posição {selectedPosition} selecionada
                 </Badge>
               )}
             </CardHeader>
@@ -128,15 +128,15 @@ const AutoStartPage = () => {
           {states?.inputs && (
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Match Details</CardTitle>
+                <CardTitle className="text-lg">Detalhes da partida</CardTitle>
               </CardHeader>
               <CardContent className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Match:</span>
+                  <span className="text-muted-foreground">Partida:</span>
                   <span className="font-medium">{states.inputs.matchNumber}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Alliance:</span>
+                  <span className="text-muted-foreground">Aliança:</span>
                   <Badge 
                     variant={states.inputs.alliance === "red" ? "destructive" : "default"}
                     className={states.inputs.alliance === "blue" ? "bg-blue-500 text-white" : "bg-red-500 text-white"}
@@ -145,7 +145,7 @@ const AutoStartPage = () => {
                   </Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Team:</span>
+                  <span className="text-muted-foreground">Equipe:</span>
                   <span className="font-medium">{states.inputs.selectTeam}</span>
                 </div>
                 <div className="flex justify-between">
@@ -159,14 +159,14 @@ const AutoStartPage = () => {
           {/* Instructions Card - Hidden on mobile to save space */}
           <Card className="hidden lg:block">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg">Instructions</CardTitle>
+              <CardTitle className="text-lg">Instruções</CardTitle>
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Click on the starting zone where your robot begins</li>
-                <li>• Only one position can be selected at a time</li>
-                <li>• The selected position will be highlighted</li>
-                <li>• You can change your selection by clicking a different zone</li>
+                <li>- Clique na zona inicial onde seu robô começa</li>
+                <li>- Apenas uma posição pode ser selecionada por vez</li>
+                <li>- A posição selecionada será destacada</li>
+                <li>- Você pode alterar sua seleção clicando em uma zona diferente</li>
               </ul>
             </CardContent>
           </Card>
@@ -176,9 +176,9 @@ const AutoStartPage = () => {
             <Card className="border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20">
               <CardContent>
                 <div className="flex items-center gap-2">
-                  <Badge className="bg-green-600">Ready</Badge>
+                  <Badge className="bg-green-600">Preparar</Badge>
                   <span className="text-sm text-green-700 dark:text-green-300">
-                    Starting position {selectedPosition} selected
+                    Posição inicial {selectedPosition} selecionada
                   </span>
                 </div>
               </CardContent>
@@ -189,7 +189,7 @@ const AutoStartPage = () => {
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="h-5 w-5 text-orange-500 dark:text-amber-300" />
                   <span className="text-sm text-amber-700 dark:text-amber-300">
-                    Please select a starting position
+                    Selecione uma posição inicial
                   </span>
                 </div>
               </CardContent>
@@ -203,14 +203,14 @@ const AutoStartPage = () => {
               onClick={handleBack}
               className="flex-1 h-12 text-lg"
             >
-              Back
+              Voltar
             </Button>
             <Button
               onClick={handleProceed}
               className="flex-2 h-12 text-lg font-semibold"
               disabled={!hasSelection}
             >
-              Continue to Auto
+              Continuar para automático
             </Button>
           </div>
         </div>

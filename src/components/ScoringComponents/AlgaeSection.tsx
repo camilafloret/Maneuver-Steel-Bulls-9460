@@ -28,7 +28,7 @@ const AlgaeSection = ({ onAlgaeAction, phase, showFlashing, currentAlgae, lastAl
     
     // For scoring/action types, must have algae (miss is allowed without algae for tracking failed attempts)
     if ((actionType === "score" || actionType === "action") && currentAlgae <= 0 && location !== "miss") {
-      console.log("Cannot score/remove algae - no algae held:", currentAlgae);
+      console.log("Não pode pontuar/remover algas – nenhuma alga em posse:", currentAlgae);
       return;
     }
     
@@ -44,22 +44,22 @@ const AlgaeSection = ({ onAlgaeAction, phase, showFlashing, currentAlgae, lastAl
   const getAlgaeActions = () => {
     // Reordered scoring actions: Net Shot, Remove, Processor, Miss
     const scoringActions = [
-      { action: "net", label: "Net Shot", type: "score" },
-      { action: "remove", label: "Remove", type: "action" },
-      { action: "processor", label: "Processor", type: "score" },
-      { action: "miss", label: "Miss", type: "score" },
+      { action: "net", label: "Arremesso na Rede", type: "score" },
+      { action: "remove", label: "Remover", type: "action" },
+      { action: "processor", label: "Processador", type: "score" },
+      { action: "miss", label: "Erro", type: "score" },
     ];
 
     const pickupActions = phase === "auto" 
       ? [
-          { action: "reef", label: "Reef", type: "pickup" },
-          { action: "mark1", label: "Mark 1", type: "pickup" },
-          { action: "mark2", label: "Mark 2", type: "pickup" },
-          { action: "mark3", label: "Mark 3", type: "pickup" },
+          { action: "reef", label: "Recife", type: "pickup" },
+          { action: "mark1", label: "Marca 1", type: "pickup" },
+          { action: "mark2", label: "Marca 2", type: "pickup" },
+          { action: "mark3", label: "Marca 3", type: "pickup" },
         ]
       : [
-          { action: "reef", label: "Reef", type: "pickup" },
-          { action: "carpet", label: "Carpet", type: "pickup" },
+          { action: "reef", label: "Recife", type: "pickup" },
+          { action: "carpet", label: "Tapete", type: "pickup" },
         ];
 
     return { scoring: scoringActions, pickup: pickupActions };
@@ -71,19 +71,19 @@ const AlgaeSection = ({ onAlgaeAction, phase, showFlashing, currentAlgae, lastAl
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">Algae</CardTitle>
+          <CardTitle className="text-lg">Algas</CardTitle>
           <div className="flex items-center gap-2">
             <Badge variant="outline">
-            {currentAlgae}/1 Algae Held
+            {currentAlgae}/1 Algas em Posse
           </Badge>
           {currentAlgae === 0 && (
             <Badge variant="outline" className="text-amber-600">
-              Pick up algae first
+              Pegue algas primeiro
             </Badge>
           )}
           {currentAlgae >= 1 && (
             <Badge variant="outline" className="text-green-600">
-              Ready to score
+              Pronto para pontuar
             </Badge>
           )}
           </div>

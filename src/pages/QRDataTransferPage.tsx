@@ -101,17 +101,17 @@ const QRDataTransferPage = () => {
   return (
     <div className="h-screen w-full flex flex-col items-center px-4 pt-6 pb-6">
       <div className="flex flex-col items-start gap-4 max-w-md w-full">
-        <h1 className="text-2xl font-bold">QR Data Transfer</h1>
+        <h1 className="text-2xl font-bold">Transferência de dados QR</h1>
         <p className="text-muted-foreground">
-          Transfer large data files using fountain codes. Scan packets in any order until reconstruction is complete. Note: Pit scouting transfers include text data only - use JSON transfer for images.
+          Transfira arquivos de dados grandes usando códigos fonte. Examine os pacotes em qualquer ordem até que a reconstrução seja concluída. Observação: as transferências de pit scouting incluem apenas dados de texto — use a transferência JSON para imagens.
         </p>
 
         {/* Data Type Selection */}
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-lg">Select Data Type</CardTitle>
+            <CardTitle className="text-lg">Selecione o tipo de dados</CardTitle>
             <CardDescription>
-              Choose what type of data you want to transfer
+              Escolha que tipo de dados você deseja transferir
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -120,11 +120,11 @@ const QRDataTransferPage = () => {
                 <SelectValue placeholder="Select data type" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="combined">Combined (Scouting + Profiles)</SelectItem>
-                <SelectItem value="scouting">Scouting Data</SelectItem>
-                <SelectItem value="pit-scouting">Pit Scouting Data (no images)</SelectItem>
-                <SelectItem value="match">Match Schedule Data</SelectItem>
-                <SelectItem value="scouter">Scouter Profiles</SelectItem>
+                <SelectItem value="combined">Combinado (Scouting + Perfis)</SelectItem>
+                <SelectItem value="scouting">Dados de Scouting</SelectItem>
+                <SelectItem value="pit-scouting">Dados de Pit Scouting (sem imagens)</SelectItem>
+                <SelectItem value="match">Dados do Cronograma de Partidas</SelectItem>
+                <SelectItem value="scouter">Perfis de Scouter</SelectItem>
               </SelectContent>
             </Select>
           </CardContent>
@@ -135,12 +135,12 @@ const QRDataTransferPage = () => {
             onClick={() => setMode('generate')}
             className="w-full h-16 text-xl"
           >
-            Generate Fountain Codes
+            Gerar códigos de fonte
           </Button>
           
           <div className="flex items-center gap-4">
             <Separator className="flex-1" />
-            <span className="text-sm text-muted-foreground">OR</span>
+            <span className="text-sm text-muted-foreground">Ou</span>
             <Separator className="flex-1" />
           </div>
           
@@ -149,16 +149,16 @@ const QRDataTransferPage = () => {
             variant="outline"
             className="w-full h-16 text-xl"
           >
-            Scan Fountain Codes
+            Códigos de fonte de digitalização
           </Button>
         </div>
 
         <div className="text-xs text-muted-foreground text-start space-y-1">
-          <p>• Codes can be scanned in any order</p>
-          <p>• No need to receive all codes</p>
-          <p>• Automatic reconstruction when enough data is received</p>
-          <p>• Pit scouting transfers text only (team specs, capabilities, notes)</p>
-          <p>• Use JSON Data Transfer for robot photos</p>
+          <p>- Os códigos podem ser escaneados em qualquer ordem</p>
+          <p>- Não é necessário receber todos os códigos</p>
+          <p>- Reconstrução automática quando dados suficientes forem recebidos</p>
+          <p>- Pit scouting transfere apenas texto (especificações da equipe, capacidades, observações)</p>
+          <p>- Use Transferência de Dados JSON para fotos dos robôs</p>
         </div>
       </div>
     </div>

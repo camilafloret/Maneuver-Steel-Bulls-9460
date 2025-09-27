@@ -1,38 +1,38 @@
-# Dexie.js Database Implementation
+# Implementação do Banco de Dados com Dexie.js
 
-This project now uses [Dexie.js](https://dexie.org/) for IndexedDB management, providing a much cleaner and more powerful API for database operations.
+Este projeto agora utiliza [Dexie.js](https://dexie.org/) para gerenciamento do IndexedDB, fornecendo uma API muito mais limpa e poderosa para operações de banco de dados.
 
-## Migration from Old Implementation
+## Migração da Implementação Antiga
 
-The app automatically migrates data from:
-1. Old manual IndexedDB implementation
-2. localStorage storage
+O app migra automaticamente os dados de:
+1. Implementação manual antiga do IndexedDB
+2. Armazenamento no localStorage
 
-Migration happens automatically on app startup and is logged to the console.
+A migração acontece automaticamente na inicialização do app e é registrada no console.
 
-## New Database Structure
+## Nova Estrutura do Banco de Dados
 
-### ScoutingEntryDB Interface
+### Interface ScoutingEntryDB
 ```typescript
 interface ScoutingEntryDB {
-  id: string;                    // Unique entry ID
-  teamNumber?: string;           // Extracted for indexing
-  matchNumber?: string;          // Extracted for indexing
-  alliance?: string;             // Extracted for indexing
-  scouterInitials?: string;      // Extracted for indexing
-  eventName?: string;            // Extracted for indexing
-  data: Record<string, unknown>; // Full scouting data object
-  timestamp: number;             // Entry creation time
+  id: string;                    // ID único da entrada
+  teamNumber?: string;           // Extraído para indexação
+  matchNumber?: string;          // Extraído para indexação
+  alliance?: string;             // Extraído para indexação
+  scouterInitials?: string;      // Extraído para indexação
+  eventName?: string;            // Extraído para indexação
+  data: Record<string, unknown>; // Objeto completo de dados de scouting
+  timestamp: number;             // Hora de criação da entrada
 }
 ```
 
-### Database Schema
-- **Version 1**: Basic indexes for teamNumber, matchNumber, alliance, scouterInitials, timestamp
-- **Version 2**: Added eventName index
+### Esquema do Banco de Dados
+- **Versão 1**: Índices básicos para teamNumber, matchNumber, alliance, scouterInitials, timestamp
+- **Versão 2**: Índice eventName adicionado
 
-## API Overview
+## Visão geral da API
 
-### Basic Operations
+### Operações básicas
 ```typescript
 import { 
   saveScoutingEntry, 
@@ -58,7 +58,7 @@ await deleteScoutingEntry(entryId);
 await clearAllScoutingData();
 ```
 
-### Querying by Criteria
+### Consulta por critérios
 ```typescript
 import { 
   loadScoutingEntriesByTeam,
@@ -85,7 +85,7 @@ const filteredEntries = await queryScoutingEntries({
 });
 ```
 
-### Statistics and Metadata
+### Estatísticas e Metadados
 ```typescript
 import { getDBStats, getFilterOptions } from './lib/dexieDB';
 
@@ -98,7 +98,7 @@ const options = await getFilterOptions();
 // Returns: { teams, matches, events, alliances, scouters }
 ```
 
-### Import/Export
+### Importação / Exportação
 ```typescript
 import { exportScoutingData, importScoutingData } from './lib/dexieDB';
 
@@ -109,26 +109,26 @@ const exportData = await exportScoutingData();
 const result = await importScoutingData(importData, 'append');
 ```
 
-## Benefits of Dexie.js
+## Benefícios do Dexie.js
 
-1. **Cleaner API**: Much simpler than raw IndexedDB
-2. **Better TypeScript Support**: Full type safety
-3. **Automatic Schema Management**: Version upgrades handled automatically
-4. **Powerful Querying**: Complex filters and compound indexes
-5. **Better Error Handling**: Promises-based with clear error messages
-6. **Performance**: Optimized queries and bulk operations
-7. **Future-Proof**: Easy to add new features and indexes
+1. **API mais limpa**: Muito mais simples do que usar IndexedDB diretamente  
+2. **Melhor suporte a TypeScript**: Tipagem completa e segura  
+3. **Gerenciamento automático de esquema**: Atualizações de versão tratadas automaticamente  
+4. **Consultas poderosas**: Filtros complexos e índices compostos  
+5. **Melhor tratamento de erros**: Baseado em Promises com mensagens de erro claras  
+6. **Performance**: Consultas otimizadas e operações em lote  
+7. **Preparado para o futuro**: Fácil de adicionar novos recursos e índices  
 
-## Migration Details
+## Detalhes da Migração
 
-### Automatic Migration
-- Runs on app startup
-- Checks for existing data in old storage systems
-- Migrates to Dexie if needed
-- Keeps backups of original data
-- Logs migration progress
+### Migração Automática
+- Executada na inicialização do app  
+- Verifica se existem dados nos sistemas de armazenamento antigos  
+- Migra para o Dexie se necessário  
+- Mantém backups dos dados originais  
+- Registra o progresso da migração nos logs  
 
-### Manual Migration
+### Migração Manual
 ```typescript
 import migrationUtils from './lib/migrationUtils';
 
@@ -142,18 +142,18 @@ const result = await migrationUtils.performMigration();
 const cleanup = await migrationUtils.cleanupOldData();
 ```
 
-## Compatibility
+## Compatibilidade
 
-The new implementation maintains backward compatibility:
-- Existing components continue to work unchanged
-- `loadLegacyScoutingData()` still returns the expected format
-- Data transformation functions remain the same
-- All existing APIs are preserved
+A nova implementação mantém compatibilidade retroativa:  
+- Os componentes existentes continuam funcionando sem alterações  
+- `loadLegacyScoutingData()` ainda retorna o formato esperado  
+- As funções de transformação de dados permanecem as mesmas  
+- Todas as APIs existentes são preservadas  
 
-## Development
+## Desenvolvimento
 
-### Adding New Indexes
-To add new indexes, increment the database version in `dexieDB.ts`:
+### Adicionando Novos Índices
+Para adicionar novos índices, incremente a versão do banco de dados em `dexieDB.ts`:  
 
 ```typescript
 this.version(3).stores({
@@ -161,8 +161,8 @@ this.version(3).stores({
 });
 ```
 
-### Custom Queries
-Use Dexie's powerful query API for complex operations:
+### Consultas Personalizadas
+Use a poderosa API de consultas do Dexie para operações complexas:
 
 ```typescript
 // Example: Find all entries for a team in the last 30 days
@@ -172,16 +172,16 @@ const recentEntries = await db.scoutingData
   .toArray();
 ```
 
-## Files Changed
+## Arquivos Alterados
 
-- `src/lib/dexieDB.ts` - New Dexie implementation
-- `src/lib/migrationUtils.ts` - Migration utilities
-- `src/lib/scoutingDataUtils.ts` - Updated to use Dexie
-- `src/main.tsx` - Added auto-migration on startup
+- `src/lib/dexieDB.ts` - Nova implementação com Dexie  
+- `src/lib/migrationUtils.ts` - Utilitários de migração  
+- `src/lib/scoutingDataUtils.ts` - Atualizado para usar o Dexie  
+- `src/main.tsx` - Adicionada migração automática na inicialização  
 
-## Next Steps
+## Próximos Passos
 
-1. Test the migration with existing data
-2. Monitor console logs for migration status
-3. Gradually replace direct `indexedDBUtils.ts` imports with `dexieDB.ts`
-4. Eventually remove `indexedDBUtils.ts` after migration is complete
+1. Testar a migração com os dados existentes  
+2. Monitorar os logs do console para verificar o status da migração  
+3. Substituir gradualmente as importações diretas de `indexedDBUtils.ts` por `dexieDB.ts`  
+4. Remover `indexedDBUtils.ts` após a conclusão da migração

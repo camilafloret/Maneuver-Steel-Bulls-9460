@@ -177,7 +177,7 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Camera className="h-5 w-5" />
-                  Robot Photo
+                  Foto do Robô
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -196,16 +196,16 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-4 w-4" />
-                  Ground Pickup Capabilities
+                  Capacidades de Coleta do Chão
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {selectedEntry.groundPickupCapabilities.coralGroundPickup && (
-                    <Badge variant="secondary">Coral Ground Pickup</Badge>
+                    <Badge variant="secondary">Coleta de coral do chão</Badge>
                   )}
                   {selectedEntry.groundPickupCapabilities.algaeGroundPickup && (
-                    <Badge variant="secondary">Algae Ground Pickup</Badge>
+                    <Badge variant="secondary">Coleta de algas do chão</Badge>
                   )}
                 </div>
               </CardContent>
@@ -218,7 +218,7 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-4 w-4" />
-                  Auto Scoring by Position
+                  Pontuação Automática por Posição
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -233,27 +233,27 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
                     return (
                       <div key={position} className="p-4 border rounded-lg">
                         <h4 className="font-medium mb-2">
-                          Position {position.replace('position', '')}
+                          Posição {position.replace('position', '')}
                         </h4>
                         <div className="space-y-2 text-sm">
                           {[1, 2, 3, 4].map(level => {
                             const count = scoring[`coralL${level}` as keyof typeof scoring] as number;
                             return count > 0 ? (
                               <div key={level} className="flex justify-between">
-                                <span>Level {level}:</span>
+                                <span>Nível {level}:</span>
                                 <Badge variant="secondary">{count}</Badge>
                               </div>
                             ) : null;
                           })}
                           {scoring.algaeNet > 0 && (
                             <div className="flex justify-between">
-                              <span>Algae to Net:</span>
+                              <span>Algas para a Rede:</span>
                               <Badge variant="secondary">{scoring.algaeNet}</Badge>
                             </div>
                           )}
                           {scoring.algaeProcessor > 0 && (
                             <div className="flex justify-between">
-                              <span>Algae to Processor:</span>
+                              <span>Algas para Processador:</span>
                               <Badge variant="secondary">{scoring.algaeProcessor}</Badge>
                             </div>
                           )}
@@ -272,19 +272,19 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-4 w-4" />
-                  Teleop Scoring
+                  Pontuação no Teleoperado
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <h4 className="font-medium mb-3">Coral Scoring</h4>
+                    <h4 className="font-medium mb-3">Pontuação no Coral</h4>
                     <div className="space-y-2 text-sm">
                       {[1, 2, 3, 4].map(level => {
                         const count = selectedEntry.reportedTeleopScoring![`coralL${level}` as keyof typeof selectedEntry.reportedTeleopScoring] as number;
                         return count > 0 ? (
                           <div key={level} className="flex justify-between">
-                            <span>Level {level}:</span>
+                            <span>Nível {level}:</span>
                             <Badge variant="secondary">{count}</Badge>
                           </div>
                         ) : null;
@@ -292,20 +292,20 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
                     </div>
                   </div>
                   <div>
-                    <h4 className="font-medium mb-3">Algae Capabilities</h4>
+                    <h4 className="font-medium mb-3">Capacidades com Algas</h4>
                     <div className="space-y-2 text-sm">
                       {selectedEntry.reportedTeleopScoring.totalAlgae > 0 && (
                         <div className="flex justify-between">
-                          <span>Total Algae:</span>
+                          <span>Total de Algas:</span>
                           <Badge variant="secondary">{selectedEntry.reportedTeleopScoring.totalAlgae}</Badge>
                         </div>
                       )}
                       <div className="flex flex-wrap gap-2">
                         {selectedEntry.reportedTeleopScoring.algaeNetShots && (
-                          <Badge variant="outline">Net Shots</Badge>
+                          <Badge variant="outline">Arremessos na Rede</Badge>
                         )}
                         {selectedEntry.reportedTeleopScoring.algaeProcessor && (
-                          <Badge variant="outline">Processor</Badge>
+                          <Badge variant="outline">Processador</Badge>
                         )}
                       </div>
                     </div>
@@ -321,19 +321,19 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Info className="h-4 w-4" />
-                  Endgame Capabilities
+                  Capacidades do Final de Jogo
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {selectedEntry.reportedEndgame.canShallowClimb && (
-                    <Badge variant="secondary">Shallow Climb</Badge>
+                    <Badge variant="secondary">Escalada Rasa</Badge>
                   )}
                   {selectedEntry.reportedEndgame.canDeepClimb && (
-                    <Badge variant="secondary">Deep Climb</Badge>
+                    <Badge variant="secondary">Escalada Profunda</Badge>
                   )}
                   {selectedEntry.reportedEndgame.canPark && (
-                    <Badge variant="secondary">Can Park</Badge>
+                    <Badge variant="secondary">Pode Estacionar</Badge>
                   )}
                 </div>
               </CardContent>
@@ -344,7 +344,7 @@ export const PitScoutingData = ({ teamNumber, selectedEvent }: PitScoutingDataPr
           {selectedEntry.notes && (
             <Card className="lg:col-span-2">
               <CardHeader>
-                <CardTitle>Additional Notes</CardTitle>
+                <CardTitle>Notas Adicionais</CardTitle>
               </CardHeader>
               <CardContent>
                 <Textarea

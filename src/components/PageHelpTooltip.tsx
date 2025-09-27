@@ -33,8 +33,8 @@ export const PageHelpTooltip = ({ title, content, useDialog = false }: PageHelpT
   
   // Use provided content or get from config based on current route
   const pageHelp = getPageHelp(location.pathname);
-  const finalTitle = title || pageHelp?.title || "Page Help";
-  const finalContent = content || pageHelp?.content || ["No help available for this page."];
+  const finalTitle = title || pageHelp?.title || "Ajuda";
+  const finalContent = content || pageHelp?.content || ["Nenhuma ajuda disponível para esta página."];
   
   const contentArray = Array.isArray(finalContent) ? finalContent : [finalContent];
 
@@ -57,7 +57,7 @@ export const PageHelpTooltip = ({ title, content, useDialog = false }: PageHelpT
             size="sm"
             className="h-8 w-fit px-2 mr-0 "
           >
-            <span className="flex items-center justify-center">Page Help</span>
+            <span className="flex items-center justify-center">Ajuda</span>
             <HelpCircle className="h-4 w-4" />
           </Button>
         </DialogTrigger>
@@ -68,7 +68,7 @@ export const PageHelpTooltip = ({ title, content, useDialog = false }: PageHelpT
               <Badge variant="secondary" className="text-xs">Tutorial</Badge>
             </div>
             <DialogDescription className="sr-only">
-              Detailed tutorial for {finalTitle}
+              Tutorial detalhado para {finalTitle}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-4 mt-4">
@@ -94,15 +94,15 @@ export const PageHelpTooltip = ({ title, content, useDialog = false }: PageHelpT
                             )}
                           </div>
                           <p className="font-medium">
-                            {!navigator.onLine ? 'Offline Mode' : 'Tutorial Visual'}: {alt}
+                            {!navigator.onLine ? 'Modo offline' : 'Tutorial visual'}: {alt}
                           </p>
                           <p className="text-xs">
-                            {!navigator.onLine ? 'Available when online' : 'Coming Soon'}: {src}
+                            {!navigator.onLine ? 'Disponível quando online' : 'Em breve'}: {src}
                           </p>
                           <p className="text-xs text-muted-foreground/70">
                             {!navigator.onLine 
-                              ? 'Follow the numbered steps below - visuals will load when back online'
-                              : 'This will show an interactive demonstration of the process'
+                              ? 'Siga as etapas numeradas abaixo - os visuais serão carregados quando estiver online novamente'
+                              : 'Isto mostrará uma demonstração interativa do processo'
                             }
                           </p>
                         </div>
@@ -185,7 +185,7 @@ export const PageHelpTooltip = ({ title, content, useDialog = false }: PageHelpT
           </Button>
         </TooltipTrigger>
         <TooltipContent>
-          <p>How to use this page</p>
+          <p>Como usar esta página</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

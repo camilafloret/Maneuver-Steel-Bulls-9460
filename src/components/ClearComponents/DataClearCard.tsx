@@ -71,7 +71,7 @@ export const DataClearCard = ({
             <Alert>
               <AlertTriangle className="h-5 w-5" color="red"/>
               <AlertDescription>
-                {warningMessage || `This will permanently delete ${entryCount} ${entryLabel}.`}
+                {warningMessage || `Isto irá excluir permanentemente ${entryCount} ${entryLabel}.`}
               </AlertDescription>
             </Alert>
             <div className="flex gap-2">
@@ -81,7 +81,7 @@ export const DataClearCard = ({
                 className="flex-1"
                 onClick={handleClear}
               >
-                Yes, Delete All
+                Sim, excluir tudo
               </Button>
               <Button
                 variant="outline"
@@ -89,7 +89,7 @@ export const DataClearCard = ({
                 className="flex-1"
                 onClick={() => setShowConfirm(false)}
               >
-                Cancel
+                Cancelar
               </Button>
             </div>
           </div>

@@ -29,7 +29,7 @@ export function ScouterDisplay({ currentScouter, currentScouterStakes }: Scouter
         <span className="text-muted-foreground truncate text-xs">
           {currentScouter ? (
             <div className="flex items-center gap-1">
-              <span>Active Scouter</span>
+              <span>Ativar scouter</span>
               <span className="text-xs">•</span>
               <div className="flex items-center gap-1">
                 <Trophy className="h-3 w-3 text-yellow-500" />
@@ -37,7 +37,7 @@ export function ScouterDisplay({ currentScouter, currentScouterStakes }: Scouter
               </div>
             </div>
           ) : (
-            "No scouter selected"
+            "Nenhum scouter selecionado"
           )}
         </span>
       </div>

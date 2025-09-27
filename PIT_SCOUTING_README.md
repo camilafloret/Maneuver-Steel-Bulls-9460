@@ -1,65 +1,71 @@
-# Pit Scouting Feature
+# Recurso de Pit Scouting
 
-This pit scouting feature allows teams to collect baseline information about robots before matches begin. This data is self-reported by teams and can help with strategic planning.
+O recurso de **pit scouting** permite que as equipes coletem informações básicas sobre os robôs antes do início das partidas. Esses dados são **auto-relatados pelas equipes** e podem ajudar no planejamento estratégico.
 
-## Features
 
-### Data Collection
-- **Robot Photo**: Take a photo of the robot in the pit
-- **Weight**: Record the robot's weight in pounds
-- **Drivetrain**: Select from common drivetrain types (Swerve Drive, Tank Drive, Mecanum Drive, Other)
-- **Programming Language**: Track what language the team uses (Java, C++, Python, LabVIEW, Other)
+## Funcionalidades
 
-### Scoring Capabilities
-- **Coral Scoring**: Track reported capabilities for Auto and Teleop coral scoring (Levels 1-4)
-- **Algae Scoring**: Track reported capabilities for Auto and Teleop algae scoring (Net shots, Processor)
+### Coleta de Dados
+- **Foto do Robô**: Tire uma foto do robô no pit
+- **Peso**: Registre o peso do robô em libras
+- **Drivetrain**: Selecione entre os tipos de drivetrain mais comuns (Swerve Drive, Tank Drive, Mecanum Drive, Outro)
+- **Linguagem de Programação**: Registre qual linguagem a equipe utiliza (Java, C++, Python, LabVIEW, Outro)
 
-### Auto Capabilities
-- **Starting Positions**: Track which starting positions (0-5) the robot can use for autonomous and what a robot can score from that position
+### Capacidades de Pontuação
+- **Pontuação de Coral**: Registrar as capacidades informadas para pontuação de coral no Auto e no Teleopardo (Níveis 1-4)
+- **Pontuação de Alga**: Registrar as capacidades informadas para pontuação de alga no Auto e no Teleopardo (Arremessos na Rede, Processador)
 
-### Endgame Capabilities
-- **Climb Types**: Track if the robot can perform shallow climb, deep climb, or park
+### Capacidades de Autônomo
+- **Posições de Início**: Registrar quais posições de início (0-5) o robô pode utilizar no modo autônomo e o que ele consegue pontuar a partir dessa posição
 
-### Additional Information
-- **Notes**: Free-form text field for additional observations or special features
+### Capacidades de Endgame
+- **Tipos de Escalada**: Registrar se o robô consegue realizar escalada rasa (shallow climb), escalada profunda (deep climb) ou estacionar (park)
 
-## Usage
+### Informações Adicionais
+- **Notas**: Campo de texto livre para observações adicionais ou recursos especiais
 
-1. **Navigate to Pit Scouting**: Go to Strategy → Pit Scouting in the sidebar
-2. **Enter Basic Info**: Fill in team number, event name, and your initials
-3. **Take Photo**: Use the camera button to take a photo of the robot
-4. **Fill Technical Specs**: Enter weight, drivetrain, and programming language
-5. **Mark Capabilities**: Check all reported scoring, auto, and endgame capabilities
-6. **Add Notes**: Include any additional observations
-7. **Save**: Click "Save Pit Data" to store the information
 
-## Data Management
+## Uso
 
-### Viewing Pit Data
-- Pit scouting data is integrated into the Team Stats page
-- Access via the "Pit Data" tab when viewing a specific team
-- Data is filtered by selected event if applicable
+1. ## Uso
 
-### Data Storage
-- Data is stored locally using localStorage
-- Each team can have multiple pit scouting entries (one per event)
-- Existing entries are automatically loaded and can be updated
+1. **Navegar até Pit Scouting**: Vá para Estratégia → Pit Scouting na barra lateral  
+2. **Inserir Informações Básicas**: Preencha o número do time, nome do evento e suas iniciais  
+3. **Tirar Foto**: Use o botão da câmera para tirar uma foto do robô  
+4. **Preencher Especificações Técnicas**: Informe o peso, drivetrain e linguagem de programação  
+5. **Marcar Capacidades**: Selecione todas as capacidades relatadas de pontuação, autonômicas e de fim de jogo  
+6. **Adicionar Notas**: Inclua quaisquer observações adicionais  
+7. **Salvar**: Clique em "Salvar dados de Pit" para armazenar as informações
 
-### Data Export/Import
-- Pit scouting data can be cleared via the Clear Data page
-- CSV export functionality is available through the pit scouting utils
 
-## Implementation Details
+## Gerenciamento de Dados
 
-### Files Created/Modified
-- `src/lib/pitScoutingTypes.ts` - Type definitions
-- `src/lib/pitScoutingUtils.ts` - Data management utilities
-- `src/pages/PitScoutingPage.tsx` - Main pit scouting form
-- `src/components/TeamStatsComponents/PitScoutingData.tsx` - Data viewer component
-- `src/App.tsx` - Added routing
-- `src/components/DashboardComponents/app-sidebar.tsx` - Added navigation
-- `src/pages/TeamStatsPage.tsx` - Added pit data tab
-- `src/pages/ClearDataPage.tsx` - Added pit data clearing
+### Visualização dos Dados de Pit
+- Os dados de pit scouting são integrados à página de Estatísticas do Time  
+- Acesse pela aba "Dados de Pit" ao visualizar um time específico  
+- Os dados são filtrados pelo evento selecionado, se aplicável  
+
+### Armazenamento de Dados
+- Os dados são armazenados localmente usando **localStorage**  
+- Cada time pode ter múltiplas entradas de pit scouting (uma por evento)  
+- Entradas existentes são carregadas automaticamente e podem ser atualizadas  
+
+### Exportação/Importação de Dados
+- Os dados de pit scouting podem ser apagados pela página **Limpar Dados**
+- A exportação em **CSV** está disponível através dos utilitários de pit scouting 
+
+
+## Detalhes de Implementação
+
+### Arquivos Criados/Modificados
+- `src/lib/pitScoutingTypes.ts` - Definições de tipos
+- `src/lib/pitScoutingUtils.ts` - Utilitários de gerenciamento de dados
+- `src/pages/PitScoutingPage.tsx` - Formulário principal de pit scouting
+- `src/components/TeamStatsComponents/PitScoutingData.tsx` - Componente de visualização de dados
+- `src/App.tsx` - Roteamento adicionado
+- `src/components/DashboardComponents/app-sidebar.tsx` - Navegação adicionada
+- `src/pages/TeamStatsPage.tsx` - Aba de dados de pit adicionada
+- `src/pages/ClearDataPage.tsx` - Limpeza de dados de pit adicionada
 
 ### Data Structure
 ```typescript
@@ -86,11 +92,11 @@ interface PitScoutingEntry {
 }
 ```
 
-## Future Enhancements
+## Melhorias Futuras
 
-Potential improvements could include:
-- Integration with JSON data transfer for backup/restore
-- Migration ot IndexedDB
-- Photo compression and optimization
-- Advanced search and filtering
-- Export to match scouting systems
+Possíveis melhorias podem incluir:
+- Integração com transferência de dados em JSON para backup/restauração
+- Migração para IndexedDB
+- Compressão e otimização de fotos
+- Pesquisa e filtragem avançadas
+- Exportação para sistemas de match scouting

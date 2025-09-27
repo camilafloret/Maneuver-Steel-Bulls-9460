@@ -82,7 +82,7 @@ const APIDataPage: React.FC = () => {
   // Handler to clear all event data
   const handleClearAllEventData = async () => {
     if (!eventKey.trim()) {
-      toast.error('No event selected');
+      toast.error('Nenhum evento selecionado');
       return;
     }
 
@@ -95,8 +95,8 @@ const APIDataPage: React.FC = () => {
       setPitData({ addresses: null, map: null });
       setProcessedResults([]);
     } catch (error) {
-      console.error('Error clearing event data:', error);
-      toast.error('Failed to clear some event data');
+      console.error('Erro ao limpar os dados do evento:', error);
+      toast.error('Falha ao limpar alguns dados do evento');
     } finally {
       setClearingEventData(false);
     }
@@ -144,12 +144,12 @@ const APIDataPage: React.FC = () => {
 
   const handleLoadPitData = async () => {
     if (!nexusApiKey.trim()) {
-      toast.error('Please enter your Nexus API key');
+      toast.error('Por favor, insira sua chave de API do Nexus');
       return;
     }
 
     if (!eventKey.trim()) {
-      toast.error('Please enter an event key');
+      toast.error('Por favor, insira uma chave de evento');
       return;
     }
 
@@ -160,7 +160,7 @@ const APIDataPage: React.FC = () => {
       const storedData = getStoredPitData(eventKey);
       if (storedData.addresses || storedData.map) {
         setPitData(storedData);
-        toast.success('Loaded pit data from local storage');
+        toast.success('Dados de pit carregados do armazenamento local');
         
         // Update current event in localStorage after successful load
         setCurrentEvent(eventKey.trim());
@@ -185,9 +185,9 @@ const APIDataPage: React.FC = () => {
         try {
           const extractedTeams = extractAndStoreTeamsFromPitAddresses(eventKey, fetchedData.addresses);
           extractedTeamCount = extractedTeams.length;
-          console.log(`Extracted ${extractedTeamCount} teams from pit addresses for pit assignments`);
+          console.log(`Extraiu ${extractedTeamCount} equipes de endereços de pit para atribuições de pit`);
         } catch (error) {
-          console.warn('Failed to extract teams from pit addresses:', error);
+          console.warn('Falha ao extrair equipes dos endereços do pit:', error);
         }
       }
       
@@ -195,19 +195,19 @@ const APIDataPage: React.FC = () => {
       const hasMap = fetchedData.map !== null;
       
       if (addressCount > 0 && hasMap) {
-        const message = extractedTeamCount > 0 
-          ? `Loaded pit data: ${addressCount} addresses, pit map, and extracted ${extractedTeamCount} teams for pit assignments`
-          : `Loaded pit data: ${addressCount} addresses and pit map`;
+        const message = extractedTeamCount > 0
+        ? `Dados de pit carregados: ${addressCount} endereços, mapa do pit e ${extractedTeamCount} equipes extraídas para atribuição de pits`
+        : `Dados de pit carregados: ${addressCount} endereços e mapa do pit`;
         toast.success(message);
       } else if (addressCount > 0) {
         const message = extractedTeamCount > 0
-          ? `Loaded ${addressCount} pit addresses and extracted ${extractedTeamCount} teams for pit assignments (no map available)`
-          : `Loaded ${addressCount} pit addresses (no map available)`;
+        ? `Carregados ${addressCount} endereços de pit e ${extractedTeamCount} equipes extraídas para atribuição de pits (mapa não disponível)`
+        : `Carregados ${addressCount} endereços de pit (mapa não disponível)`;
         toast.success(message);
       } else if (hasMap) {
-        toast.warning('Loaded pit map but no team addresses found');
+        toast.warning('Mapa do pit carregado, mas nenhum endereço de equipe encontrado');
       } else {
-        toast.warning('No pit data available for this event');
+        toast.warning('Nenhum dado de pit disponível para este evento');
       }
       
       // Clear API key from memory if not remembering for session
@@ -216,8 +216,8 @@ const APIDataPage: React.FC = () => {
         sessionStorage.removeItem("nexusApiKey");
       }
     } catch (error) {
-      console.error('Error loading pit data:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to load pit data');
+      console.error('Erro ao carregar dados de pit:', error);
+      toast.error(error instanceof Error ? error.message : 'Falha ao carregar dados de pit');
     } finally {
       setPitDataLoading(false);
     }
@@ -226,7 +226,7 @@ const APIDataPage: React.FC = () => {
 
   const handleDebugNexus = async () => {
     if (!nexusApiKey.trim()) {
-      toast.error('Please enter your Nexus API key');
+      toast.error('Por favor, insira sua chave de API do Nexus');
       return;
     }
 
@@ -234,7 +234,7 @@ const APIDataPage: React.FC = () => {
     try {
       const eventsData = await getNexusEvents(nexusApiKey);      
       const eventCount = Object.keys(eventsData).length;
-      toast.success(`Loaded ${eventCount} events from Nexus API`);
+      toast.success(`Carregados ${eventCount} eventos da API do Nexus`);
       
       // Clear API key from memory if not remembering for session
       if (!rememberForSession) {
@@ -242,8 +242,8 @@ const APIDataPage: React.FC = () => {
         sessionStorage.removeItem("nexusApiKey");
       }
     } catch (error) {
-      console.error('Error loading Nexus events:', error);
-      toast.error(error instanceof Error ? error.message : 'Failed to load Nexus events');
+      console.error('Erro ao carregar eventos do Nexus:', error);
+      toast.error(error instanceof Error ? error.message : 'Falha ao carregar eventos do Nexus');
     } finally {
       setDebugNexusLoading(false);
     }
@@ -267,9 +267,9 @@ const APIDataPage: React.FC = () => {
       <div className="text-start">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">API Data</h1>
+            <h1 className="text-3xl font-bold">Dados de API</h1>
             <p className="text-muted-foreground">
-              Import match schedules, results, and team lists from The Blue Alliance or pit information from Nexus for FRC.
+              Importe cronogramas de partidas, resultados e listas de equipes da The Blue Alliance ou informações de boxes do Nexus para o FRC.
             </p>
           </div>
           {/* Attribution for TBA and Nexus APIs */}

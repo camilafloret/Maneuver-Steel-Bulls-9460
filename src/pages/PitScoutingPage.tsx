@@ -53,8 +53,8 @@ const PitScoutingPage = () => {
           <Alert className="mb-6">
             <AlertCircle className="h-4 w-4" />
             <AlertDescription>
-              Existing pit scouting data found for Team {teamNumber} at {eventName}. 
-              Submitting will update the existing entry.
+              Dados de pit scouting existentes encontrados para a equipe {teamNumber} em {eventName}.
+              O envio atualizará a entrada existente.
             </AlertDescription>
           </Alert>
         )}
@@ -117,7 +117,7 @@ const PitScoutingPage = () => {
               className="w-full max-w-92 px-8"
             >
               <Save className="h-4 w-4 mr-2" />
-              {isLoading ? "Saving..." : existingEntry ? "Update Pit Data" : "Save Pit Data"}
+              {isLoading ? "Salvando..." : existingEntry ? "Atualizar dados do pit" : "Salvar dados do pit"}
             </Button>
           </div>
         </div>

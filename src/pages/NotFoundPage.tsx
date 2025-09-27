@@ -8,11 +8,11 @@ export default function NotFoundPage() {
     <div className="flex flex-col items-center min-h-screen w-full px-4 py-12">
       <img src={LogoInvestigating} alt="Investigating" className="mb-4 dark:invert" />
       <h1 className="text-5xl font-bold mb-4">404</h1>
-      <p className="text-lg text-muted-foreground mb-2">Page Not Found</p>
+      <p className="text-lg text-muted-foreground mb-2">Página não encontrada</p>
       <p className="text-base text-muted-foreground mb-6 text-center max-w-xl">
-        Oops! The page you’re looking for doesn’t exist, was moved, or never existed. If you think this is a mistake, please check the URL or return to the home page.
+        Ops! A página que você procura não existe, foi movida ou nunca existiu. Se você acha que isso é um erro, verifique o URL ou retorne à página inicial.
       </p>
-      <Button onClick={() => navigate("/")} className="h-12 text-lg font-semibold px-4 w-full max-w-lg">Go Home</Button>
+      <Button onClick={() => navigate("/")} className="h-12 text-lg font-semibold px-4 w-full max-w-lg">Ir para início</Button>
     </div>
   );
 }

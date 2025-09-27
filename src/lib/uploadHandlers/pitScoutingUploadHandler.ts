@@ -5,7 +5,7 @@ import type { UploadMode } from "./scoutingDataUploadHandler";
 
 export const handlePitScoutingUpload = async (jsonData: unknown, mode: UploadMode): Promise<void> => {
   if (!jsonData || typeof jsonData !== 'object' || !('entries' in jsonData)) {
-    toast.error("Invalid pit scouting data format");
+    toast.error("Formato de dados de imagens de pit scouting inválido");
     return;
   }
 
@@ -21,12 +21,12 @@ export const handlePitScoutingUpload = async (jsonData: unknown, mode: UploadMod
     );
     
     const message = mode === 'overwrite' 
-      ? `Overwritten with ${result.imported} pit scouting entries`
-      : `Imported ${result.imported} pit scouting entries${result.duplicatesSkipped > 0 ? `, ${result.duplicatesSkipped} duplicates skipped` : ''}`;
-    
+      ? `Substituídas ${result.imported} entradas de pit scouting`
+      : `Importadas ${result.imported} entradas de pit scouting${result.duplicatesSkipped > 0 ? `, ${result.duplicatesSkipped} duplicadas ignoradas` : ''}`;
+
     toast.success(message);
   } catch (error) {
-    console.error('Error importing pit scouting data:', error);
-    toast.error("Failed to import pit scouting data");
+    console.error('Erro ao importar dados de pit scouting:', error);
+    toast.error("Falha ao importar dados de pit scouting");
   }
 };

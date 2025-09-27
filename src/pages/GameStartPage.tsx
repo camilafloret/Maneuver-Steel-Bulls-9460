@@ -101,10 +101,10 @@ const GameStartPage = () => {
     if (newPrediction !== "none" && currentScouter && eventName && matchNumber) {
       try {
         await createMatchPrediction(currentScouter, eventName, matchNumber, newPrediction);
-        toast.success(`Prediction updated: ${newPrediction} alliance to win`);
+        toast.success(`Previsão atualizada: aliança ${newPrediction} para vencer`);
       } catch (error) {
-        console.error("Error saving prediction:", error);
-        toast.error("Failed to save prediction");
+        console.error("Erro ao salvar previsão:", error);
+        toast.error("Falha ao salvar a previsão");
       }
     }
   };
@@ -129,17 +129,17 @@ const GameStartPage = () => {
     const hasNull = Object.values(inputs).some((val) => !val || val === "");
 
     if (!currentScouter) {
-      toast.error("Please select a scouter from the sidebar first");
+      toast.error("Selecione primeiro um scouter na barra lateral");
       return false;
     }
 
     if (!eventName) {
-      toast.error("Please set an event name/code first");
+      toast.error("Defina primeiro um nome/código de evento");
       return false;
     }
 
     if (hasNull) {
-      toast.error("Fill In All Fields To Proceed");
+      toast.error("Preencha todos os campos para prosseguir");
       return false;
     }
     return true;
@@ -154,10 +154,10 @@ const GameStartPage = () => {
     if (predictedWinner !== "none" && currentScouter && eventName && matchNumber) {
       try {
         await createMatchPrediction(currentScouter, eventName, matchNumber, predictedWinner);
-        toast.success(`Prediction saved: ${predictedWinner} alliance to win`);
+        toast.success(`Previsão salva: aliança ${predictedWinner} para vencer`);
       } catch (error) {
-        console.error("Error saving prediction:", error);
-        toast.error("Failed to save prediction");
+        console.error("Erro ao salvar previsão:", error);
+        toast.error("Falha ao salvar a previsão");
       }
     }
 
@@ -204,7 +204,7 @@ const GameStartPage = () => {
   return (
     <div className="min-h-screen w-full flex flex-col items-center px-4 pt-6 pb-8 md:pb-6">
       <div className="w-full max-w-2xl">
-        <h1 className="text-2xl font-bold pb-4">Game Start</h1>
+        <h1 className="text-2xl font-bold pb-4">Início do Jogo</h1>
       </div>
       <div className="flex flex-col items-center gap-6 max-w-2xl w-full flex-1 pb-8 md:pb-4">
         
@@ -214,7 +214,7 @@ const GameStartPage = () => {
               <div className="flex items-center gap-2">
                 <AlertTriangle className="h-5 w-5 text-orange-500" />
                 <span className="text-sm text-amber-700">
-                  Please select a scouter from the sidebar before starting
+                  Selecione um scouter na barra lateral antes de começar
                 </span>
               </div>
             </CardContent>
@@ -224,10 +224,10 @@ const GameStartPage = () => {
         {/* Main Form Card */}
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-xl">Match Information</CardTitle>
+            <CardTitle className="text-xl">Informações da partida</CardTitle>
             {currentScouter && (
               <p className="text-sm text-muted-foreground">
-                Scouting as:{" "}
+                Scouting como:{" "}
                 <span className="font-medium">{currentScouter}</span>
               </p>
             )}
@@ -235,28 +235,28 @@ const GameStartPage = () => {
           <CardContent className="space-y-6">
             
             <div className="space-y-2">
-              <Label>Event Name/Code</Label>
+              <Label>Nome/Código do Evento</Label>
               <EventNameSelector
                 currentEventName={eventName}
                 onEventNameChange={setEventName}
               />
               <p className="text-xs text-muted-foreground">
-                Event name will be included in all scouting data for this session
+                O nome do evento será incluído em todos os dados de observação desta sessão
               </p>
             </div>
 
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="match-number">Match Number</Label>
+                <Label htmlFor="match-number">Número da partida</Label>
                 <span className="text-xs text-muted-foreground">
-                  Auto-increments after each match
+                  Incrementos automáticos após cada partida
                 </span>
               </div>
               <Input
                 id="match-number"
                 type="number"
                 inputMode="numeric"
-                placeholder="Enter match number"
+                placeholder="Digite o número da partida"
                 value={matchNumber}
                 onChange={(e) => handleMatchNumberChange(e.target.value)}
                 className="text-lg"
@@ -265,7 +265,7 @@ const GameStartPage = () => {
 
             {/* Alliance Selection with Buttons */}
             <div className="space-y-2">
-              <Label>Alliance</Label>
+              <Label>Aliança</Label>
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   variant={alliance === "red" ? "default" : "outline"}
@@ -280,7 +280,7 @@ const GameStartPage = () => {
                     variant={alliance === "red" ? "secondary" : "destructive"} 
                     className={`w-3 h-3 p-0 mr-2 ${alliance === "red" ? "bg-white" : "bg-red-500"}`}
                   />
-                  Red Alliance
+                  Aliança Vermelha
                 </Button>
                 <Button
                   variant={alliance === "blue" ? "default" : "outline"}
@@ -295,7 +295,7 @@ const GameStartPage = () => {
                     variant={alliance === "blue" ? "secondary" : "default"} 
                     className={`w-3 h-3 p-0 mr-2 ${alliance === "blue" ? "bg-white" : "bg-blue-500"}`}
                   />
-                  Blue Alliance
+                  Aliança Azul
                 </Button>
               </div>
             </div>
@@ -303,9 +303,9 @@ const GameStartPage = () => {
             {/* Alliance Prediction Selection */}
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label>Alliance Prediction (Optional)</Label>
+                <Label>Previsão da Aliança (Opcional)</Label>
                 <span className="text-xs text-muted-foreground">
-                  Earn points for correct predictions
+                  Ganhe pontos por previsões corretas
                 </span>
               </div>
               <div className="grid grid-cols-3 gap-2">
@@ -318,7 +318,7 @@ const GameStartPage = () => {
                       : "hover:bg-red-50 hover:text-red-600 hover:border-red-300"
                   }`}
                 >
-                  Red Wins
+                  Vitórias Vermelha
                 </Button>
                 <Button
                   variant={predictedWinner === "blue" ? "default" : "outline"}
@@ -329,26 +329,26 @@ const GameStartPage = () => {
                       : "hover:bg-blue-50 hover:text-blue-600 hover:border-blue-300"
                   }`}
                 >
-                  Blue Wins
+                  Vitórias Azul
                 </Button>
                 <Button
                   variant={predictedWinner === "none" ? "default" : "outline"}
                   onClick={() => handlePredictionChange("none")}
                   className="h-10 text-sm font-medium"
                 >
-                  No Prediction
+                  Sem previsão
                 </Button>
               </div>
               {predictedWinner !== "none" && (
                 <p className="text-xs text-muted-foreground">
-                  Predicting <span className="font-medium capitalize">{predictedWinner} Alliance</span> will win this match
+                  Prevendo que a <span className="font-medium capitalize">{predictedWinner} Aliança</span> vencerá esta partida
                 </p>
               )}
             </div>
 
             {/* Team Selection */}
             <div className="space-y-2">
-              <Label>Team Selection</Label>
+              <Label>Seleção de Equipe</Label>
               <GameStartSelectTeam
                 defaultSelectTeam={selectTeam}
                 setSelectTeam={setSelectTeam}
@@ -374,7 +374,7 @@ const GameStartPage = () => {
             className="flex-2 h-12 text-lg font-semibold"
             disabled={!matchNumber || !alliance || !selectTeam || !currentScouter || !eventName}
           >
-            Start Scouting
+            Comece o Scouting
           </Button>
         </div>
 
@@ -383,11 +383,11 @@ const GameStartPage = () => {
           <Card className="w-full border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/20">
             <CardContent>
               <div className="flex items-center gap-2">
-                <Badge className="bg-green-600">Ready</Badge>
+                <Badge className="bg-green-600">Preparar</Badge>
                 <span className="text-sm text-green-700 dark:text-green-300">
-                  {eventName} • Match {matchNumber} •{" "}
-                  {alliance.charAt(0).toUpperCase() + alliance.slice(1)} Alliance
-                  • Team {selectTeam} • {currentScouter}
+                  {eventName} • Partida {matchNumber} •{" "}
+                  {alliance.charAt(0).toUpperCase() + alliance.slice(1)} Aliança
+                  • Equipe {selectTeam} • {currentScouter}
                 </span>
               </div>
             </CardContent>

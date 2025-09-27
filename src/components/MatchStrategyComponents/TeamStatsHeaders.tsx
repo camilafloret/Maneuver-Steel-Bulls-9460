@@ -37,7 +37,7 @@ export const TeamStatsHeaders = ({
               {teamSlice.filter(team => {
                 const stats = getTeamStats(team);
                 return stats && stats.endgame.climbRate > 50;
-              }).length}/3 climbers
+              }).length}/3 escaladas
             </div>
           </div>
         );
@@ -48,13 +48,13 @@ export const TeamStatsHeaders = ({
               {Math.round(teamSlice.reduce((sum, team) => {
                 const stats = getTeamStats(team);
                 return sum + (stats?.auto.avgTotalPoints || 0);
-              }, 0))} pts
+              }, 0))} pontos
             </div>
             <div className="text-xs text-muted-foreground">
               {teamSlice.filter(team => {
                 const stats = getTeamStats(team);
                 return stats && stats.auto.mobilityRate > 50;
-              }).length}/3 mobile
+              }).length}/3 móvel
             </div>
           </div>
         );
@@ -65,7 +65,7 @@ export const TeamStatsHeaders = ({
               {Math.round(teamSlice.reduce((sum, team) => {
                 const stats = getTeamStats(team);
                 return sum + (stats?.teleop.avgTotalPoints || 0);
-              }, 0))} pts
+              }, 0))} pontos
             </div>
             <div className="text-xs text-muted-foreground">
               {Math.round(teamSlice.reduce((sum, team) => {
@@ -74,7 +74,7 @@ export const TeamStatsHeaders = ({
               }, 0) * 10) / 10} coral | {Math.round(teamSlice.reduce((sum, team) => {
                 const stats = getTeamStats(team);
                 return sum + (stats?.teleop.avgAlgae || 0);
-              }, 0) * 10) / 10} algae
+              }, 0) * 10) / 10} algas
             </div>
           </div>
         );
@@ -85,13 +85,13 @@ export const TeamStatsHeaders = ({
               {Math.round(teamSlice.reduce((sum, team) => {
                 const stats = getTeamStats(team);
                 return sum + (stats?.endgame.avgTotalPoints || 0);
-              }, 0))} pts
+              }, 0))} pontos
             </div>
              <div className="text-xs text-muted-foreground">
               {teamSlice.filter(team => {
                 const stats = getTeamStats(team);
                 return stats && stats.endgame.climbRate > 50;
-              }).length}/3 climbers
+              }).length}/3 escaladas
             </div>
           </div>
         );

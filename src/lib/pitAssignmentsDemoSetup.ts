@@ -1,29 +1,29 @@
 /**
- * Demo script to test the pit assignments page with team data
- * Run this in the browser console to set up demo data
+ * Script de demonstração para testar a página de alocação dos pits com dados de equipes
+ * Execute isto no console do navegador para configurar os dados de demonstração
  */
 
 import { setupDemoEventTeams, clearDemoEventTeams } from './teamUtils';
 
-// Function to be called from browser console
+// Função para ser chamada no console do navegador
 (window as any).setupPitAssignmentsDemo = () => {
-  console.log('🚀 Setting up Pit Assignments Demo Data...');
+  console.log('🚀 Configurando dados de demonstração de Alocação de Pits...');
   setupDemoEventTeams();
   console.log('');
-  console.log('✅ Demo setup complete!');
-  console.log('💡 Navigate to the Pit Assignments page to see the demo data in action.');
-  console.log('📋 You should see 3 demo events with teams available for assignment.');
+  console.log('✅ Configuração de demonstração concluída!');
+  console.log('💡 Navegue até a página de Alocação de Pits para ver os dados de demonstração em ação.');
+  console.log('📋 Você deverá ver 3 eventos de demonstração com equipes disponíveis para alocação.');
 };
 
 (window as any).clearPitAssignmentsDemo = () => {
-  console.log('🧹 Clearing Pit Assignments Demo Data...');
+  console.log('🧹 Limpando os dados de demonstração de Alocação de Pits...');
   clearDemoEventTeams();
-  console.log('✅ Demo data cleared!');
+  console.log('✅ Dados de demonstração limpos!');
 };
 
-// Auto-setup if this script is imported
+// Configuração automática se este script for importado
 if (typeof window !== 'undefined') {
-  console.log('Pit Assignments demo functions available:');
-  console.log('- setupPitAssignmentsDemo() - Create demo event teams');
-  console.log('- clearPitAssignmentsDemo() - Clear demo event teams');
+  console.log('Funções de demonstração de Alocação de Pits disponíveis:');
+  console.log('- setupPitAssignmentsDemo() - Criar equipes de eventos de demonstração');
+  console.log('- clearPitAssignmentsDemo() - Limpar equipes de eventos de demonstração');
 }

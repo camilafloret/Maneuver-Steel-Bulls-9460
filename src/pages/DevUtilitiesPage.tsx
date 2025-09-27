@@ -34,10 +34,10 @@ const DevUtilitiesPage: React.FC = () => {
     setLoading(true);
     try {
       const profiles = await createTestScouterProfiles();
-      showMessage(`✅ Created ${profiles.length} test scouter profiles successfully!`, 'success');
+      showMessage(`✅ ${profiles.length} perfis de scouter de teste criados com sucesso!`, 'success');
     } catch (error) {
-      console.error('Error creating test profiles:', error);
-      showMessage('❌ Failed to create test profiles', 'error');
+      console.error('Erro ao criar perfis de teste:', error);
+      showMessage('❌ Falha ao criar perfis de teste', 'error');
     } finally {
       setLoading(false);
     }
@@ -60,10 +60,10 @@ const DevUtilitiesPage: React.FC = () => {
     setLoading(true);
     try {
       await backfillAchievementsForAllScouters();
-      showMessage('✅ Achievement backfill completed!', 'success');
+      showMessage('✅ Preenchimento de conquistas concluído!', 'success');
     } catch (error) {
-      console.error('Error during achievement backfill:', error);
-      showMessage('❌ Achievement backfill failed', 'error');
+      console.error('Erro durante o preenchimento de conquistas:', error);
+      showMessage('❌ Falha no preenchimento de conquistas', 'error');
     } finally {
       setLoading(false);
     }
@@ -73,10 +73,10 @@ const DevUtilitiesPage: React.FC = () => {
     setLoading(true);
     try {
       const scouters = await getAllScouters();
-      showMessage(`📊 Current database has ${scouters.length} scouters`, 'info');
+      showMessage(`📊 O banco de dados atual possui ${scouters.length} scouters`, 'info');
     } catch (error) {
-      console.error('Error checking data:', error);
-      showMessage('❌ Failed to check current data', 'error');
+      console.error('Erro ao verificar os dados:', error);
+      showMessage('❌ Falha ao verificar os dados atuais', 'error');
     } finally {
       setLoading(false);
     }
@@ -88,8 +88,7 @@ const DevUtilitiesPage: React.FC = () => {
       // Create test profiles first (this gives us realistic test data)
       const testProfiles = await createTestScouterProfiles();
       
-      if (testProfiles.length === 0) {
-        showMessage('❌ Failed to create test profiles for transfer simulation', 'error');
+      if (testProfiles.length === 0) {showMessage('❌ Falha ao criar perfis de teste para simulação de transferência', 'error');
         return;
       }
 
@@ -129,7 +128,7 @@ const DevUtilitiesPage: React.FC = () => {
           predictionsAdded++;
         } catch {
           // Probably a duplicate ID constraint, skip it
-          console.warn(`Skipping duplicate prediction: ${prediction.id}`);
+          console.warn(`Ignorando previsão duplicada: ${prediction.id}`);
         }
       }
 
@@ -138,38 +137,37 @@ const DevUtilitiesPage: React.FC = () => {
       // In QR transfer, scouts are imported for data aggregation only
       // They should NOT appear in the nav user dropdown
 
-      const message = `🔄 QR Transfer simulation complete! Transferred ${scoutersAdded} test scouters and ${predictionsAdded} predictions. Note: Transferred scouts will NOT appear in nav user dropdown (by design).`;
+      const message = `🔄 Simulação de Transferência via QR concluída! ${scoutersAdded} scouters de teste e ${predictionsAdded} previsões foram transferidos. Observação: os scouters transferidos NÃO aparecerão no menu de usuários (intencional).`;
       showMessage(message, 'success');
-      toast.success(`QR Transfer simulated: ${scoutersAdded} test scouters, ${predictionsAdded} predictions imported`);
-      
+      toast.success(`Simulação de Transferência via QR: ${scoutersAdded} scouters de teste, ${predictionsAdded} previsões importadas`);  
     } catch (error) {
-      console.error('Error simulating QR transfer:', error);
-      showMessage('❌ Failed to simulate QR transfer', 'error');
+      console.error('Erro ao simular a transferência via QR:', error);
+      showMessage('❌ Falha ao simular a transferência via QR', 'error');
     } finally {
       setLoading(false);
     }
   };
 
   const testProfiles = [
-    { name: "Riley Davis", description: "Top performer - 390 stakes from predictions, 91% accuracy" },
-    { name: "Alex Kim", description: "High achiever - 290 stakes from predictions, 90% accuracy" },
-    { name: "Sarah Chen", description: "Solid performer - 210 stakes from predictions, 90% accuracy" },
-    { name: "Marcus Rodriguez", description: "Good performer - 150 stakes from predictions, 80% accuracy" },
-    { name: "Taylor Wilson", description: "Decent performer - 140 stakes from predictions, 75% accuracy" },
-    { name: "Emma Thompson", description: "Learning - 75 stakes from predictions, 67% accuracy" },
-    { name: "Jordan Smith", description: "Struggling - 45 stakes from predictions, 58% accuracy" },
-    { name: "Casey Park", description: "New scout - 15 stakes from predictions, 33% accuracy" },
+    { name: "Riley Davis", description: "Melhor desempenho - 390 apostas de previsões, 91% de acerto" },
+    { name: "Alex Kim", description: "Alto desempenho - 290 apostas de previsões, 90% de acerto" },
+    { name: "Sarah Chen", description: "Desempenho sólido - 210 apostas de previsões, 90% de acerto" },
+    { name: "Marcus Rodriguez", description: "Bom desempenho - 150 apostas de previsões, 80% de acerto" },
+    { name: "Taylor Wilson", description: "Desempenho razoável - 140 apostas de previsões, 75% de acerto" },
+    { name: "Emma Thompson", description: "Aprendendo - 75 apostas de previsões, 67% de acerto" },
+    { name: "Jordan Smith", description: "Com dificuldades - 45 apostas de previsões, 58% de acerto" },
+    { name: "Casey Park", description: "Novo scouter - 15 apostas de previsões, 33% de acerto" },
   ];
 
   return (
     <div className="min-h-screen container mx-auto p-4 space-y-6">
       <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">Development Utilities</h1>
+        <h1 className="text-3xl font-bold">Utilitários de Desenvolvimento</h1>
         <p className="text-gray-600 dark:text-gray-400">
-          Tools for testing and managing scout data during development
+          Ferramentas para testar e gerenciar dados de scout durante o desenvolvimento
         </p>
         <Badge variant="outline" className="text-yellow-600 border-yellow-600">
-          Development Only
+          Somente desenvolvimento
         </Badge>
       </div>
 
@@ -202,10 +200,10 @@ const DevUtilitiesPage: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <UserPlus className="h-5 w-5" />
-              Test Data Management
+              Gerenciamento de dados de teste
             </CardTitle>
             <CardDescription>
-              Create or clear test scouter profiles for UI testing
+              Crie ou limpe perfis de escoteiros de teste para testes de IU
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -216,7 +214,7 @@ const DevUtilitiesPage: React.FC = () => {
               size="lg"
             >
               <UserPlus className="h-4 w-4 mr-2" />
-              {loading ? 'Creating...' : 'Create Test Profiles'}
+              {loading ? 'Criando...': 'Criar Perfis de Teste'}
             </Button>
 
             <Button 
@@ -227,7 +225,7 @@ const DevUtilitiesPage: React.FC = () => {
               size="lg"
             >
               <Trash2 className="h-4 w-4 mr-2" />
-              {loading ? 'Clearing...' : 'Clear All Data'}
+              {loading ? 'Limpando...': 'Limpar todos os dados'}
             </Button>
 
             <Separator />
@@ -239,7 +237,7 @@ const DevUtilitiesPage: React.FC = () => {
               className="w-full"
             >
               <Database className="h-4 w-4 mr-2" />
-              {loading ? 'Checking...' : 'Check Current Data'}
+              {loading ? 'Verificando...': 'Verificar dados atuais'}
             </Button>
           </CardContent>
         </Card>
@@ -249,10 +247,10 @@ const DevUtilitiesPage: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Trophy className="h-5 w-5" />
-              Achievement Management
+              Gestão de Conquistas
             </CardTitle>
             <CardDescription>
-              Manage and backfill achievements for testing
+              Gerenciar e preencher conquistas para testes
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -268,7 +266,7 @@ const DevUtilitiesPage: React.FC = () => {
             </Button>
 
             <div className="text-sm text-gray-600 dark:text-gray-400">
-              <p>This will check all existing scouters and award any missing achievements based on their current stats.</p>
+              <p>Isso verificará todos os scouters existentes e premiará quaisquer conquistas faltantes com base em suas estatísticas atuais.</p>
             </div>
           </CardContent>
         </Card>
@@ -278,10 +276,10 @@ const DevUtilitiesPage: React.FC = () => {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <QrCode className="h-5 w-5" />
-              QR Transfer Simulation
+              Simulação de Transferência de QR
             </CardTitle>
             <CardDescription>
-              Create test profiles and transfer them via simulated QR fountain code process
+              Crie perfis de teste e transfira-os por meio de um processo simulado de código fonte QR
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -297,13 +295,13 @@ const DevUtilitiesPage: React.FC = () => {
             </Button>
 
             <div className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
-              <p><strong>This simulates the complete QR profile transfer workflow:</strong></p>
+              <p><strong>Isso simula o fluxo de trabalho completo de transferência de perfil QR:</strong></p>
               <ul className="list-disc list-inside space-y-1 text-xs">
-                <li>Creates 8 diverse test scouter profiles with realistic stats</li>
-                <li>Simulates QR fountain code export/import process</li>
-                <li><strong>Test scouts are NOT added to nav dropdown</strong> (by design)</li>
-                <li>Verifies transferred profiles work correctly for data aggregation</li>
-                <li>Perfect for testing lead scout data collection workflow</li>
+                <li>Cria 8 perfis de scouter de teste diversos com estatísticas realistas</li>
+                <li>Simula o processo de exportação/importação de QR fountain code</li>
+                <li><strong>Scouters de teste NÃO são adicionados ao menu de navegação</strong> (intencional)</li>
+                <li>Verifica se os perfis transferidos funcionam corretamente para agregação de dados</li>
+                <li>Perfeito para testar o fluxo de coleta de dados do lead scout</li>
               </ul>
             </div>
           </CardContent>
@@ -313,9 +311,9 @@ const DevUtilitiesPage: React.FC = () => {
       {/* Test Profile Preview */}
       <Card>
         <CardHeader>
-          <CardTitle>Test Profile Preview</CardTitle>
+          <CardTitle>Visualização do perfil de teste</CardTitle>
           <CardDescription>
-            The following test profiles will be created to showcase different UI states
+            Os seguintes perfis de teste serão criados para mostrar diferentes estados da IU
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -340,18 +338,18 @@ const DevUtilitiesPage: React.FC = () => {
       {/* Console Functions */}
       <Card>
         <CardHeader>
-          <CardTitle>Console Functions</CardTitle>
+          <CardTitle>Funções do console</CardTitle>
           <CardDescription>
-            These functions are also available in the browser console for quick testing
+            Essas funções também estão disponíveis no console do navegador para testes rápidos
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-2 text-sm font-mono bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
-            <div className="text-green-600 dark:text-green-400"># Create test profiles</div>
+            <div className="text-green-600 dark:text-green-400"># Criar perfis de teste</div>
             <div>window.testData.createTestProfiles()</div>
-            <div className="text-green-600 dark:text-green-400 mt-3"># Clear all data</div>
+            <div className="text-green-600 dark:text-green-400 mt-3"># Limpar todos os dados</div>
             <div>window.testData.clearAll()</div>
-            <div className="text-green-600 dark:text-green-400 mt-3"># Backfill achievements</div>
+            <div className="text-green-600 dark:text-green-400 mt-3"># Conquistas de preenchimento</div>
             <div>window.achievements.backfillAll()</div>
           </div>
         </CardContent>

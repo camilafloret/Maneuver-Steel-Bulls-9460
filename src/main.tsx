@@ -28,7 +28,7 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
         });
       })
       .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
+        console.log('Falha no registro do SW: ', registrationError);
       });
   });
 }

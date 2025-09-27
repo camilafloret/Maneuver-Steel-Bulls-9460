@@ -48,11 +48,11 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
                 <p className="text-lg font-bold text-orange-600">{stats.overall.avgCoral}</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Algae</p>
+                <p className="font-medium text-xs">Algas</p>
                 <p className="text-lg font-bold text-green-600">{stats.overall.avgAlgae}</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Avg Points</p>
+                <p className="font-medium text-xs">Média de Pontos</p>
                 <p className="text-lg font-bold text-blue-600">{stats.overall.avgTotalPoints}</p>
               </div>
             </div>
@@ -64,7 +64,7 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
           <div className="h-24 flex flex-col justify-center">
             <div className="grid grid-cols-3 gap-2 text-sm mb-2">
               <div className="text-center">
-                <p className="font-medium text-xs">Mobility</p>
+                <p className="font-medium text-xs">Mobilidade</p>
                 <p className="text-lg font-bold text-blue-600">{stats.auto.mobilityRate}%</p>
               </div>
               <div className="text-center">
@@ -72,13 +72,13 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
                 <p className="text-lg font-bold text-orange-600">{stats.auto.avgCoral}</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Algae</p>
+                <p className="font-medium text-xs">Algas</p>
                 <p className="text-lg font-bold text-green-600">{stats.auto.avgAlgae}</p>
               </div>
             </div>
             {stats.auto.startingPositions.length > 0 && (
               <div className="flex flex-col items-center">
-                <p className="font-medium text-xs mb-1">Starting Positions:</p>
+                <p className="font-medium text-xs mb-1">Posições Iniciais:</p>
                 <div className="flex flex-wrap gap-1 justify-center max-h-8 overflow-hidden">
                   {stats.auto.startingPositions.slice(0, 4).map((pos, idx) => (
                     <Badge key={idx} variant="secondary" className="text-xs">
@@ -87,7 +87,7 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
                   ))}
                   {stats.auto.startingPositions.length > 4 && (
                     <Badge variant="secondary" className="text-xs">
-                      +{stats.auto.startingPositions.length - 4} more
+                      +{stats.auto.startingPositions.length - 4} mais
                     </Badge>
                   )}
                 </div>
@@ -105,7 +105,7 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
                 <p className="text-lg font-bold text-orange-600">{stats.teleop.avgCoral}</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Algae</p>
+                <p className="font-medium text-xs">Algas</p>
                 <p className="text-lg font-bold text-green-600">{stats.teleop.avgAlgae}</p>
               </div>
             </div>
@@ -117,19 +117,19 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
           <div className="h-24 flex items-center">
             <div className="grid grid-cols-2 gap-2 text-sm w-full">
               <div className="text-center">
-                <p className="font-medium text-xs">Overall Climb</p>
+                <p className="font-medium text-xs">Escalada Geral</p>
                 <p className="text-lg font-bold text-purple-600">{stats.endgame.climbRate}%</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Park</p>
+                <p className="font-medium text-xs">Estacionar</p>
                 <p className="text-sm font-bold text-gray-600">{stats.endgame.parkRate}%</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Shallow</p>
+                <p className="font-medium text-xs">Rasa</p>
                 <p className="text-sm font-bold text-blue-600">{stats.endgame.shallowClimbRate}%</p>
               </div>
               <div className="text-center">
-                <p className="font-medium text-xs">Deep</p>
+                <p className="font-medium text-xs">Profunda</p>
                 <p className="text-sm font-bold text-red-600">{stats.endgame.deepClimbRate}%</p>
               </div>
             </div>
@@ -145,7 +145,7 @@ export const TeamStatsDetail = ({ stats, activeStatsTab }: TeamStatsDetailProps)
     <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
       {renderStatsContent()}
       <div className="text-center text-xs text-muted-foreground mt-2">
-        {stats.matchesPlayed} matches played
+        {stats.matchesPlayed} partidas jogadas
       </div>
     </div>
   );

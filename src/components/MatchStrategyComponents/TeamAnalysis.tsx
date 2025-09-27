@@ -112,10 +112,10 @@ export const TeamAnalysis = ({
         
         <Tabs value={activeStatsTab} onValueChange={onStatsTabChange} className="w-full" enableSwipe={true}>
           <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="overall">Overall</TabsTrigger>
+            <TabsTrigger value="overall">Geral</TabsTrigger>
             <TabsTrigger value="auto">Auto</TabsTrigger>
             <TabsTrigger value="teleop">Teleop</TabsTrigger>
-            <TabsTrigger value="endgame">Endgame</TabsTrigger>
+            <TabsTrigger value="endgame">Final</TabsTrigger>
           </TabsList>
         </Tabs>
       </CardHeader>

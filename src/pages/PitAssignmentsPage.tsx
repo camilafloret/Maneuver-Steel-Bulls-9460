@@ -133,7 +133,7 @@ const PitAssignmentsPage: React.FC = () => {
             teamsWithPitData.push(teamNumber);
           }
         } catch (error) {
-          console.warn(`Error checking pit data for team ${teamNumber}:`, error);
+          console.warn(`Erro ao verificar dados de pit para equipe ${teamNumber}:`, error);
         }
       }
 
@@ -172,7 +172,7 @@ const PitAssignmentsPage: React.FC = () => {
               return { ...assignment, completed: shouldBeCompleted };
             }
           } catch (error) {
-            console.warn(`Error checking pit data for team ${assignment.teamNumber}:`, error);
+            console.warn(`Erro ao verificar dados de pit para equipe ${assignment.teamNumber}:`, error);
           }
           return assignment;
         })
@@ -221,7 +221,7 @@ const PitAssignmentsPage: React.FC = () => {
               return { ...assignment, completed: shouldBeCompleted };
             }
           } catch (error) {
-            console.warn(`Error checking pit data for team ${assignment.teamNumber}:`, error);
+            console.warn(`Erro ao verificar dados de pit para equipe ${assignment.teamNumber}:`, error);
           }
           return assignment;
         })
@@ -262,7 +262,7 @@ const PitAssignmentsPage: React.FC = () => {
               return { ...assignment, completed: true };
             }
           } catch (error) {
-            console.warn(`Error checking pit data for team ${assignment.teamNumber}:`, error);
+            console.warn(`Erro ao verificar dados de pit para equipe ${assignment.teamNumber}:`, error);
           }
           return assignment;
         })
@@ -286,7 +286,7 @@ const PitAssignmentsPage: React.FC = () => {
         const pitData = await loadPitScoutingEntry(teamNumber.toString(), selectedEvent);
         completed = !!pitData;
       } catch (error) {
-        console.warn(`Error checking pit data for team ${teamNumber}:`, error);
+        console.warn(`Erro ao verificar dados de pit para equipe ${teamNumber}:`, error);
       }
     }
     
@@ -340,9 +340,9 @@ const PitAssignmentsPage: React.FC = () => {
       <div className="text-start">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Pit Assignments</h1>
+            <h1 className="text-3xl font-bold">Atribuições de Pit</h1>
             <p className="text-muted-foreground">
-              Manage scouters and assign teams for pit scouting
+              Gerenciar scouters e designar equipes para pit scouting
             </p>
           </div>
           {/* Data source attribution */}
@@ -403,11 +403,11 @@ const PitAssignmentsPage: React.FC = () => {
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="teams" className="flex items-center gap-2">
               <Users className="h-4 w-4" />
-              Team Cards
+              Cartões de equipe
             </TabsTrigger>
             <TabsTrigger value="assignments" className="flex items-center gap-2">
               <BarChart3 className="h-4 w-4" />
-              Table View
+              Visualização de tabela
             </TabsTrigger>
           </TabsList>
           

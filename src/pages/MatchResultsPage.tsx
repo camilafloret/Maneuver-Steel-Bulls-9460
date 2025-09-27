@@ -33,9 +33,9 @@ const MatchResultsPage: React.FC = () => {
   return (
     <div className="min-h-screen container mx-auto p-4 space-y-8 max-w-7xl">
       <div className="text-center space-y-2">
-        <h1 className="text-2xl sm:text-3xl font-bold">Match Results</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold">Resultados da partida</h1>
         <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">
-          Load match results from The Blue Alliance to verify predictions
+          Carregue os resultados das partidas da The Blue Alliance para verificar as previsões
         </p>
       </div>
 

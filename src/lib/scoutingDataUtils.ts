@@ -29,7 +29,7 @@ export const addIdsToScoutingData = (legacyData: (unknown[] | Record<string, unk
     let cleanData: Record<string, unknown>;
     
     if (Array.isArray(entryData)) {
-      console.warn('Legacy array format detected, this should not happen with object-based data');
+      console.warn('Formato de matriz legado detectado, isso não deve acontecer com dados baseados em objetos');
       
       let cleanArray = entryData;
       const firstElement = entryData[0];
@@ -171,7 +171,7 @@ export const loadScoutingData = async (): Promise<{ entries: ScoutingDataWithId[
     
     return { entries: convertedEntries };
   } catch (error) {
-    console.error('Error loading scouting data:', error);
+    console.error('Erro ao carregar dados de reconhecimento:', error);
     return { entries: [] };
   }
 };
@@ -189,7 +189,7 @@ export const saveScoutingData = async (data: { entries: ScoutingDataWithId[] }):
     const { saveScoutingEntries } = await import('./dexieDB');
     await saveScoutingEntries(data.entries);
   } catch (error) {
-    console.error('Error saving to Dexie, falling back to localStorage:', error);
+    console.error('Erro ao salvar no Dexie, retornando ao localStorage:', error);
     
     // Fallback to localStorage (legacy format)
     const legacyData = extractLegacyData(data.entries);

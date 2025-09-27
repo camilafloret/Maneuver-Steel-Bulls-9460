@@ -61,7 +61,7 @@ export function extractTeamPositions(
 ): TeamPosition[] {
   if (!pitMapData?.pits) {
     if (enableDebugLogging) {
-      console.log('No pit map data available for spatial assignment');
+      console.log('Não há dados de mapa de pit disponíveis para atribuição espacial');
     }
     return [];
   }
@@ -112,7 +112,7 @@ export function extractTeamPositions(
   }
 
   if (enableDebugLogging) {
-    console.log('Team position extraction:', {
+    console.log('Extração de posição da equipe:', {
       totalTeams: teams.length,
       teamsWithPositions: teamPositions.length,
       extractionMethod: pitAddresses ? 'pit addresses' : 'direct pit data'
@@ -120,11 +120,11 @@ export function extractTeamPositions(
 
     // Debug specific teams
     const debugTeams = [9977, 9990, 9986, 9994, 9433, 9971];
-    console.log('\n=== Team Position Debug ===');
+    console.log('\n=== Depuração da Posição da Equipe ===');
     debugTeams.forEach(teamNum => {
       const pos = teamPositions.find(p => p.teamNumber === teamNum);
       if (pos) {
-        console.log(`Team ${teamNum}: (${pos.x}, ${pos.y})`);
+        console.log(`Equipe ${teamNum}: (${pos.x}, ${pos.y})`);
       }
     });
   }
@@ -141,13 +141,13 @@ export function createSpatialAssignments(options: AssignmentOptions): PitAssignm
   
   if (teamPositions.length === 0) {
     if (enableDebugLogging) {
-      console.log('No teams with valid positions found, falling back to sequential assignment');
+      console.log('Nenhuma equipe com posições válidas foi encontrada, retornando à atribuição sequencial');
     }
     return createSequentialAssignments(options);
   }
 
   if (enableDebugLogging) {
-    console.log('Spatial assignment debug:', {
+    console.log('Depuração de atribuição espacial:', {
       currentTeams: teams.length,
       pitAddresses: pitAddresses ? Object.keys(pitAddresses).length : 0,
       pitMapPits: pitMapData?.pits ? Object.keys(pitMapData.pits).length : 0,
@@ -163,7 +163,7 @@ export function createSpatialAssignments(options: AssignmentOptions): PitAssignm
   const newAssignments: PitAssignment[] = [];
   
   if (enableDebugLogging) {
-    console.log('\n=== Cluster to Scouter Assignment ===');
+    console.log('\n=== Atribuição de Cluster para Scouter ===');
   }
   
   spatialClusters.forEach((cluster: TeamPosition[], index: number) => {
@@ -186,7 +186,7 @@ export function createSpatialAssignments(options: AssignmentOptions): PitAssignm
   });
 
   if (enableDebugLogging) {
-    console.log('Spatial assignment completed:', {
+    console.log('Atribuição espacial concluída:', {
       totalTeamsWithPositions: teamPositions.length,
       totalTeamsRequested: teams.length,
       assignments: newAssignments.length,
@@ -212,7 +212,7 @@ export function createPitAssignments(options: AssignmentOptions): PitAssignment[
     case 'manual':
       return []; // Manual mode starts with empty assignments
     default:
-      throw new Error(`Unknown assignment mode: ${assignmentMode}`);
+      throw new Error(`Modo de atribuição desconhecido: ${assignmentMode}`);
   }
 }
 

@@ -155,40 +155,40 @@ const generateMatchCharacteristics = () => {
 const generateComment = (matchNumber, teamNumber, brokeDown, playedDefense) => {
   if (brokeDown) {
     const breakdownReasons = [
-      'robot stopped working in auto',
-      'drive issues throughout match',
-      'mechanism failure early in teleop',
-      'electrical problems',
-      'lost communication',
-      'battery died mid-match'
+      'robô parou de funcionar no auto',
+      'problemas de pilotagem durante a partida',
+      'falha do mecanismo no início do teleop',
+      'problemas elétricos',
+      'perda de comunicação',
+      'bateria acabou no meio da partida'
     ];
-    return `Match ${matchNumber}: ${breakdownReasons[Math.floor(Math.random() * breakdownReasons.length)]}`;
+    return `Partida ${matchNumber}: ${breakdownReasons[Math.floor(Math.random() * breakdownReasons.length)]}`;
   }
   
   if (playedDefense) {
     const defenseComments = [
-      'strong defensive play against alliance',
-      'pinned opposing robots multiple times',
-      'effective blocking strategy',
-      'disrupted opponent scoring runs'
+      'jogo defensivo forte contra a aliança',
+      'imobilizou robôs adversários várias vezes',
+      'estratégia de bloqueio eficaz',
+      'interrompeu sequências de pontuação do oponente'
     ];
-    return `Match ${matchNumber}: ${defenseComments[Math.floor(Math.random() * defenseComments.length)]}`;
+    return `Partida ${matchNumber}: ${defenseComments[Math.floor(Math.random() * defenseComments.length)]}`;
   }
   
   const generalComments = [
-    'solid performance overall',
-    'strong autonomous period',
-    'excellent teleop scoring',
-    'good team coordination',
-    'consistent performance',
-    'improved from previous matches',
-    'fast and accurate scoring',
-    'strategic gameplay',
+    'desempenho sólido no geral',
+    'período autônomo forte',
+    'excelente pontuação no teleop',
+    'boa coordenação da equipe',
+    'desempenho consistente',
+    'melhoria em relação às partidas anteriores',
+    'pontuação rápida e precisa',
+    'jogo estratégico',
     ''
   ];
   
   const comment = generalComments[Math.floor(Math.random() * generalComments.length)];
-  return comment ? `Match ${matchNumber}: ${comment}` : '';
+  return comment ? `Partida ${matchNumber}: ${comment}` : '';
 };
 
 // Generate single match entry
@@ -219,7 +219,7 @@ const generateWorldsMatchData = () => {
   const teams = generateWorldsTeams();
   const matchData = [];
   
-  console.log(`Generating data for ${teams.length} teams across 125 qualification matches...`);
+  console.log(`Gerando dados para ${teams.length} equipes em 125 partidas qualificatórias...`);
   
   let teamIndex = 0;
   
@@ -246,25 +246,25 @@ const generateWorldsMatchData = () => {
     }
     
     if (matchNum % 25 === 0) {
-      console.log(`Generated matches 1-${matchNum} (${matchData.length} entries so far)`);
+      console.log(`Geradas as partidas 1-${matchNum} (${matchData.length} registros até agora)`);
     }
   }
   
-  console.log(`Generated ${matchData.length} total match entries`);
+  console.log(`Gerados ${matchData.length} registros de partidas no total`);
   return matchData;
 };
 
 // Generate and save the data
-console.log('Starting World Championship scale match data generation...');
+console.log('Iniciando a geração de dados de partidas em escala de Campeonato Mundial...');
 const worldsData = generateWorldsMatchData();
 
 const outputPath = path.join(__dirname, '..', 'src', 'lib', 'testData', 'worldsMatchScoutingData.json');
 fs.writeFileSync(outputPath, JSON.stringify(worldsData, null, 2));
 
-console.log(`\n✅ Successfully generated ${worldsData.length} match scouting entries!`);
-console.log(`📁 Saved to: ${outputPath}`);
-console.log(`📊 Data represents 125 qualification matches with 6 teams each`);
-console.log(`🎯 Perfect for testing QR code scaling at World Championship level events`);
+console.log(`\n✅ Gerados com sucesso ${worldsData.length} registros de scouting de partidas!`);
+console.log(`📁 Salvo em: ${outputPath}`);
+console.log(`📊 Os dados representam 125 partidas qualificatórias com 6 equipes cada`);
+console.log(`🎯 Perfeito para testar a escalação de códigos QR em eventos de nível Campeonato Mundial`);
 
 // Generate some statistics
 const uniqueTeams = new Set(worldsData.map(entry => entry.selectTeam)).size;
@@ -272,9 +272,9 @@ const uniqueMatches = new Set(worldsData.map(entry => entry.matchNumber)).size;
 const redEntries = worldsData.filter(entry => entry.alliance === 'redAlliance').length;
 const blueEntries = worldsData.filter(entry => entry.alliance === 'blueAlliance').length;
 
-console.log(`\n📈 Statistics:`);
-console.log(`   • Unique teams: ${uniqueTeams}`);
-console.log(`   • Unique matches: ${uniqueMatches}`);
-console.log(`   • Red alliance entries: ${redEntries}`);
-console.log(`   • Blue alliance entries: ${blueEntries}`);
-console.log(`   • Average entries per team: ${(worldsData.length / uniqueTeams).toFixed(1)}`);
+console.log(`\n📈 Estatísticas:`);
+console.log(`   • Equipes únicas: ${uniqueTeams}`);
+console.log(`   • Partidas únicas: ${uniqueMatches}`);
+console.log(`   • Registros da aliança vermelha: ${redEntries}`);
+console.log(`   • Registros da aliança azul: ${blueEntries}`);
+console.log(`   • Média de registros por equipe: ${(worldsData.length / uniqueTeams).toFixed(1)}`);

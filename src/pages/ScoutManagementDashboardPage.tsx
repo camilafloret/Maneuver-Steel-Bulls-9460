@@ -31,9 +31,9 @@ const ScoutManagementDashboardPage: React.FC = () => {
       <div className="text-start space-y-2">
         <div className="flex justify-between items-start">
           <div>
-            <h1 className="text-3xl font-bold">Scout Management Dashboard</h1>
+            <h1 className="text-3xl font-bold">Painel de Gestão de Scout</h1>
             <p className="text-gray-600 dark:text-gray-400">
-              Monitor scout performance and leaderboards
+              Monitore o desempenho dos scout e as tabelas de classificação
             </p>
           </div>
         </div>
@@ -72,13 +72,13 @@ const ScoutManagementDashboardPage: React.FC = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Trophy className="h-5 w-5" />
-                  Achievements
+                  Conquistas
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="text-center py-8 text-gray-500">
                   <Trophy className="h-12 w-12 mx-auto mb-2 opacity-50" />
-                  <p>Select a scout to view achievements</p>
+                  <p>Selecione um scout para ver as conquistas</p>
                 </div>
               </CardContent>
             </Card>

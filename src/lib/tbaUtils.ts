@@ -108,7 +108,7 @@ const makeTBARequest = async (endpoint: string): Promise<unknown> => {
   });
 
   if (!response.ok) {
-    throw new Error(`TBA API Error: ${response.status} ${response.statusText}`);
+    throw new Error(`Erro API do TBA: ${response.status} ${response.statusText}`);
   }
 
   return response.json();
@@ -195,7 +195,7 @@ export const parseMatchKey = (matchKey: string): {
 } => {
   const parts = matchKey.split('_');
   if (parts.length !== 2) {
-    throw new Error('Invalid match key format');
+    throw new Error('Formato de chave de correspondência inválido');
   }
 
   const eventKey = parts[0];
@@ -204,7 +204,7 @@ export const parseMatchKey = (matchKey: string): {
   // Extract comp level (qm, sf, f, etc.) and match number
   const compLevelMatch = matchPart.match(/^([a-z]+)(\d+)$/);
   if (!compLevelMatch) {
-    throw new Error('Invalid match key format');
+    throw new Error('Formato de chave de correspondência inválido');
   }
 
   const compLevel = compLevelMatch[1];
@@ -221,7 +221,7 @@ export const validateAPIKey = async (): Promise<boolean> => {
     await makeTBARequest(`/events/${currentYear}/simple`);
     return true;
   } catch (error) {
-    console.error('TBA API key validation failed:', error);
+    console.error('Falha na validação da chave da API do TBA:', error);
     return false;
   }
 };
@@ -245,7 +245,7 @@ export const getEventTeams = async (eventKey: string, apiKey?: string): Promise<
     });
 
     if (!response.ok) {
-      throw new Error(`TBA API Error: ${response.status} ${response.statusText}`);
+      throw new Error(`Erro API do TBA: ${response.status} ${response.statusText}`);
     }
 
     const teamKeys = await response.json() as string[];
@@ -255,8 +255,8 @@ export const getEventTeams = async (eventKey: string, apiKey?: string): Promise<
       return {
         key,
         team_number: teamNumber,
-        nickname: `Team ${teamNumber}`,
-        name: `Team ${teamNumber}`,
+        nickname: `Equipe ${teamNumber}`,
+        name: `Equipe ${teamNumber}`,
       };
     }).sort((a, b) => a.team_number - b.team_number);
   } else {
@@ -267,8 +267,8 @@ export const getEventTeams = async (eventKey: string, apiKey?: string): Promise<
       return {
         key,
         team_number: teamNumber,
-        nickname: `Team ${teamNumber}`,
-        name: `Team ${teamNumber}`,
+        nickname: `Equipe ${teamNumber}`,
+        name: `Equipe ${teamNumber}`,
       };
     }).sort((a, b) => a.team_number - b.team_number);
   }
@@ -289,10 +289,10 @@ export const storeEventTeams = (eventKey: string, teams: TBATeam[]): void => {
   
   try {
     localStorage.setItem(storageKey, JSON.stringify(data));
-    console.log(`Stored ${teamNumbers.length} team numbers for event ${eventKey}`);
+    console.log(`Armazenados ${teamNumbers.length} números de equipes para o evento ${eventKey}`);
   } catch (error) {
-    console.error('Failed to store teams in localStorage:', error);
-    throw new Error('Failed to store teams data');
+    console.error('Falha ao armazenar equipes no localStorage:', error);
+    throw new Error('Falha ao armazenar dados das equipes');
   }
 };
 
@@ -313,7 +313,7 @@ export const getStoredEventTeams = (eventKey: string): number[] | null => {
     }
     return null;
   } catch (error) {
-    console.error('Failed to retrieve teams from localStorage:', error);
+    console.error('Falha ao recuperar equipes do localStorage:', error);
     return null;
   }
 };
@@ -344,7 +344,7 @@ export const getAllStoredEventTeams = (): { [eventKey: string]: number[] } => {
           }
         }
       } catch (error) {
-        console.error(`Failed to parse stored teams for key ${key}:`, error);
+        console.error(`Falha ao analisar equipes armazenadas para chave ${key}:`, error);
       }
     }
   }

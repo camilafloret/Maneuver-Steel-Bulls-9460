@@ -41,7 +41,7 @@ function useMotionHighlight<T extends string>(): MotionHighlightContextType<T> {
   const context = React.useContext(MotionHighlightContext);
   if (!context) {
     throw new Error(
-      'useMotionHighlight must be used within a MotionHighlightProvider',
+      'useMotionHighlight deve ser usado dentro de um(a) MotionHighlightProvider',
     );
   }
   return context as unknown as MotionHighlightContextType<T>;

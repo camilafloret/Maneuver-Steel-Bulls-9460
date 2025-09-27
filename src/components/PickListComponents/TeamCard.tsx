@@ -19,13 +19,13 @@ export const TeamCard = ({ team, pickLists, alliances, onAddTeamToList, onAddTea
   // Check if a team is in a specific list
   const isTeamInList = (listId: number) => {
     const list = pickLists.find(l => l.id === listId);
-    return list?.teams.some(t => t.text === `Team ${team.teamNumber}`) || false;
+    return list?.teams.some(t => t.text === `Equipe ${team.teamNumber}`) || false;
   };
 
   // Get all lists that contain this team
   const getTeamLists = () => {
     return pickLists.filter(list => 
-      list.teams.some(t => t.text === `Team ${team.teamNumber}`)
+      list.teams.some(t => t.text === `Equipe ${team.teamNumber}`)
     );
   };
 
@@ -57,7 +57,7 @@ export const TeamCard = ({ team, pickLists, alliances, onAddTeamToList, onAddTea
   ];
   
   const displayFormat = (value: string) => {
-    if (value === "none") return "Add to...";
+    if (value === "none") return "Adicionar para...";
     
     // Handle pick lists
     if (value.startsWith("list-")) {
@@ -76,7 +76,7 @@ export const TeamCard = ({ team, pickLists, alliances, onAddTeamToList, onAddTea
       if (!alliance) return value;
       
       const inAlliance = isTeamInAlliance(Number(allianceId));
-      return inAlliance ? `✓ Alliance ${alliance.allianceNumber}` : `Alliance ${alliance.allianceNumber}`;
+      return inAlliance ? `✓ Aliança ${alliance.allianceNumber}` : `Aliança ${alliance.allianceNumber}`;
     }
     
     return value;
@@ -102,12 +102,12 @@ export const TeamCard = ({ team, pickLists, alliances, onAddTeamToList, onAddTea
     <Card className="p-3">
       <div className="flex items-center justify-between">
         <div className="flex-1">
-          <div className="font-medium">Team {team.teamNumber}</div>
+          <div className="font-medium">Time {team.teamNumber}</div>
           <div className="text-xs text-muted-foreground">
-            Auto: {team.avgAutoCoralTotal}C, {team.avgAutoAlgaeTotal}A | Teleop: {team.avgTeleopCoralTotal}C, {team.avgTeleopAlgaeTotal}A
+            Auto: {team.avgAutoCoralTotal}C, {team.avgAutoAlgaeTotal}A | Teleoperado: {team.avgTeleopCoralTotal}C, {team.avgTeleopAlgaeTotal}A
           </div>
           <div className="text-xs text-muted-foreground">
-            {team.climbRate}% climb • {team.matchesPlayed} matches
+            {team.climbRate}% escaladas • {team.matchesPlayed} partidas
           </div>
           {getTeamLists().length > 0 && (
             <div className="text-xs text-blue-600 dark:text-blue-400 mt-1">

@@ -59,7 +59,7 @@ export function ScouterSelectorContent({
       <CommandInput placeholder="Search scouters..." />
       <CommandEmpty>
         <div className="text-center p-4">
-          <p className="text-sm text-muted-foreground mb-2">No scouters found</p>
+          <p className="text-sm text-muted-foreground mb-2">Nenhum scouter encontrado</p>
           <Button
             variant="outline"
             size="sm"
@@ -67,7 +67,7 @@ export function ScouterSelectorContent({
             className="w-full"
           >
             <Plus className="h-4 w-4 mr-2" />
-            Add New Scouter
+            Adicionar Novo Scouter
           </Button>
         </div>
       </CommandEmpty>
@@ -115,7 +115,7 @@ export function ScouterSelectorContent({
           <CommandGroup>
             <CommandItem onSelect={() => setShowAddForm(true)}>
               <Plus className="mr-2 h-4 w-4" />
-              Add New Scouter
+              Adicionar Novo Scouter
             </CommandItem>
           </CommandGroup>
         )}

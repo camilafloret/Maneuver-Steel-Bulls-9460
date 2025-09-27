@@ -71,12 +71,12 @@ const EndgamePage = () => {
       const nextMatchNumber = (parseInt(currentMatchNumber) + 1).toString();
       localStorage.setItem("currentMatchNumber", nextMatchNumber);
 
-      toast.success("Match data saved successfully!");
+      toast.success("Dados de correspondência salvos com sucesso!");
       navigate("/game-start");
       
     } catch (error) {
-      console.error("Error saving match data:", error);
-      toast.error("Error saving match data");
+      console.error("Erro ao salvar dados da partida:", error);
+      toast.error("Erro ao salvar dados da partida");
     }
   };
 
@@ -101,28 +101,28 @@ const EndgamePage = () => {
   return (
     <div className="h-full w-full flex flex-col items-center px-4 pt-6 pb-6">
       <div className="w-full max-w-2xl">
-        <h1 className="text-2xl font-bold pb-4">Endgame</h1>
+        <h1 className="text-2xl font-bold pb-4">Fim de Jogo</h1>
       </div>
       <div className="flex flex-col items-center gap-6 max-w-2xl w-full h-full min-h-0 pb-4">
         {/* Match Info */}
         {states?.inputs && (
           <Card className="w-full">
             <CardHeader>
-              <CardTitle className="text-lg">Match Summary</CardTitle>
+              <CardTitle className="text-lg">Resumo da partida</CardTitle>
             </CardHeader>
             <CardContent className="space-y-2">
               {states.inputs.eventName && (
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Event:</span>
+                  <span className="text-muted-foreground">Evento:</span>
                   <span className="font-medium">{states.inputs.eventName}</span>
                 </div>
               )}
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Match:</span>
+                <span className="text-muted-foreground">Partida:</span>
                 <span className="font-medium">{states.inputs.matchNumber}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Alliance:</span>
+                <span className="text-muted-foreground">Aliança:</span>
                 <Badge 
                   variant={states.inputs.alliance === "red" ? "destructive" : "default"}
                   className={states.inputs.alliance === "blue" ? "bg-blue-500 text-white" : "bg-red-500 text-white"}
@@ -131,7 +131,7 @@ const EndgamePage = () => {
                 </Badge>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Team:</span>
+                <span className="text-muted-foreground">Equipe:</span>
                 <span className="font-medium">{states.inputs.selectTeam}</span>
               </div>
             </CardContent>
@@ -141,7 +141,7 @@ const EndgamePage = () => {
         {/* Climbing Section */}
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-lg">Climbing</CardTitle>
+            <CardTitle className="text-lg">Escalando</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 gap-3">
@@ -160,7 +160,7 @@ const EndgamePage = () => {
                   color: 'white'
                 } : undefined}
               >
-                {shallowClimbAttempted ? "✓ " : ""}Shallow Climb Attempted
+                {shallowClimbAttempted ? "✓ " : ""}Tentativa de escalada rasa
               </Button>
               
               <Button
@@ -178,7 +178,7 @@ const EndgamePage = () => {
                   color: 'white'
                 } : undefined}
               >
-                {deepClimbAttempted ? "✓ " : ""}Deep Climb Attempted
+                {deepClimbAttempted ? "✓ " : ""}Tentativa de escalada profunda
               </Button>
               
               <Button
@@ -196,7 +196,7 @@ const EndgamePage = () => {
                   color: 'white'
                 } : undefined}
               >
-                {parkAttempted ? "✓ " : ""}Park Attempted
+                {parkAttempted ? "✓ " : ""}Tentou estacionar
               </Button>
             </div>
           </CardContent>
@@ -205,7 +205,7 @@ const EndgamePage = () => {
         {/* Issues Section */}
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-lg">Issues</CardTitle>
+            <CardTitle className="text-lg">Problemas</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 gap-3">
@@ -214,7 +214,7 @@ const EndgamePage = () => {
                 onClick={() => setClimbFailed(!climbFailed)}
                 className="h-12"
               >
-                {climbFailed ? "✓ " : ""}Climb Failed
+                {climbFailed ? "✓ " : ""}Escalada falhou
               </Button>
               
               <Button
@@ -222,7 +222,7 @@ const EndgamePage = () => {
                 onClick={() => setBrokeDown(!brokeDown)}
                 className="h-12"
               >
-                {brokeDown ? "✓ " : ""}Broke Down
+                {brokeDown ? "✓ " : ""}Quebrado
               </Button>
             </div>
           </CardContent>
@@ -231,14 +231,14 @@ const EndgamePage = () => {
         {/* Comments Section */}
         <Card className="w-full flex-1">
           <CardHeader>
-            <CardTitle className="text-lg">Comments</CardTitle>
+            <CardTitle className="text-lg">Comentários</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              <Label htmlFor="comment">Additional Notes</Label>
+              <Label htmlFor="comment">Notas adicionais</Label>
               <Textarea
                 id="comment"
-                placeholder="Enter any additional observations or notes about the match..."
+                placeholder="Insira quaisquer observações ou notas adicionais sobre a partida..."
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 className="min-h-24"
@@ -254,7 +254,7 @@ const EndgamePage = () => {
             onClick={handleBack}
             className="flex-1 h-12 text-lg"
           >
-            Back
+            Voltar
           </Button>
           <Button
             onClick={handleSubmit}
@@ -264,7 +264,7 @@ const EndgamePage = () => {
               color: 'white'
             }}
           >
-            Submit Match Data
+            Enviar dados da partida
             <ArrowRight className="ml-0.5" />
           </Button>
         </div>

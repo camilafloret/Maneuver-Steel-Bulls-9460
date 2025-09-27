@@ -29,8 +29,8 @@ export const GenericSelector = ({
 
   const getDisplayText = (val: string) => {
     if (!val) return placeholder;
-    if (val === "none") return buttonDisplayFormat ? buttonDisplayFormat(val) : "None";
-    if (val === "all") return "All events";
+    if (val === "none") return buttonDisplayFormat ? buttonDisplayFormat(val) : "Nenhum";
+    if (val === "all") return "Todos os eventos";
     return buttonDisplayFormat ? buttonDisplayFormat(val) : displayFormat(val);
   };
 
@@ -105,7 +105,7 @@ export const GenericSelector = ({
       </SelectTrigger>
       <SelectContent>
         {availableOptions.includes("none") && <SelectItem value="none">{displayFormat("none")}</SelectItem>}
-        {availableOptions.includes("all") && <SelectItem value="all">All events</SelectItem>}
+        {availableOptions.includes("all") && <SelectItem value="all">Todos os eventos</SelectItem>}
         {availableOptions.filter(option => option !== "all" && option !== "none").map((option) => (
           <SelectItem key={option} value={option}>
             {displayFormat(option)}

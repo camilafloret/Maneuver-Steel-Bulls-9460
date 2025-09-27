@@ -381,12 +381,12 @@ export const BoxPlot: React.FC<BoxPlotProps> = ({
             return (
               <>
                 <div className="font-medium text-foreground mb-2">
-                  Team {hoveredTeam}
+                  Equipe {hoveredTeam}
                 </div>
                 <div className="text-sm text-muted-foreground mb-2">
-                  {metricLabel} Distribution ({sampleSize} matches)
+                  {metricLabel} Distribuição ({sampleSize} equipes)
                   <br />
-                  <span className="text-xs opacity-75">Full statistical breakdown</span>
+                  <span className="text-xs opacity-75">Análise estatística completa</span>
                 </div>
                 <div className="space-y-1 text-sm">
                   <div className="flex justify-between items-center">
@@ -398,7 +398,7 @@ export const BoxPlot: React.FC<BoxPlotProps> = ({
                     <span className="font-medium">{stats.q1.toFixed(1)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Median:</span>
+                    <span className="text-muted-foreground">Mediana:</span>
                     <span className="font-medium text-primary">{stats.median.toFixed(1)}</span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -406,12 +406,12 @@ export const BoxPlot: React.FC<BoxPlotProps> = ({
                     <span className="font-medium">{stats.q3.toFixed(1)}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Max:</span>
+                    <span className="text-muted-foreground">Máximo:</span>
                     <span className="font-medium">{stats.max.toFixed(1)}</span>
                   </div>
                   {stats.outliers.length > 0 && (
                     <div className="flex justify-between items-center border-t pt-1 mt-1">
-                      <span className="text-muted-foreground">Outliers:</span>
+                      <span className="text-muted-foreground">Valores atípicos:</span>
                       <span className="font-medium text-orange-600">{stats.outliers.length}</span>
                     </div>
                   )}

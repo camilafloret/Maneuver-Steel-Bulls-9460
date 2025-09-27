@@ -216,13 +216,13 @@ const InitialSelectTeam = ({
           {/* Custom Team Selector */}
           <div className="flex justify-center z-[2] items-center">
             <h2 className="text-2xl font-semibold flex-grow mr-2 pb-2">
-              Custom:
+              Personalizada:
             </h2>
             <Input
               className="w-full h-12 text-xl rounded-lg"
               type="number"
               inputMode="numeric"
-              placeholder="Team #"
+              placeholder="Equipe #"
               value={customTeamValue}
               onChange={(e) => setCustomTeamValue(e.target.value)}
               onFocus={() => {

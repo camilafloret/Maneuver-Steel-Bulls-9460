@@ -90,11 +90,11 @@ export const TutorialGif = ({
               )}
             </div>
             <p className="font-medium">
-              {!isOnline ? 'Offline Mode' : hasError ? 'Tutorial Visual' : 'Tutorial GIF'}: {alt}
+              {!isOnline ? 'Modo Offline' : hasError ? 'Tutorial Visual' : 'Tutorial GIF'}: {alt}
             </p>
             {!isOnline ? (
               <p className="text-xs text-muted-foreground/70">
-                Tutorial visuals will load when back online
+                Os visuais do tutorial serão carregados quando estiver online novamente
               </p>
             ) : hasError ? (
               <p className="text-xs text-muted-foreground/70">
@@ -102,11 +102,11 @@ export const TutorialGif = ({
               </p>
             ) : !shouldLoad ? (
               <p className="text-xs text-muted-foreground/70 animate-pulse">
-                Loading tutorial...
+                Carregando tutorial...
               </p>
             ) : (
               <p className="text-xs text-muted-foreground/70">
-                Visual demonstration will appear here when available
+                A demonstração visual aparecerá aqui quando disponível
               </p>
             )}
           </div>

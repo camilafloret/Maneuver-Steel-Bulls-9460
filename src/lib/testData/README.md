@@ -1,41 +1,41 @@
-# Pit Assignments Demo Data
+# Dados de Demonstração para Atribuições de Pit 
 
-This directory contains demo data for testing the Pit Assignments page and other parts of the scouting application.
+Este repositório contém dados de demonstração para testar a página de Atribuições de Pit e outras partes do aplicativo de scouting.
 
-## Files
+## Arquivos
 
 ### `teams.json`
-A list of 60 unique team numbers extracted from the match schedule data. This includes teams like:
+Lista de 60 números de times únicos extraídos do cronograma de partidas. Usados para atribuição de pits, planejamento de estratégias, estatísticas e geração de listas de picks:
 - 11, 25, 56, 75, 102, 103, 193, 222, 223, 272, etc.
 
-These teams are used throughout the application for:
-- Pit assignments
-- Match strategy planning  
-- Team statistics
-- Pick list generation
+Esses times são usados em toda a aplicação para:
+- Atribuição de pits
+- Planejamento de estratégias de partidas
+- Estatísticas de times
+- Geração de listas de picks
 
 ### `matchSchedule.json`
-Complete match schedule with 120 matches showing red and blue alliance team assignments.
+Cronograma completo de 120 partidas mostrando a alocação dos times nas alianças vermelha e azul.
 
 ### `pitScoutingData.json`
-Sample pit scouting entries for various teams.
+Entradas de scouting de pit de exemplo para vários times.
 
 ### `scouterProfiles.json`
-Demo scouter profiles with achievements and statistics.
+Perfis de scouters de demonstração, com conquistas e estatísticas.
 
 ### `matchScoutingData.json`
-Sample match scouting data entries.
+Entradas de scouting de partidas de exemplo.
 
-## Usage
+## Uso
 
-### Quick Setup (Browser Console)
+### Configuração Rápida (Console do Navegador)
 ```javascript
 // Import and run in browser console
 import { setupDemoEventTeams } from '@/lib/teamUtils';
 setupDemoEventTeams();
 ```
 
-### Programmatic Setup
+### Configuração de Programação
 ```typescript
 import { setupDemoEventTeams, clearDemoEventTeams } from '@/lib/teamUtils';
 import { createAllTestData } from '@/lib/testDataGenerator';
@@ -50,58 +50,58 @@ await createAllTestData();
 clearDemoEventTeams();
 ```
 
-### Available Demo Events
+### Eventos de Demonstração Disponíveis
 
-After running `setupDemoEventTeams()`, you'll have access to these demo events:
+Após executar `setupDemoEventTeams()`, você terá acesso a estes eventos de demonstração:
 
 1. **2024dcmp** - FIRST Championship - Washington
-   - Source: TBA
-   - Teams: All 60 teams from match schedule
+   - Fonte: TBA
+   - Equipes: Todos os 60 times do cronograma de partidas
    
 2. **2024mdbet** - Bethesda Robotics Invitational  
-   - Source: TBA
-   - Teams: 40 teams (subset)
+   - Fonte: TBA
+   - Equipes: 40 times (Subconjunto)
    
 3. **2024vabla** - Blacksburg Regional
-   - Source: Nexus (includes pit addresses)
-   - Teams: 30 teams (different subset)
+   - Fonte: Nexus (Inclui endereços de pit)
+   - Equipes: 30 times (Subconjunto diferente)
 
-## Pit Assignments Page Testing
+## Testando a Página de Atribuições de Pit
 
-1. Run the demo setup
-2. Navigate to the Pit Assignments page
-3. You should see the demo events available in the dropdown
-4. Add some scouters in the management section
-5. Try different assignment modes:
-   - **Sequential**: Assigns teams in order
-   - **Spatial**: Uses pit addresses (for Nexus events) 
-   - **Manual**: Click to assign individual teams
+1. Execute a configuração de demonstração
+2. Navegue até a página de Pit Assignments
+3. Você verá os eventos de demonstração disponíveis no dropdown
+4. Adicione alguns scouters na seção de gerenciamento
+5. Experimente os diferentes modos de atribuição:
+   - **Sequencial**: Atribui os times em ordem
+   - **Espacial**: Usa os endereços de pit (para eventos Nexus)
+   - **Manual**: Clique para atribuir times individualmente
 
-## Integration with Other Pages
+## Integração com Outras Páginas
 
-The teams data is designed to work with:
+Os dados de times foram projetados para funcionar com:
 
-- **Team Statistics Page**: Shows stats for demo teams
-- **Strategy Pages**: Uses team lists for analysis
-- **Pick List Page**: Uses teams for pick list generation
-- **Match Strategy**: References teams in match planning
+- **Página de Estatísticas da Equipe**: Mostra estatísticas dos tempos de demonstração
+- **Página de Estratégia**: Usa listas de tempos para análise
+- **Página de Lista de Pick**: Usa os horários para gerar listas de escolhas
+- **Página de Estratégia de Jogo**: Referência dos horários no planejamento de partidas
 
 ## Data Persistence
 
-Demo data is stored in localStorage with these keys:
-- `tba_event_teams_*` - TBA-style team data
-- `nexus_event_teams_*` - Nexus-style team data  
-- `nexus_pit_addresses_*` - Pit address mappings for Nexus events
+Os dados de demonstração são armazenados no localStorage com estas chaves:
+- `tba_event_teams_*` - Dados da equipe no estilo TBA
+- `nexus_event_teams_*` - Dados da equipe no estilo Nexus
+- `nexus_pit_addresses_*` - Mapeamentos de endereços de boxes para eventos Nexus
 
 ## Cleaning Up
 
-To remove demo data:
+Para remover os dados de demonstração:
 ```typescript
 import { clearDemoEventTeams } from '@/lib/teamUtils';
 clearDemoEventTeams();
 ```
 
-Or clear everything:
+Ou para limpar tudo:
 ```typescript
 import { clearAllTestData } from '@/lib/testDataGenerator';
 await clearAllTestData();

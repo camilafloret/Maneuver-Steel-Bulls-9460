@@ -33,7 +33,7 @@ export function InstallPrompt() {
         setTimeout(() => setShowPrompt(true), 5000);
         analytics.trackEvent('pwa_install_prompt_shown');
       } else {
-        console.log(`Install prompt suppressed. ${Math.ceil(7 - daysSinceLastDismiss)} days remaining.`);
+        console.log(`Prompt de instalação suprimido. ${Math.ceil(7 - daysSinceLastDismiss)} dias restantes.`);
       }
     };
 
@@ -41,7 +41,7 @@ export function InstallPrompt() {
     
     // Force show for testing - trigger the real install prompt
     if (FORCE_SHOW_INSTALL_PROMPT) {
-      console.log('🧪 FORCE SHOWING INSTALL PROMPT FOR TESTING');
+      console.log('🧪 FORÇAR A EXIBIÇÃO DO PROMPT DE INSTALAÇÃO PARA TESTE');
       
       // Simple approach - just show the prompt after 2 seconds
       setTimeout(() => {
@@ -62,14 +62,14 @@ export function InstallPrompt() {
       
       let instructions = '';
       if (isIOS) {
-        instructions = 'To install this app on iOS:\n\n1. Tap the Share button (□↗) in Safari\n2. Scroll down and tap "Add to Home Screen"\n3. Tap "Add" to install Maneuver';
+        instructions = 'Para instalar este app no iOS:\n\n1. Toque no botão Compartilhar (□↗) no Safari\n2. Role para baixo e toque em "Adicionar à Tela de Início"\n3. Toque em "Adicionar" para instalar o Maneuver';
       } else if (isMobile) {
-        instructions = 'To install this app:\n\n1. Tap the menu (⋮) in your browser\n2. Look for "Install app" or "Add to Home screen"\n3. Tap it to install Maneuver';
+        instructions = 'Para instalar este app:\n\n1. Toque no menu (⋮) do seu navegador\n2. Procure por "Instalar app" ou "Adicionar à Tela de Início"\n3. Toque para instalar o Maneuver';
       } else {
-        instructions = 'To install this app:\n\n1. Look for the install icon (⊕) in your browser\'s address bar\n2. Click it to install Maneuver\n3. Or use your browser menu: Settings > Install Maneuver';
+        instructions = 'Para instalar este app:\n\n1. Procure pelo ícone de instalação (⊕) na barra de endereços do seu navegador\n2. Clique nele para instalar o Maneuver\n3. Ou use o menu do navegador: Configurações > Instalar Maneuver';
       }
       
-      alert(instructions + '\n\nEnjoy offline access!');
+      alert(instructions + '\n\nAproveite o acesso offline!');
       
       setShowPrompt(false);
       return;
@@ -91,7 +91,7 @@ export function InstallPrompt() {
         localStorage.setItem('install-prompt-dismissed', Date.now().toString());
       }
     } catch (error) {
-      console.error('Install prompt error:', error);
+      console.error('Erro de prompt de instalação:', error);
     }
     
     setDeferredPrompt(null);
@@ -125,19 +125,19 @@ export function InstallPrompt() {
             <div className="flex-1 justify-center items-center">
               <div className='flex items-center justify-center gap-2 py-1'>
                 <Download className="h-6 w-6 text-blue-600 flex-shrink-0 mt-1" />
-                <p className="font-semibold text-sm">Install Maneuver</p>
+                <p className="font-semibold text-sm">Instalar Maneuver Steel Bulls 9460</p>
               </div>
               <p className="text-xs text-muted-foreground mt-1 text-center py-1">
-                Install this app for faster access and offline use
+                Instale este aplicativo para acesso mais rápido e uso offline
               </p>
               {FORCE_SHOW_INSTALL_PROMPT && !deferredPrompt && (
                 <p className="text-xs text-yellow-600 mt-1 font-mono text-center">
-                  🧪 TEST MODE - Will guide to manual install
+                  🧪 MODO DE TESTE - Guiará para instalação manual
                 </p>
               )}
               <div className="flex gap-2 mt-3">
                 <Button size="sm" onClick={handleInstall} className="flex-1">
-                  Install
+                  Instalar
                 </Button>
               </div>
             </div>

@@ -172,7 +172,7 @@ export const useChartData = (
     if (chartType === "stacked") {
       return {
         autoPoints: {
-          label: "Auto Points",
+          label: "Pontos de Autônomo",
           color: "hsl(var(--chart-1))",
         },
         teleopPoints: {

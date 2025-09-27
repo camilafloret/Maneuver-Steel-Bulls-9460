@@ -29,7 +29,7 @@ interface BottomNavItem {
 const baseNavItems: BottomNavItem[] = [
   {
     icon: Home,
-    label: 'Home',
+    label: 'Início',
     href: '/',
   },
   {
@@ -39,12 +39,12 @@ const baseNavItems: BottomNavItem[] = [
   },
   {
     icon: QrCode,
-    label: 'QR Data',
+    label: 'Dados de QR',
     href: '/qr-data-transfer',
   },
   {
     icon: TrendingUp,
-    label: 'Strategy',
+    label: 'Estratégias',
     href: '/strategy-overview',
   },
 ];
@@ -94,7 +94,7 @@ export function BottomNavigation() {
       >
         {isDevelopment && !isPWA && (
           <div className="text-xs text-center py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200">
-            Development Mode: Bottom nav will only show in PWA
+            Modo de desenvolvimento: a barra de navegação inferior só será exibida no PWA
           </div>
         )}
         <nav className="flex items-center justify-around py-2 px-4">

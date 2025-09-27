@@ -50,37 +50,37 @@ export function ScoutChartSection({
             </CardTitle>
             <CardDescription className="px-4">
               {chartType === "table" 
-                ? `Detailed scout statistics sorted by ${selectedMetricInfo?.label.toLowerCase()}`
-                : `Top performing scouts by ${selectedMetricInfo?.label.toLowerCase()}`
+                ? `Estatísticas detalhadas do scout classificadas por ${selectedMetricInfo?.label.toLowerCase()}`
+                : `Os melhores scout por ${selectedMetricInfo?.label.toLowerCase()}`
               }
             </CardDescription>
           </div>
           <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 w-full">
             <div className="flex items-center gap-2">
-              <p className="whitespace-nowrap">Metric:</p>
+              <p className="whitespace-nowrap">Métricas:</p>
               <GenericSelector
-                label="Select Metric"
+                label="Selecione a métrica"
                 value={chartMetric}
                 availableOptions={metricOptions.map(opt => opt.key)}
                 onValueChange={(value) => setChartMetric(value as ScouterMetric)}
-                placeholder="Select metric"
+                placeholder="Selecione a métrica"
                 displayFormat={(key) => metricOptions.find(opt => opt.key === key)?.label || key}
                 className="w-auto max-w-40"
               />
             </div>
             <div className="flex items-center gap-2">
-              <p className="whitespace-nowrap">View:</p>
+              <p className="whitespace-nowrap">Visualizar:</p>
               <GenericSelector
-                label="Select View Type"
+                label="Selecione o tipo de visualização"
                 value={chartType}
                 availableOptions={["bar", "line", "table"]}
                 onValueChange={(value) => setChartType(value as "bar" | "line" | "table")}
-                placeholder="Select view type"
+                placeholder="Selecione o tipo de visualização"
                 displayFormat={(key) => {
                   switch(key) {
-                    case "bar": return "Bar Chart";
-                    case "line": return "Line Chart";
-                    case "table": return "Table";
+                    case "bar": return "Gráfico de Barra";
+                    case "line": return "Gráfico de Linha";
+                    case "table": return "Tabela";
                     default: return key;
                   }
                 }}
@@ -95,15 +95,15 @@ export function ScoutChartSection({
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-2"></div>
-              <p className="text-gray-600 dark:text-gray-400">Loading scout data...</p>
+              <p className="text-gray-600 dark:text-gray-400">Carregando dados do scout...</p>
             </div>
           </div>
         ) : chartData.length === 0 ? (
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
               <Trophy className="h-12 w-12 text-gray-400 mx-auto mb-2" />
-              <p className="text-gray-600 dark:text-gray-400">No scout data available</p>
-              <p className="text-sm text-gray-500">Create scouts and make predictions to see the leaderboard</p>
+              <p className="text-gray-600 dark:text-gray-400">Não há dados de scout disponíveis</p>
+              <p className="text-sm text-gray-500">Crie scout e faça previsões para ver a tabela de classificação</p>
             </div>
           </div>
         ) : (

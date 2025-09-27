@@ -48,7 +48,7 @@ export const ColumnSettingsSheet = ({
       try {
         setSavedPresets(JSON.parse(saved));
       } catch (error) {
-        console.error("Failed to load saved presets:", error);
+        console.error("Falha ao carregar predefinições salvas:", error);
       }
     }
   }, []);
@@ -103,14 +103,14 @@ export const ColumnSettingsSheet = ({
       <SheetTrigger asChild>
         <Button variant="outline" size="sm">
           <Columns3 className="h-4 w-4 mr-2" />
-          Customize Columns
+          Personalizar colunas
         </Button>
       </SheetTrigger>
       <SheetContent className="w-96">
         <SheetHeader>
-          <SheetTitle>Customize Table Columns</SheetTitle>
+          <SheetTitle>Personalizar colunas da tabela</SheetTitle>
           <SheetDescription>
-            Select which columns to display in the team statistics table
+            Selecione quais colunas exibir na tabela de estatísticas da equipe
           </SheetDescription>
         </SheetHeader>
         
@@ -118,7 +118,7 @@ export const ColumnSettingsSheet = ({
           {/* Quick Actions */}
           <div className="space-y-3">
             <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
-              Quick Actions
+              Ações rápidas
             </h4>
             <div className="grid grid-cols-2 gap-2">
               <Button 
@@ -127,7 +127,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => columnConfig.filter(col => !col.visible).forEach(col => onToggleColumn(col.key))}
               >
                 <Eye className="h-4 w-4 mr-1" />
-                Show All
+                Mostrar tudo
               </Button>
               <Button 
                 variant="outline" 
@@ -135,7 +135,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("basic")}
               >
                 <EyeOff className="h-4 w-4 mr-1" />
-                Basic Only
+                Somente básico
               </Button>
             </div>
           </div>
@@ -143,7 +143,7 @@ export const ColumnSettingsSheet = ({
           {/* Column Presets */}
           <div className="space-y-3">
             <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
-              Common Presets
+              Predefinições comuns
             </h4>
             <div className="grid grid-cols-2 gap-2">
               <Button 
@@ -152,7 +152,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("essential")}
                 className="text-xs"
               >
-                Essential
+                Essencial
               </Button>
               <Button 
                 variant="outline" 
@@ -160,7 +160,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("aggregates")}
                 className="text-xs"
               >
-                Aggregates
+                Agregados
               </Button>
               <Button 
                 variant="outline" 
@@ -168,7 +168,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("auto")}
                 className="text-xs"
               >
-                Auto Focus
+                Foco Autônomo
               </Button>
               <Button 
                 variant="outline" 
@@ -176,7 +176,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("teleop")}
                 className="text-xs"
               >
-                Teleop Focus
+                Foco Teleoperado
               </Button>
               <Button 
                 variant="outline" 
@@ -184,7 +184,7 @@ export const ColumnSettingsSheet = ({
                 onClick={() => onApplyPreset("endgame")}
                 className="text-xs col-span-2"
               >
-                Endgame Focus
+                Foco Fim de Jogo
               </Button>
             </div>
           </div>
@@ -193,7 +193,7 @@ export const ColumnSettingsSheet = ({
           <div className="space-y-3">
             <div className="flex items-center justify-between">
               <h4 className="font-medium text-sm text-muted-foreground uppercase tracking-wide">
-                Custom Presets
+                Predefinições personalizadas
               </h4>
               <Button
                 variant="ghost"
@@ -202,7 +202,7 @@ export const ColumnSettingsSheet = ({
                 className="h-auto p-1 text-xs"
               >
                 <Plus className="h-3 w-3 mr-1" />
-                Save Current
+                Salvar corrente
               </Button>
             </div>
 
@@ -210,7 +210,7 @@ export const ColumnSettingsSheet = ({
             {showSaveInput && (
               <div className="flex gap-2">
                 <Input
-                  placeholder="Preset name..."
+                  placeholder="Nome predefinido..."
                   value={newPresetName}
                   onChange={(e) => setNewPresetName(e.target.value)}
                   className="flex-1 h-8 text-xs"
@@ -243,7 +243,7 @@ export const ColumnSettingsSheet = ({
                     <div className="flex-1">
                       <div className="text-sm font-medium">{preset.name}</div>
                       <div className="text-xs text-muted-foreground">
-                        {preset.columns.length} columns
+                        {preset.columns.length} colunas
                       </div>
                     </div>
                     <div className="flex gap-1">
@@ -253,7 +253,7 @@ export const ColumnSettingsSheet = ({
                         onClick={() => applySavedPreset(preset)}
                         className="h-7 px-2 text-xs"
                       >
-                        Apply
+                        Aplicar
                       </Button>
                       <Button
                         variant="ghost"
@@ -269,7 +269,7 @@ export const ColumnSettingsSheet = ({
               </div>
             ) : (
               <div className="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-lg">
-                No custom presets saved yet
+                Nenhuma predefinição personalizada salva ainda
               </div>
             )}
           </div>
@@ -317,7 +317,7 @@ export const ColumnSettingsSheet = ({
                     </label>
                     {col.numeric && (
                       <Badge variant="outline" className="text-xs">
-                        Numeric
+                        Numérico
                       </Badge>
                     )}
                   </div>

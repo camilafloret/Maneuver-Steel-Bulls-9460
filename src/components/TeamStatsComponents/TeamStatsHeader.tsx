@@ -29,11 +29,11 @@ export const TeamStatsHeader = ({
     <div className="w-full pt-4">
       <div className="flex flex-col sm:flex-row items-start gap-4">
         <div className="flex items-center gap-2">
-          <label className="font-medium shrink-0">Select Team:</label>
+          <label className="font-medium shrink-0">Selecione a Equipe:</label>
           <div className="min-w-[120px] max-w-[200px]">
             <TeamSelector
               index={0}
-              label="Select Team"
+              label="Selecione a Equipe"
               labelColor=""
               value={selectedTeam}
               availableTeams={availableTeams}
@@ -42,11 +42,11 @@ export const TeamStatsHeader = ({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <label className="font-medium shrink-0">Compare to:</label>
+          <label className="font-medium shrink-0">Comparar a:</label>
           <div className="min-w-[120px] max-w-[200px]">
             <TeamSelector
               index={1}
-              label="Compare Team"
+              label="Comparar a Equipe"
               labelColor=""
               value={compareTeam}
               availableTeams={compareTeamOptions}
@@ -55,13 +55,13 @@ export const TeamStatsHeader = ({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <label className="font-medium shrink-0">Event:</label>
+          <label className="font-medium shrink-0">Evento:</label>
           <GenericSelector
-            label="Select Event"
+            label="Selecione o evento"
             value={selectedEvent}
             availableOptions={["all", ...availableEvents]}
             onValueChange={onSelectedEventChange}
-            placeholder="All events"
+            placeholder="Todos os eventos"
             displayFormat={(val) => val}
             className="min-w-[120px] max-w-[200px]"
           />

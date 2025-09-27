@@ -78,11 +78,11 @@ const data = {
           url: "/team-stats",
         },
         {
-          title: "Scoutin de Pit",
+          title: "Scouting de Pit",
           url: "/pit-scouting",
         },
         {
-          title: "Listas de Escolha",
+          title: "Listas de Seleção",
           url: "/pick-list",
         }
       ],

@@ -47,12 +47,12 @@ export const StrategyHeader = ({
   return (
     <div className="flex flex-col md:flex-row justify-between">
       <div>
-        <h1 className="text-2xl font-bold pb-2">Strategy Overview</h1>
+        <h1 className="text-2xl font-bold pb-2">Visão Geral da Estratégia</h1>
         <p className="text-muted-foreground pb-8 md:pb-0">
-          Team performance analysis with {filteredTeamCount} teams
+          Análise de desempenho de equipe com {filteredTeamCount} equipes
           {activeFilterCount > 0 && (
             <span className="ml-2">
-              (filtered from {totalTeamCount})
+              (filtrado de {totalTeamCount})
               <Button 
                 variant="ghost" 
                 size="sm" 
@@ -60,7 +60,7 @@ export const StrategyHeader = ({
                 className="ml-2 h-auto p-1 text-xs"
               >
                 <X className="h-3 w-3 mr-1" />
-                Clear filters
+                Limpar filtros
               </Button>
             </span>
           )}
@@ -70,11 +70,11 @@ export const StrategyHeader = ({
       <div className="flex gap-2 pb-4 items-center">
         {/* Event Filter */}
         <GenericSelector
-          label="Select Event"
+          label="Selecione o evento"
           value={selectedEvent}
           availableOptions={["all", ...availableEvents]}
           onValueChange={onEventChange}
-          placeholder="All Events"
+          placeholder="Todos eventos"
           displayFormat={(val) => val}
           className="w-48"
         />
@@ -82,17 +82,17 @@ export const StrategyHeader = ({
         {/* Aggregation Type */}
         <div className="relative">
           <GenericSelector
-            label="Select Aggregation Type"
+            label="Selecione o tipo de agregação"
             value={aggregationType}
             availableOptions={["average", "median", "max", "75th"]}
             onValueChange={chartType === "box" ? () => {} : handleAggregationTypeChange}
-            placeholder="Aggregation type"
+            placeholder="Tipo de agregação"
             displayFormat={(val) => {
               switch (val) {
-                case "average": return "Average";
-                case "median": return "Median";
-                case "max": return "Max";
-                case "75th": return "75th %";
+                case "average": return "Média";
+                case "median": return "Mediana";
+                case "max": return "Máximo";
+                case "75th": return "75º %";
                 default: return val;
               }
             }}

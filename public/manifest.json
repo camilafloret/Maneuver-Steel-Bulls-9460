@@ -10,9 +10,9 @@
   "categories": ["sports", "utilities", "productivity"],
   "shortcuts": [
     {
-      "name": "Quick Scout",
+      "name": "Scout Rápido",
       "short_name": "Scout",
-      "description": "Start scouting a match",
+      "description": "Comece o scout de uma partida",
       "url": "/game-start",
       "icons": [{
         "src": "/lupa.png",
@@ -21,9 +21,9 @@
       }]
     },
     {
-      "name": "Team Stats",
+      "name": "Estatísticas da Equipe",
       "short_name": "Stats", 
-      "description": "View team analytics",
+      "description": "Ver análises da equipe",
       "url": "/team-stats",
       "icons": [{
         "src": "/anotar.png",

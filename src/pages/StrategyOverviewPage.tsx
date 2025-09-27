@@ -47,23 +47,23 @@ const StrategyOverviewPage = () => {
     { key: "autoCoralPlaceL2Count", label: "Auto L2", category: "Auto Coral", visible: true, numeric: true },
     { key: "autoCoralPlaceL3Count", label: "Auto L3", category: "Auto Coral", visible: true, numeric: true },
     { key: "autoCoralPlaceL4Count", label: "Auto L4", category: "Auto Coral", visible: true, numeric: true },
-    { key: "autoCoralPlaceDropMissCount", label: "Auto Drops", category: "Auto Coral", visible: false, numeric: true },
+    { key: "autoCoralPlaceDropMissCount", label: "Perdas Autônomo", category: "Auto Coral", visible: false, numeric: true },
     
     // Auto Pickup
-    { key: "autoCoralPickPreloadCount", label: "Pré-carregamento automático", category: "Auto Pickup", visible: false, numeric: true },
-    { key: "autoCoralPickStationCount", label: "Estação Automática", category: "Auto Pickup", visible: false, numeric: true },
+    { key: "autoCoralPickPreloadCount", label: "Pré-carregamento Autônomo", category: "Auto Pickup", visible: false, numeric: true },
+    { key: "autoCoralPickStationCount", label: "Estação Autônomo", category: "Auto Pickup", visible: false, numeric: true },
     
     // Auto Algae
-    { key: "autoAlgaePlaceNetShot", label: "Rede Automática", category: "Auto Algae", visible: true, numeric: true },
-    { key: "autoAlgaePlaceProcessor", label: "Processador Automática", category: "Auto Algae", visible: false, numeric: true },
-    { key: "autoPassedStartLine", label: "Linha Automática", category: "Auto Other", visible: false, numeric: false },
+    { key: "autoAlgaePlaceNetShot", label: "Rede Autônomo", category: "Auto Algae", visible: true, numeric: true },
+    { key: "autoAlgaePlaceProcessor", label: "Processador Autônomo", category: "Auto Algae", visible: false, numeric: true },
+    { key: "autoPassedStartLine", label: "Linha de Partida Autônomo", category: "Auto Other", visible: false, numeric: false },
     
     // Teleop Coral
     { key: "teleopCoralPlaceL1Count", label: "Teleop L1", category: "Teleop Coral", visible: true, numeric: true },
     { key: "teleopCoralPlaceL2Count", label: "Teleop L2", category: "Teleop Coral", visible: true, numeric: true },
     { key: "teleopCoralPlaceL3Count", label: "Teleop L3", category: "Teleop Coral", visible: true, numeric: true },
     { key: "teleopCoralPlaceL4Count", label: "Teleop L4", category: "Teleop Coral", visible: true, numeric: true },
-    { key: "teleopCoralPlaceDropMissCount", label: "Teleop Drops", category: "Teleop Coral", visible: false, numeric: true },
+    { key: "teleopCoralPlaceDropMissCount", label: "Perdas de Teleop", category: "Teleop Coral", visible: false, numeric: true },
     
     // Teleop Pickup
     { key: "teleopCoralPickStationCount", label: "Estação Teleop", category: "Teleop Pickup", visible: false, numeric: true },
@@ -90,7 +90,7 @@ const StrategyOverviewPage = () => {
     { key: "totalPoints", label: "Total de Pontos", category: "Aggregates", visible: true, numeric: true },
     { key: "autoPoints", label: "Pontos do Auto", category: "Aggregates", visible: false, numeric: true },
     { key: "teleopPoints", label: "Pontos do Teleop", category: "Aggregates", visible: false, numeric: true },
-    { key: "endgamePoints", label: "Pontos do Fijm de Jogo", category: "Aggregates", visible: false, numeric: true },
+    { key: "endgamePoints", label: "Pontos do Fim de Jogo", category: "Aggregates", visible: false, numeric: true },
   ]);
 
   // Load data on component mount
@@ -133,16 +133,16 @@ const StrategyOverviewPage = () => {
             { key: "autoCoralPlaceL2Count", label: "Auto L2", category: "Auto Coral", visible: true, numeric: true },
             { key: "autoCoralPlaceL3Count", label: "Auto L3", category: "Auto Coral", visible: true, numeric: true },
             { key: "autoCoralPlaceL4Count", label: "Auto L4", category: "Auto Coral", visible: true, numeric: true },
-            { key: "autoCoralPlaceDropMissCount", label: "Erros Auto", category: "Auto Coral", visible: false, numeric: true },
+            { key: "autoCoralPlaceDropMissCount", label: "Erros Autônomo", category: "Auto Coral", visible: false, numeric: true },
 
             // Auto Pickup
-            { key: "autoCoralPickPreloadCount", label: "Auto Preload", category: "Auto Pickup", visible: false, numeric: true },
-            { key: "autoCoralPickStationCount", label: "Auto Station", category: "Auto Pickup", visible: false, numeric: true },
+            { key: "autoCoralPickPreloadCount", label: "Pré-carregamento Autônomo", category: "Auto Pickup", visible: false, numeric: true },
+            { key: "autoCoralPickStationCount", label: "Estação Autônomo", category: "Auto Pickup", visible: false, numeric: true },
 
             // Auto Algae
-            { key: "autoAlgaePlaceNetShot", label: "Auto Net", category: "Auto Algae", visible: true, numeric: true },
-            { key: "autoAlgaePlaceProcessor", label: "Auto Processor", category: "Auto Algae", visible: false, numeric: true },
-            { key: "autoPassedStartLine", label: "Linha Auto", category: "Auto Outros", visible: false, numeric: false, percentage: true },
+            { key: "autoAlgaePlaceNetShot", label: "Rede Autônomo", category: "Auto Algae", visible: true, numeric: true },
+            { key: "autoAlgaePlaceProcessor", label: "Processador Autônomo", category: "Auto Algae", visible: false, numeric: true },
+            { key: "autoPassedStartLine", label: "Linha de Partida Autônomo", category: "Auto Outros", visible: false, numeric: false, percentage: true },
 
             // Teleop Coral
             { key: "teleopCoralPlaceL1Count", label: "Teleop L1", category: "Teleop Coral", visible: true, numeric: true },
@@ -152,13 +152,13 @@ const StrategyOverviewPage = () => {
             { key: "teleopCoralPlaceDropMissCount", label: "Erros Teleop", category: "Teleop Coral", visible: false, numeric: true },
 
             // Teleop Pickup
-            { key: "teleopCoralPickStationCount", label: "Teleop Station", category: "Teleop Pickup", visible: false, numeric: true },
-            { key: "teleopCoralPickCarpetCount", label: "Teleop Carpet", category: "Teleop Pickup", visible: false, numeric: true },
+            { key: "teleopCoralPickStationCount", label: "Estação Teleop", category: "Teleop Pickup", visible: false, numeric: true },
+            { key: "teleopCoralPickCarpetCount", label: "Tapete Teleop", category: "Teleop Pickup", visible: false, numeric: true },
 
             // Teleop Algae
-            { key: "teleopAlgaePlaceNetShot", label: "Teleop Net", category: "Teleop Algae", visible: true, numeric: true },
-            { key: "teleopAlgaePlaceProcessor", label: "Teleop Processor", category: "Teleop Algae", visible: false, numeric: true },
-            { key: "teleopAlgaePickReefCount", label: "Teleop Reef", category: "Teleop Algae", visible: false, numeric: true },
+            { key: "teleopAlgaePlaceNetShot", label: "Rede Teleop", category: "Teleop Algae", visible: true, numeric: true },
+            { key: "teleopAlgaePlaceProcessor", label: "Processador Teleop", category: "Teleop Algae", visible: false, numeric: true },
+            { key: "teleopAlgaePickReefCount", label: "Recife Teleop", category: "Teleop Algae", visible: false, numeric: true },
 
             // Endgame
             { key: "shallowClimbAttempted", label: "Subida Rasa", category: "Endgame", visible: true, numeric: false, percentage: true },

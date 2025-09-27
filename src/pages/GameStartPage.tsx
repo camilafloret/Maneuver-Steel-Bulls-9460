@@ -367,7 +367,7 @@ const GameStartPage = () => {
             onClick={handleGoBack}
             className="flex-1 h-12 text-lg"
           >
-            Back
+            Voltar
           </Button>
           <Button
             onClick={handleStartScouting}

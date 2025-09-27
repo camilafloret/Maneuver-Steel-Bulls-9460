@@ -47,10 +47,10 @@ const DevUtilitiesPage: React.FC = () => {
     setLoading(true);
     try {
       await clearTestData();
-      showMessage('✅ All scouter data cleared successfully!', 'success');
-    } catch (error) {
-      console.error('Error clearing data:', error);
-      showMessage('❌ Failed to clear data', 'error');
+      showMessage('✅ Todos os dados do scouter foram apagados com sucesso!', 'success');
+    } catch (erro) {
+      console.error('Erro ao apagar dados:', erro);
+      showMessage('❌ Falha ao apagar dados', 'error');
     } finally {
       setLoading(false);
     }
@@ -262,7 +262,7 @@ const DevUtilitiesPage: React.FC = () => {
               variant="outline"
             >
               <RefreshCw className="h-4 w-4 mr-2" />
-              {loading ? 'Processing...' : 'Backfill Achievements'}
+              {loading ? 'Processamento...' : 'Conquistas de preenchimento'}
             </Button>
 
             <div className="text-sm text-gray-600 dark:text-gray-400">
@@ -291,7 +291,7 @@ const DevUtilitiesPage: React.FC = () => {
               variant="outline"
             >
               <QrCode className="h-4 w-4 mr-2" />
-              {loading ? 'Simulating...' : 'Create & Transfer Test Profiles'}
+              {loading ? 'Simulando...' : 'Criar e transferir perfis de teste'}
             </Button>
 
             <div className="text-sm text-gray-600 dark:text-gray-400 space-y-2">

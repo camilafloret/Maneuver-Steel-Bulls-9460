@@ -504,20 +504,20 @@ const PitMapCard: React.FC<PitMapCardProps> = ({
           <div className="flex items-center justify-center gap-6 text-xs text-muted-foreground">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-gray-200 border border-gray-400 rounded"></div>
-              <span>Empty pits</span>
+              <span>Pits vazios</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-gray-700 border border-gray-900 rounded"></div>
-              <span>Unassigned teams</span>
+              <span>Equipes não designadas</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-green-600 border border-green-800 rounded"></div>
-              <span>Completed</span>
+              <span>Concluído</span>
             </div>
             {assignmentsConfirmed && assignments.length > 0 && (
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-amber-500 border-2 border-amber-600 rounded"></div>
-                <span>Click to toggle completion</span>
+                <span>Clique para alternar a conclusão</span>
               </div>
             )}
           </div>
@@ -526,8 +526,8 @@ const PitMapCard: React.FC<PitMapCardProps> = ({
           {assignmentsConfirmed && assignments.length > 0 && (
             <div className="text-center text-xs text-muted-foreground mt-2">
               {isSpatialAssignment() ? 
-                '🗺️ Teams assigned using spatial proximity for optimal scouting routes' : 
-                '📝 Teams assigned in numerical sequence'
+                '🗺️ Equipes designadas usando proximidade espacial para rotas de scouting ideais':
+                '📝 Equipes designadas em sequência numérica'
               }
             </div>
           )}

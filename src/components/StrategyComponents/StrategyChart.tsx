@@ -66,26 +66,26 @@ export const StrategyChart = ({
   const getChartDescription = () => {
     switch (chartType) {
       case "scatter":
-        return "Compare two metrics across all teams";
+        return "Comparar duas métricas entre todos os times";
       case "box":
-        return "Performance distribution and consistency analysis (shows min, Q1, median, Q3, max, and outliers)";
+        return "Distribuição de desempenho e análise de consistência (mostra mínimo, Q1, mediana, Q3, máximo e outliers)";
       case "stacked":
-        return "Points breakdown by game phase (Auto/Teleop/Endgame)";
+        return "Distribuição de pontos por fase do jogo (Auto/Teleop/Endgame)";
       default:
-        return "Top performing teams by selected metric";
+        return "Times com melhor desempenho na métrica selecionada";
     }
   };
 
   const getChartDisplayName = (type: string) => {
     switch (type) {
       case "bar":
-        return "Bar Chart";
+        return "Gráfico de Barra";
       case "scatter":
-        return "Scatter Plot";
+        return "Gráfico de Dispersão";
       case "box":
-        return "Box Plot";
+        return "Gráfico de Box";
       case "stacked":
-        return "Stacked Bar";
+        return "Barra Empilhada";
       default:
         return type;
     }
@@ -98,7 +98,7 @@ export const StrategyChart = ({
           <div className="flex flex-col w-full">
             <CardTitle className="flex items-start gap-2 pb-2">
               <BarChart3 className="h-5 w-5" />
-              Team Performance Chart
+              Gráfico de Desempenho da Equipe
             </CardTitle>
             <CardDescription className="px-4">
               {getChartDescription()}
@@ -107,13 +107,13 @@ export const StrategyChart = ({
           <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-2 w-full">
             {/* Chart Type Selector */}
             <div className="flex items-center gap-2">
-            <p className="whitespace-nowrap">Chart:</p>
+            <p className="whitespace-nowrap">Gráfico:</p>
               <GenericSelector
-                label="Select Chart Type"
+                label="Selecione o tipo de gráfico"
                 value={chartType}
                 availableOptions={["bar", "scatter", "box", "stacked"]}
                 onValueChange={handleChartTypeChange}
-                placeholder="Chart type"
+                placeholder="Tipo de gráfico"
                 displayFormat={getChartDisplayName}
                 className="w-auto max-w-32"
               />
@@ -122,44 +122,44 @@ export const StrategyChart = ({
             {chartType === "scatter" ? (
               <div className="flex gap-2 md:flex-none items-center">
                 {/* X-Axis Metric */}
-                <p className="whitespace-nowrap">X-Axis:</p>
+                <p className="whitespace-nowrap">Eixo X:</p>
                 <GenericSelector
-                  label="Select X-Axis Metric"
+                  label="Selecione a métrica do eixo X"
                   value={scatterXMetric}
                   availableOptions={columnConfig.filter(col => col.numeric || col.key === 'teamNumber').map(col => col.key)}
                   onValueChange={onScatterXMetricChange}
-                  placeholder="X-Axis"
+                  placeholder="Eixo X"
                   displayFormat={(key) => columnConfig.find(col => col.key === key)?.label || key}
                   className="w-auto max-w-40"
                 />
                 
                 {/* Y-Axis Metric */}
-                <p className="whitespace-nowrap">Y-Axis:</p>
+                <p className="whitespace-nowrap">Eixo Y:</p>
                 <GenericSelector
-                  label="Select Y-Axis Metric"
+                  label="Selecione a métrica do eixo Y"
                   value={scatterYMetric}
                   availableOptions={columnConfig.filter(col => col.numeric || col.key === 'teamNumber').map(col => col.key)}
                   onValueChange={onScatterYMetricChange}
-                  placeholder="Y-Axis"
+                  placeholder="Eixo Y"
                   displayFormat={(key) => columnConfig.find(col => col.key === key)?.label || key}
                   className="w-auto max-w-40"
                 />
               </div>
             ) : chartType === "stacked" ? (
               <div className="flex gap-2 md:flex-none items-center">
-                <p className="text-sm text-muted-foreground">Points breakdown by game phase</p>
+                <p className="text-sm text-muted-foreground">Distribuição de pontos por fase do jogo</p>
               </div>
             ) : (
               /* Bar Chart and Box Plot Metric */
               <div className="flex gap-2 md:flex-none items-center">
-                <p className="whitespace-nowrap">Metric:</p>
+                <p className="whitespace-nowrap">Métricas:</p>
                 <div className="w-full">
                   <GenericSelector
-                    label="Select Metric"
+                    label="Selecione a métrica"
                     value={chartMetric}
                     availableOptions={columnConfig.filter(col => col.numeric || col.key === 'teamNumber').map(col => col.key)}
                     onValueChange={onChartMetricChange}
-                  placeholder="Select metric"
+                  placeholder="Selecione a métrica"
                   displayFormat={(key) => columnConfig.find(col => col.key === key)?.label || key}
                   className="w-full md:w-48"
                 />
@@ -211,7 +211,7 @@ export const StrategyChart = ({
                   return (
                     <div className="bg-background border border-border rounded-lg shadow-lg p-3 min-w-[200px]">
                       <div className="font-medium text-foreground mb-2">
-                        Team {data.team}
+                        Equipe {data.team}
                       </div>
                       <div className="text-sm text-muted-foreground mb-1">
                         {data.eventName}
@@ -249,7 +249,7 @@ export const StrategyChart = ({
                 axisLine={false}
                 className="text-xs"
                 label={{ 
-                  value: "Team", 
+                  value: "Equipe", 
                   position: 'insideBottom', 
                   offset: -5,
                   style: { textAnchor: 'middle', fontSize: '12px', fill: 'currentColor' }
@@ -260,7 +260,7 @@ export const StrategyChart = ({
                 axisLine={false}
                 className="text-xs"
                 label={{ 
-                  value: "Points", 
+                  value: "Pontos", 
                   angle: -90, 
                   position: 'insideLeft',
                   style: { textAnchor: 'middle', fontSize: '12px', fill: 'currentColor' }
@@ -276,26 +276,26 @@ export const StrategyChart = ({
                   return (
                     <div className="bg-background border border-border rounded-lg shadow-lg p-3 min-w-[200px]">
                       <div className="font-medium text-foreground mb-2">
-                        Team {label}
+                        Equipe {label}
                       </div>
                       <div className="text-sm text-muted-foreground mb-2">
                         {data.eventName}
                       </div>
                       <div className="space-y-1">
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground">Auto Points:</span>
+                          <span className="text-sm text-muted-foreground">Pontos Autônomos:</span>
                           <span className="font-medium" style={{color: "var(--color-chart-1)"}}>
                             {data.autoPoints?.toFixed(1) || 0}
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground">Teleop Points:</span>
+                          <span className="text-sm text-muted-foreground">Pontos de Teleoperado:</span>
                           <span className="font-medium" style={{color: "var(--color-chart-2)"}}>
                             {data.teleopPoints?.toFixed(1) || 0}
                           </span>
                         </div>
                         <div className="flex justify-between items-center">
-                          <span className="text-sm text-muted-foreground">Endgame Points:</span>
+                          <span className="text-sm text-muted-foreground">Pontos de Fim de Jogo:</span>
                           <span className="font-medium" style={{color: "var(--color-chart-3)"}}>
                             {data.endgamePoints?.toFixed(1) || 0}
                           </span>
@@ -333,7 +333,7 @@ export const StrategyChart = ({
                 axisLine={false}
                 className="text-xs"
                 label={{ 
-                  value: "Team", 
+                  value: "Equipe", 
                   position: 'insideBottom', 
                   offset: -5,
                   style: { textAnchor: 'middle', fontSize: '12px', fill: 'currentColor' }
@@ -359,7 +359,7 @@ export const StrategyChart = ({
                   return (
                     <div className="bg-background border border-border rounded-lg shadow-lg p-3 min-w-[180px]">
                       <div className="font-medium text-foreground mb-2">
-                        Team {data.team}
+                        Equipe {data.team}
                       </div>
                       <div className="text-sm text-muted-foreground mb-1">
                         {data.eventName}

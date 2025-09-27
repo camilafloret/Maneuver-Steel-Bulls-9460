@@ -69,7 +69,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
     setShowAddForm(false)
     setNewEventName("")
     
-    toast.success(`Event set to: ${trimmedName}`)
+    toast.success(`Evento definido para: ${trimmedName}`)
   }
 
   const removeEvent = (name: string) => {
@@ -82,7 +82,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
       localStorage.removeItem("eventName")
     }
     
-    toast.success(`Removed event: ${name}`)
+    toast.success(`Evento removido: ${name}`)
   }
 
   const handleAddNewEvent = () => {
@@ -102,17 +102,17 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
         >
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            {currentEventName || "Select event..."}
+            {currentEventName || "Selecione o evento..."}
           </div>
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[300px] p-0">
         <Command>
-          <CommandInput placeholder="Search events..." />
+          <CommandInput placeholder="Pesquisar eventos..." />
           <CommandEmpty>
             <div className="text-center p-4">
-              <p className="text-sm text-muted-foreground mb-2">No events found</p>
+              <p className="text-sm text-muted-foreground mb-2">Nenhum evento encontrado</p>
               <Button
                 variant="outline"
                 size="sm"
@@ -120,7 +120,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
                 className="w-full"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                Add New Event
+                Adicionar novo evento
               </Button>
             </div>
           </CommandEmpty>
@@ -164,7 +164,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
               <CommandGroup>
                 <CommandItem onSelect={() => setShowAddForm(true)}>
                   <Plus className="mr-2 h-4 w-4" />
-                  Add New Event
+                  Adicionar novo evento
                 </CommandItem>
               </CommandGroup>
             )}
@@ -192,7 +192,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
                       onClick={handleAddNewEvent}
                       className="flex-1"
                     >
-                      Add
+                      Adicionar
                     </Button>
                     <Button
                       size="sm"
@@ -203,7 +203,7 @@ export function EventNameSelector({ currentEventName, onEventNameChange }: Event
                       }}
                       className="flex-1"
                     >
-                      Cancel
+                      Cancelar
                     </Button>
                   </div>
                 </div>

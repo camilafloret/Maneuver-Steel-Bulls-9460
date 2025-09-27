@@ -104,12 +104,12 @@ export const DesktopPickListLayout = ({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h3 className="text-lg font-medium text-muted-foreground mb-2">No Pick Lists</h3>
+              <h3 className="text-lg font-medium text-muted-foreground mb-2">Sem listas de seleção</h3>
               <p className="text-sm text-muted-foreground mb-4">
-                Create your first pick list to start organizing teams for alliance selection.
+                Crie sua primeira lista de seleção para começar a organizar equipes para seleção de alianças.
               </p>
               <p className="text-xs text-muted-foreground">
-                You can also import existing pick lists using the Import button above.
+                Você também pode importar listas de seleção existentes usando o botão Importar acima.
               </p>
             </div>
           ) : (

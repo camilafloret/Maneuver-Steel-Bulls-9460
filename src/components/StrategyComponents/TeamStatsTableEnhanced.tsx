@@ -126,7 +126,7 @@ export const TeamStatsTableEnhanced = ({
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 md:gap-3">
             <CardTitle className="text-lg md:text-xl">Team Statistics</CardTitle>
             <Badge variant="secondary" className="text-xs w-fit">
-              {visibleColumns.length} of {columnConfig.length} columns
+              {visibleColumns.length} de {columnConfig.length} colunas
             </Badge>
           </div>
           
@@ -146,12 +146,12 @@ export const TeamStatsTableEnhanced = ({
         {/* Teams count with filter status */}
         <div className="flex px-4 md:px-6  items-center gap-2 text-sm text-muted-foreground">
           <span>
-            Showing {filteredTeamStats.length} of {teamStats.length} teams
+            Mostrando {filteredTeamStats.length} of {teamStats.length} equipes
           </span>
           {activeFilterCount > 0 && (
             <>
               <Badge variant="outline" className="text-xs">
-                {activeFilterCount} filter{activeFilterCount !== 1 ? 's' : ''} active
+                {activeFilterCount} filtro{activeFilterCount !== 1 ? 's' : ''} ativo
               </Badge>
               <Button
                 variant="ghost"
@@ -160,7 +160,7 @@ export const TeamStatsTableEnhanced = ({
                 onClick={onClearAllFilters}
               >
                 <X className="h-3 w-3 mr-1" />
-                Clear all filters
+                Limpar todos os filtros
               </Button>
             </>
           )}
@@ -169,7 +169,7 @@ export const TeamStatsTableEnhanced = ({
         {/* Search Controls */}
         <div className="flex items-center gap-2 px-4">
           <Input
-            placeholder="Filter teams..."
+            placeholder="Filtrar equipes..."
             value={(table.getColumn("teamNumber")?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
               table.getColumn("teamNumber")?.setFilterValue(event.target.value)
@@ -223,7 +223,7 @@ export const TeamStatsTableEnhanced = ({
                     colSpan={columns.length}
                     className="h-24 text-center"
                   >
-                    No results.
+                    Nenhum resultado.
                   </TableCell>
                 </TableRow>
               )}

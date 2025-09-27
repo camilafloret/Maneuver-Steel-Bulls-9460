@@ -319,7 +319,7 @@ const TeamStatsPage = () => {
                         compareValue={compareStats?.avgTotalPoints}
                       />
                       <StatCard 
-                        title="Pontos Automáticos" 
+                        title="Pontos Auto" 
                         value={teamStats.avgAutoPoints} 
                         color="blue"
                         compareValue={compareStats?.avgAutoPoints}
